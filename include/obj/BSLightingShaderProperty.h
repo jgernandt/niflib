@@ -14,7 +14,7 @@ All rights reserved.  Please see niflib.h for license. */
 
 //--END CUSTOM CODE--//
 
-#include "NiProperty.h"
+#include "BSShaderProperty.h"
 
 // Include structures
 #include "../Ref.h"
@@ -26,7 +26,7 @@ class BSLightingShaderProperty;
 typedef Ref<BSLightingShaderProperty> BSLightingShaderPropertyRef;
 
 /*! Skyrim PP shader for assigning material/shader/texture. */
-class BSLightingShaderProperty : public NiProperty {
+class BSLightingShaderProperty : public BSShaderProperty {
 public:
 	/*! Constructor */
 	NIFLIB_API BSLightingShaderProperty();

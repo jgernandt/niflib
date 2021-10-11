@@ -5,43 +5,38 @@ All rights reserved.  Please see niflib.h for license. */
 
 //To change this file, alter the niftools/docsys/gen_niflib.py Python script.
 
-#ifndef _SKINDATA_H_
-#define _SKINDATA_H_
+#ifndef _BONEDATA_H_
+#define _BONEDATA_H_
 
 #include "../NIF_IO.h"
 
 // Include structures
 #include "SkinTransform.h"
-#include "SkinWeight.h"
+#include "NiBound.h"
+#include "BoneVertData.h"
 namespace Niflib {
 
 
-/*! Skinning data component. */
-struct SkinData {
+/*! NiSkinData::BoneData. Skinning data component. */
+struct BoneData {
 	/*! Default Constructor */
-	NIFLIB_API SkinData();
+	NIFLIB_API BoneData();
 	/*! Default Destructor */
-	NIFLIB_API ~SkinData();
+	NIFLIB_API ~BoneData();
 	/*! Copy Constructor */
-	NIFLIB_API SkinData( const SkinData & src );
+	NIFLIB_API BoneData( const BoneData & src );
 	/*! Copy Operator */
-	NIFLIB_API SkinData & operator=( const SkinData & src );
+	NIFLIB_API BoneData & operator=( const BoneData & src );
 	/*! Offset of the skin from this bone in bind position. */
 	SkinTransform skinTransform;
-	/*!
-	 * Translation offset of a bounding sphere holding all vertices. (Note that its a
-	 * Sphere Containing Axis Aligned Box not a minimum volume Sphere)
-	 */
-	Vector3 boundingSphereOffset;
-	/*! Radius for bounding sphere holding all vertices. */
-	float boundingSphereRadius;
-	/*! Unknown, always 0? */
-	Niflib::array<13,short > unknown13Shorts;
+	/*! Note that it's a Sphere Containing Axis Aligned Box not a minimum volume Sphere */
+	NiBound boundingSphere;
 	/*! Number of weighted vertices. */
 	mutable unsigned short numVertices;
 	/*! The vertex weights. */
-	vector<SkinWeight > vertexWeights;
+	vector<BoneVertData > vertexWeights;
 	//--BEGIN MISC CUSTOM CODE--//
+
 	//--END CUSTOM CODE--//
 };
 

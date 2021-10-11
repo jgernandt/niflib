@@ -60,17 +60,8 @@ public:
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! The number of materials affecting this renderable object. */
-	mutable unsigned int numMaterials;
 	/*! Per-material data. */
-	vector<MaterialData > materialData;
-	/*! The index of the currently active material. */
-	int activeMaterial;
-	/*!
-	 * The initial value for the flag that determines if the internal cached shader is
-	 * valid.
-	 */
-	bool materialNeedsUpdateDefault;
+	MaterialData materialData;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

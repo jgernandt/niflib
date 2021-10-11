@@ -1217,6 +1217,77 @@ enum LightingShaderControlledColor {
 
 ostream & operator<<( ostream & out, LightingShaderControlledColor const & val );
 
+/*! Flags for NiShadeProperty */
+enum ShadeFlags {
+	SHADING_HARD = 0, /*!< SHADING_HARD */
+	SHADING_SMOOTH = 1, /*!< SHADING_SMOOTH */
+};
+
+ostream & operator<<( ostream & out, ShadeFlags const & val );
+
+/*! The bits of BSVertexDesc that describe the enabled vertex attributes. */
+enum VertexAttribute {
+	VF_VERTEX = 1, /*!< VF Vertex */
+	VF_UVS = 2, /*!< VF UVs */
+	VF_UVS_2 = 4, /*!< VF UVs_2 */
+	VF_NORMALS = 8, /*!< VF Normals */
+	VF_TANGENTS = 16, /*!< VF Tangents */
+	VF_VERTEX_COLORS = 32, /*!< VF Vertex_Colors */
+	VF_SKINNED = 64, /*!< VF Skinned */
+	VF_LAND_DATA = 128, /*!< VF Land_Data */
+	VF_EYE_DATA = 256, /*!< VF Eye_Data */
+	VF_INSTANCE = 512, /*!< VF Instance */
+	VF_FULL_PRECISION = 1024, /*!< VF Full_Precision */
+};
+
+ostream & operator<<( ostream & out, VertexAttribute const & val );
+
+/*! Shader Property Flags 2 */
+enum BSShaderFlags2 {
+	SF2_ZBUFFER_WRITE = 1, /*!< ZBuffer Write */
+	SF2_LOD_LANDSCAPE = 2, /*!< LOD Landscape */
+	SF2_LOD_BUILDING = 4, /*!< LOD Building */
+	SF2_NO_FADE = 8, /*!< No Fade */
+	SF2_REFRACTION_TINT = 16, /*!< Refraction Tint */
+	SF2_VERTEX_COLORS = 32, /*!< Has Vertex Colors */
+	SF2_UNKNOWN1 = 64, /*!< Unknown */
+	SF2_1ST_LIGHT_IS_POINT_LIGHT = 128, /*!< 1st Light is Point Light */
+	SF2_2ND_LIGHT = 256, /*!< 2nd Light */
+	SF2_3RD_LIGHT = 512, /*!< 3rd Light */
+	SF2_VERTEX_LIGHTING = 1024, /*!< Vertex Lighting */
+	SF2_UNIFORM_SCALE = 2048, /*!< Uniform Scale */
+	SF2_FIT_SLOPE = 4096, /*!< Fit Slope */
+	SF2_BILLBOARD_AND_ENVMAP_LIGHT_FADE = 8192, /*!< Billboard and Envmap Light Fade */
+	SF2_NO_LOD_LAND_BLEND = 16384, /*!< No LOD Land Blend */
+	SF2_ENVMAP_LIGHT_FADE = 32768, /*!< Envmap Light Fade */
+	SF2_WIREFRAME = 65536, /*!< Wireframe */
+	SF2_VATS_SELECTION = 131072, /*!< VATS Selection */
+	SF2_SHOW_IN_LOCAL_MAP = 262144, /*!< Show in Local Map */
+	SF2_PREMULT_ALPHA = 524288, /*!< Premult Alpha */
+	SF2_SKIP_NORMAL_MAPS = 1048576, /*!< Skip Normal Maps */
+	SF2_ALPHA_DECAL = 2097152, /*!< Alpha Decal */
+	SF2_NO_TRANSPARECNY_MULTISAMPLING = 4194304, /*!< No Transparency MultiSampling */
+	SF2_UNKNOWN2 = 8388608, /*!< Unknown */
+	SF2_UNKNOWN3 = 16777216, /*!< Unknown */
+	SF2_UNKNOWN4 = 33554432, /*!< Unknown */
+	SF2_UNKNOWN5 = 67108864, /*!< Unknown */
+	SF2_UNKNOWN6 = 134217728, /*!< Unknown */
+	SF2_UNKNOWN7 = 268435456, /*!< Unknown */
+	SF2_UNKNOWN8 = 536870912, /*!< Unknown */
+	SF2_UNKNOWN9 = 1073741824, /*!< Unknown */
+	SF2_UNKNOWN10 = 2147483648, /*!< Unknown */
+};
+
+ostream & operator<<( ostream & out, BSShaderFlags2 const & val );
+
+enum AspectFlags {
+	VELOCITY_ORIENTATION = 1, /*!< Velocity Orientation */
+	INITIAL_ROTATION_FROM_VELOCITY = 2, /*!< Initial Rotation from Velocity */
+	SPEED_TO_ASPECT_ENABLED = 256, /*!< Speed to Aspect Enabled */
+};
+
+ostream & operator<<( ostream & out, AspectFlags const & val );
+
 
 
 }

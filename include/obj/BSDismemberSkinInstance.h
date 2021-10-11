@@ -23,7 +23,7 @@ namespace Niflib {
 class BSDismemberSkinInstance;
 typedef Ref<BSDismemberSkinInstance> BSDismemberSkinInstanceRef;
 
-/*! Bethesda-specific node. */
+/*! Bethesda-specific skin instance. */
 class BSDismemberSkinInstance : public NiSkinInstance {
 public:
 	/*! Constructor */
@@ -72,9 +72,9 @@ public:
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! Unknown */
+	/*! Unknown. */
 	mutable int numPartitions;
-	/*! Unknown */
+	/*! Unknown. */
 	vector<BodyPartList > partitions;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */

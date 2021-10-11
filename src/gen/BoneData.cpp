@@ -5,33 +5,34 @@ All rights reserved.  Please see niflib.h for license. */
 
 //To change this file, alter the niftools/docsys/gen_niflib.py Python script.
 
-#include "../../include/gen/SkinData.h"
+#include "../../include/gen/BoneData.h"
 #include "../../include/gen/SkinTransform.h"
-#include "../../include/gen/SkinWeight.h"
-#include "../../include/gen/SkinWeight.h"
+#include "../../include/gen/NiBound.h"
+#include "../../include/gen/NiBoundAABB.h"
+#include "../../include/gen/BoneVertData.h"
+#include "../../include/gen/BoneVertData.h"
 using namespace Niflib;
 
 //Constructor
-SkinData::SkinData() : boundingSphereRadius(0.0f), numVertices((unsigned short)0) {};
+BoneData::BoneData() : numVertices((unsigned short)0) {};
 
 //Copy Constructor
-SkinData::SkinData( const SkinData & src ) {
+BoneData::BoneData( const BoneData & src ) {
 	*this = src;
 };
 
 //Copy Operator
-SkinData & SkinData::operator=( const SkinData & src ) {
+BoneData & BoneData::operator=( const BoneData & src ) {
 	this->skinTransform = src.skinTransform;
-	this->boundingSphereOffset = src.boundingSphereOffset;
-	this->boundingSphereRadius = src.boundingSphereRadius;
-	this->unknown13Shorts = src.unknown13Shorts;
+	this->boundingSphere = src.boundingSphere;
 	this->numVertices = src.numVertices;
 	this->vertexWeights = src.vertexWeights;
 	return *this;
 };
 
 //Destructor
-SkinData::~SkinData() {};
+BoneData::~BoneData() {};
 
 //--BEGIN MISC CUSTOM CODE--//
+
 //--END CUSTOM CODE--//

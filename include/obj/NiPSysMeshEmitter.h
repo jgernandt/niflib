@@ -14,13 +14,10 @@ All rights reserved.  Please see niflib.h for license. */
 //--END CUSTOM CODE--//
 
 #include "NiPSysEmitter.h"
-
-// Include structures
-#include "../Ref.h"
 namespace Niflib {
 
 // Forward define of referenced NIF objects
-class NiTriBasedGeom;
+class NiAVObject;
 class NiPSysMeshEmitter;
 typedef Ref<NiPSysMeshEmitter> NiPSysMeshEmitterRef;
 
@@ -63,32 +60,32 @@ public:
 	 * Adds a single geometry to the collection. The collection will expand if necessary.
 	 * \param[in] mesh The shape to add to the collection.
 	 */
-	NIFLIB_API bool AddEmitterMesh( Ref<NiTriBasedGeom > mesh );
+	NIFLIB_API bool AddEmitterMesh( NiAVObject* mesh );
 
 	/*!
 	 * Remove a single geometry from the collection.
 	 * \param[in] mesh The shape remove from the collection.
 	 */
-	NIFLIB_API bool RemoveEmitterMesh( Ref<NiTriBasedGeom > mesh );
+	NIFLIB_API bool RemoveEmitterMesh( NiAVObject* mesh );
 
 	/*!
 	 * Replace a single geometry by another in the specified shape group.
 	 * \param[in] newmesh The geometry put into the collection.
 	 * \param[in] oldmesh The geometry remove from collection.
 	 */
-	NIFLIB_API bool ReplaceEmitterMesh( Ref<NiTriBasedGeom > newmesh, Ref<NiTriBasedGeom > oldmesh );
+	NIFLIB_API bool ReplaceEmitterMesh( NiAVObject* newmesh, NiAVObject* oldmesh );
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! The number of references to emitter meshes that follow. */
+	/*! Unknown. */
 	mutable unsigned int numEmitterMeshes;
-	/*! Links to meshes used for emitting. */
-	vector<Ref<NiTriBasedGeom > > emitterMeshes;
-	/*! The way the particles get their initial direction and speed. */
+	/*! The meshes which are emitted from. */
+	vector<NiAVObject*> emitterMeshes;
+	/*! The method by which the initial particle velocity will be computed. */
 	VelocityType initialVelocityType;
-	/*! The parts of the mesh that the particles emit from. */
+	/*! The manner in which particles are emitted from the Emitter Meshes. */
 	EmitFrom emissionType;
-	/*! The emission axis. */
+	/*! The emission axis if VELOCITY_USE_DIRECTION. */
 	Vector3 emissionAxis;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */

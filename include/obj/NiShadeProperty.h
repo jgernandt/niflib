@@ -68,13 +68,8 @@ public:
 
 	//--END CUSTOM CODE--//
 protected:
-	/*!
-	 * 1's Bit:  Enable smooth phong shading on this shape.
-	 * 
-	 *             If 1's bit is not set, hard-edged flat shading will be used on this
-	 * shape.
-	 */
-	unsigned short flags;
+	/*! Unknown. */
+	ShadeFlags flags;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

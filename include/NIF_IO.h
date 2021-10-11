@@ -33,6 +33,7 @@ byte ReadByte( istream& in );
 float ReadFloat( istream &in );
 string ReadString( istream &in );
 bool ReadBool( istream &in, unsigned int version );
+unsigned long long ReadUInt64( istream& in );
 
 //-- Write Utility Functions --//
 void WriteInt( int val, ostream& out );
@@ -44,6 +45,7 @@ void WriteByte( byte val, ostream& out );
 void WriteFloat( float val, ostream& out );
 void WriteString( string const & val, ostream& out );
 void WriteBool( bool val, ostream& out, unsigned int version );
+void WriteUInt64(unsigned long long val, ostream& out);
 
 //-- BitField Helper functions --//
 
@@ -70,10 +72,7 @@ void PackFlag( storage & dest, bool new_value, size_t lshift ) {
 template <class storage>
 storage UnpackField( storage src, size_t lshift, size_t num_bits ) {
 	//Generate mask
-	storage mask = 0;
-	for ( size_t i = lshift; i < num_bits + lshift; ++i ) {
-		mask |= (1 << i);
-	}
+	storage mask = ~(~storage(0) << num_bits) << lshift;
 
 	return (storage)(( src & mask) >> lshift);
 }
@@ -81,10 +80,7 @@ storage UnpackField( storage src, size_t lshift, size_t num_bits ) {
 template <class storage, class T>
 void PackField( storage & dest, T new_value, size_t lshift, size_t num_bits ) {
 	//Generate Mask
-	storage mask = 0;
-	for ( size_t i = lshift; i < num_bits + lshift; ++i ) {
-		mask |= (1 << i);
-	}
+	storage mask = ~(~storage(0) << num_bits) << lshift;
 
 	//Clear current value of requested field
 	dest &= ~mask;
@@ -130,6 +126,10 @@ void NifStream( float const & val, ostream& out, const NifInfo & info);
 //string
 void NifStream( string & val, istream& in, const NifInfo & info);
 void NifStream( string const & val, ostream& out, const NifInfo & info);
+
+//unsigned long long
+void NifStream(unsigned long long& val, istream& in, const NifInfo& info);
+void NifStream(unsigned long long const& val, ostream& out, const NifInfo& info);
 
 //--Structs--//
 

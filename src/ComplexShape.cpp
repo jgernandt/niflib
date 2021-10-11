@@ -14,7 +14,7 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../include/obj/NiSkinInstance.h"
 #include "../include/obj/NiSkinData.h"
 #include "../include/obj/NiTextureProperty.h"
-#include "../include/gen/SkinWeight.h"
+#include "../include/gen/BoneVertData.h"
 #include "../include/obj/NiSkinPartition.h"
 #include "../include/gen/BodyPartList.h"
 #include "../include/obj/BSShaderTextureSet.h"
@@ -530,7 +530,7 @@ void ComplexShape::Merge( NiAVObject * root ) {
 				vector<NiNodeRef> shapeBones = skinInst->GetBones();
 
 				//Get weights
-				vector<SkinWeight> shapeWeights;
+				vector<BoneVertData> shapeWeights;
 				for ( unsigned int b = 0; b < shapeBones.size(); ++b ) {
 					shapeWeights = skinData->GetBoneWeights(b);
 					for ( unsigned int w = 0; w < shapeWeights.size(); ++w ) {
@@ -964,7 +964,7 @@ Ref<NiAVObject> ComplexShape::Split( NiNode * parent, Matrix44 & transform, int 
 		vector<Color4> shapeColors( compVerts.size() );
 		vector< vector<TexCoord> > shapeTCs;
 		list<int> shapeTexCoordSets;
-		map<NiNodeRef, vector<SkinWeight> > shapeWeights;
+		map<NiNodeRef, vector<BoneVertData> > shapeWeights;
 
 		//Search for a NiTexturingProperty to build list of
 		//texture coordinates sets to create
@@ -1007,14 +1007,14 @@ Ref<NiAVObject> ComplexShape::Split( NiNode * parent, Matrix44 & transform, int 
 				}
 				tex_index++;
 			}
-			SkinWeight sk;
+			BoneVertData sk;
 			for ( map<NiNodeRef, float>::iterator wt = cv->weights.begin(); wt != cv->weights.end(); ++wt ) {
 				//Only record influences that make a noticable contribution
 				if ( wt->second > min_vertex_weight ) {
 					sk.index = vert_index;
 					sk.weight = wt->second;
 					if ( shapeWeights.find( wt->first ) == shapeWeights.end() ) {
-						shapeWeights[wt->first] = vector<SkinWeight>();
+						shapeWeights[wt->first] = vector<BoneVertData>();
 					}
 					shapeWeights[wt->first].push_back( sk );
 				}
@@ -1044,7 +1044,7 @@ Ref<NiAVObject> ComplexShape::Split( NiNode * parent, Matrix44 & transform, int 
 		//If there are any skin influences, bind the skin
 		if ( shapeWeights.size() > 0 ) {
 			vector<NiNodeRef> shapeInfluences;
-			for ( map<NiNodeRef, vector<SkinWeight> >::iterator inf = shapeWeights.begin(); inf != shapeWeights.end(); ++inf ) {
+			for ( map<NiNodeRef, vector<BoneVertData> >::iterator inf = shapeWeights.begin(); inf != shapeWeights.end(); ++inf ) {
 				shapeInfluences.push_back( inf->first );
 			}
 

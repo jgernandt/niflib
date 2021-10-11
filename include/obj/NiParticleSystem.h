@@ -16,15 +16,23 @@ All rights reserved.  Please see niflib.h for license. */
 #include "NiParticles.h"
 
 // Include structures
+#include "../gen/BSVertexDesc.h"
 #include "../Ref.h"
 namespace Niflib {
 
 // Forward define of referenced NIF objects
+class NiPSysData;
 class NiPSysModifier;
 class NiParticleSystem;
 typedef Ref<NiParticleSystem> NiParticleSystemRef;
 
-/*! A particle system. */
+/*!
+ * A particle system.
+ *         Contains members to mimic inheritance shifts for Bethesda 20.2, where
+ * NiParticles switched to inheriting BSGeometry.
+ *         Until inheritance shifts are supported, the members are on
+ * NiParticleSystem instead of NiParticles for module reasons.
+ */
 class NiParticleSystem : public NiParticles {
 public:
 	/*! Constructor */
@@ -58,14 +66,27 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API BSVertexDesc& GetVertexDescriptor();
+	NIFLIB_API const BSVertexDesc& GetVertexDescriptor() const;
+
+	NIFLIB_API Ref<NiPSysData> GetData() const;
+	NIFLIB_API void SetData(const Ref<NiPSysData>& obj);
+
 	//--END CUSTOM CODE--//
 protected:
-	/*! Unknown */
-	unsigned short unknownShort2;
-	/*! Unknown */
-	unsigned short unknownShort3;
-	/*! Unknown */
-	unsigned int unknownInt1;
+	/*! Unknown. */
+	BSVertexDesc vertexDesc;
+	/*! Unknown. */
+	unsigned short farBegin;
+	/*! Unknown. */
+	unsigned short farEnd;
+	/*! Unknown. */
+	unsigned short nearBegin;
+	/*! Unknown. */
+	unsigned short nearEnd;
+	/*! Unknown. */
+	Ref<NiPSysData > data;
 	/*!
 	 * If true, Particles are birthed into world space.  If false, Particles are
 	 * birthed into object space.

@@ -14,14 +14,14 @@ All rights reserved.  Please see niflib.h for license. */
 
 //--END CUSTOM CODE--//
 
-#include "NiProperty.h"
+#include "BSShaderProperty.h"
 namespace Niflib {
 
 class BSEffectShaderProperty;
 typedef Ref<BSEffectShaderProperty> BSEffectShaderPropertyRef;
 
 /*! Skyrim non-PP shader model, used primarily for transparency effects. */
-class BSEffectShaderProperty : public NiProperty {
+class BSEffectShaderProperty : public BSShaderProperty {
 public:
 	/*! Constructor */
 	NIFLIB_API BSEffectShaderProperty();

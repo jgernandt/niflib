@@ -11,26 +11,36 @@ All rights reserved.  Please see niflib.h for license. */
 #define _NIGEOMETRY_H_
 
 //--BEGIN FILE HEAD CUSTOM CODE--//
-#include "../gen/SkinWeight.h"
+#include "../gen/BoneVertData.h"
 #include "../obj/NiGeometryData.h"
 //--END CUSTOM CODE--//
 
 #include "NiAVObject.h"
 
 // Include structures
+#include "../gen/NiBound.h"
 #include "../Ref.h"
+#include "../gen/MaterialData.h"
 namespace Niflib {
 
 // Forward define of referenced NIF objects
+class NiObject;
 class NiGeometryData;
 class NiSkinInstance;
-class NiProperty;
+class BSShaderProperty;
+class NiAlphaProperty;
 class NiGeometry;
 typedef Ref<NiGeometry> NiGeometryRef;
 
 /*!
  * Describes a visible scene element with vertices like a mesh, a particle system,
  * lines, etc.
+ *             Bethesda 20.2.0.7 NIFs: NiGeometry was changed to BSGeometry.
+ *             Most new blocks (e.g. BSTriShape) do not refer to NiGeometry except
+ * NiParticleSystem was changed to use BSGeometry.
+ *             This causes massive inheritance problems so the rows below are
+ * doubled up to exclude NiParticleSystem for Bethesda Stream 100+
+ *             and to add data exclusive to BSGeometry.
  */
 class NiGeometry : public NiAVObject {
 public:
@@ -90,7 +100,7 @@ public:
 	 * The version on this class calculates the center and radius of
 	 * each set of affected vertices automatically.
 	 */
-	NIFLIB_API void SetBoneWeights( unsigned int bone_index, const vector<SkinWeight> & n );
+	NIFLIB_API void SetBoneWeights( unsigned int bone_index, const vector<BoneVertData> & n );
 
 	/*!
 	 * Retrieves the NiSkinInstance object used by this geometry node, if any.
@@ -194,34 +204,30 @@ public:
 	 */
    NIFLIB_API void SetBSProperties( Niflib::array<2, Ref<NiProperty> > value);
 
+   NIFLIB_API Ref<BSShaderProperty> GetShaderProperty() const;
+   NIFLIB_API void SetShaderProperty(Ref<BSShaderProperty> value);
+
+   NIFLIB_API Ref<NiAlphaProperty> GetAlphaProperty() const;
+   NIFLIB_API void SetAlphaProperty(Ref<NiAlphaProperty> value);
+
 	//--END CUSTOM CODE--//
 protected:
+	/*! Unknown. */
+	NiBound boundingSphere;
+	/*! Unknown. */
+	array<6,float > boundMinMax;
+	/*! Unknown. */
+	Ref<NiObject > skin;
 	/*! Data index (NiTriShapeData/NiTriStripData). */
 	Ref<NiGeometryData > data;
-	/*! Skin instance index. */
-	Ref<NiSkinInstance > skinInstance;
-	/*! Num Materials */
-	mutable unsigned int numMaterials;
-	/*! Unknown string.  Shader? */
-	vector<IndexString > materialName;
-	/*! Unknown integer; often -1. (Is this a link, array index?) */
-	vector<int > materialExtraData;
-	/*! Active Material; often -1. (Is this a link, array index?) */
-	int activeMaterial;
-	/*! Shader. */
-	bool hasShader;
-	/*! The shader name. */
-	IndexString shaderName;
-	/*! Unknown value, usually -1. (Not a link) */
-	int unknownInteger;
-	/*! Cyanide extension (only in version 10.2.0.0?). */
-	byte unknownByte;
 	/*! Unknown. */
-	int unknownInteger2;
-	/*! Dirty Flag? */
-	bool dirtyFlag;
-	/*! Two property links, used by Bethesda. */
-	Niflib::array<2,Ref<NiProperty > > bsProperties;
+	Ref<NiSkinInstance > skinInstance;
+	/*! Unknown. */
+	MaterialData materialData;
+	/*! Unknown. */
+	Ref<BSShaderProperty > shaderProperty;
+	/*! Unknown. */
+	Ref<NiAlphaProperty > alphaProperty;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

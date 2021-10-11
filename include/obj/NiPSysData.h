@@ -16,7 +16,7 @@ All rights reserved.  Please see niflib.h for license. */
 #include "NiRotatingParticlesData.h"
 
 // Include structures
-#include "../gen/ParticleDesc.h"
+#include "../gen/NiParticleInfo.h"
 namespace Niflib {
 
 class NiPSysData;
@@ -56,36 +56,21 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */
-	vector<ParticleDesc > particleDescriptions;
+	vector<NiParticleInfo > particleInfo;
 	/*! Unknown. */
-	bool hasUnknownFloats3;
+	Vector3 unknownVector;
 	/*! Unknown. */
-	vector<float > unknownFloats3;
+	bool hasRotationSpeeds;
 	/*! Unknown. */
-	unsigned short unknownShort1;
+	vector<float > rotationSpeeds;
 	/*! Unknown. */
-	unsigned short unknownShort2;
-	/*! Boolean for Num Subtexture Offset UVs */
-	bool hasSubtextureOffsetUvs;
-	/*! How many quads to use in BSPSysSubTexModifier for texture atlasing */
-	mutable unsigned int numSubtextureOffsetUvs;
-	/*! Sets aspect ratio for Subtexture Offset UV quads */
-	float aspectRatio;
-	/*! Defines UV offsets */
-	vector<Vector4 > subtextureOffsetUvs;
-	/*! Unknown */
-	unsigned int unknownInt4;
-	/*! Unknown */
-	unsigned int unknownInt5;
-	/*! Unknown */
-	unsigned int unknownInt6;
-	/*! Unknown */
-	unsigned short unknownShort3;
-	/*! Unknown */
-	byte unknownByte4;
+	unsigned short numAddedParticles;
+	/*! Unknown. */
+	unsigned short addedParticlesBase;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

@@ -16,6 +16,7 @@ All rights reserved.  Please see niflib.h for license. */
 #include "NiObject.h"
 
 // Include structures
+#include "../gen/NiBound.h"
 #include "../Ref.h"
 namespace Niflib {
 
@@ -24,7 +25,14 @@ class AbstractAdditionalGeometryData;
 class NiGeometryData;
 typedef Ref<NiGeometryData> NiGeometryDataRef;
 
-/*! Mesh data: vertices, vertex normals, etc. */
+/*!
+ * Mesh data: vertices, vertex normals, etc.
+ *             Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from
+ * NiGeometryData and inherits NiObject directly.
+ *             "Num Vertices" is renamed to "BS Max Vertices" for Bethesda 20.2
+ * because Vertices, Normals, Tangents, Colors, and UV arrays
+ *             do not have length for NiPSysData regardless of "Num" or booleans.
+ */
 class NiGeometryData : public NiObject {
 public:
 	/*! Constructor */
@@ -255,16 +263,16 @@ public:
    // \param[in] value The new value.
    NIFLIB_API void SetTangents( const vector<Vector3 >& value );
 
-   NIFLIB_API SkyrimHavokMaterial GetSkyrimMaterial() const;
+   //NIFLIB_API SkyrimHavokMaterial GetSkyrimMaterial() const;
 
 private:
-   unsigned short numUvSetsCalc(const NifInfo &) const;
-   unsigned short bsNumUvSetsCalc(const NifInfo &) const;
+   unsigned short dataFlagsCalc(const NifInfo &) const;
+   unsigned short bsDataFlagsCalc(const NifInfo &) const;
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! Unknown identifier. Always 0. */
-	int unknownInt;
+	/*! Always 0. */
+	int groupId;
 	/*! Number of vertices. */
 	mutable unsigned short numVertices;
 	/*! Bethesda uses this for max number of particles in NiPSysData. */
@@ -277,16 +285,12 @@ protected:
 	bool hasVertices;
 	/*! The mesh vertices. */
 	vector<Vector3 > vertices;
-	/*! Flag for tangents and bitangents in upper byte. Texture flags in lower byte. */
-	mutable unsigned short numUvSets;
-	/*!
-	 * Bethesda's version of this field for nif versions 20.2.0.7 and up. Only a single
-	 * bit denotes whether uv's are present. For example, see
-	 * meshes/architecture/megaton/megatonrampturn45sml.nif in Fallout 3.
-	 */
-	mutable unsigned short bsNumUvSets;
-	/*! Unknown, seen in Skyrim. */
-	SkyrimHavokMaterial skyrimMaterial;
+	/*! Unknown. */
+	mutable unsigned short dataFlags;
+	/*! Unknown. */
+	mutable unsigned short bsDataFlags;
+	/*! Unknown. */
+	unsigned int materialCrc;
 	/*!
 	 * Do we have lighting normals? These are essential for proper lighting: if not
 	 * present, the model will only be influenced by ambient light.
@@ -298,18 +302,12 @@ protected:
 	vector<Vector3 > tangents;
 	/*! Bitangent vectors. */
 	vector<Vector3 > bitangents;
-	/*!
-	 * Center of the bounding box (smallest box that contains all vertices) of the
-	 * mesh.
-	 */
-	Vector3 center;
-	/*!
-	 * Radius of the mesh: maximal Euclidean distance between the center and all
-	 * vertices.
-	 */
-	float radius;
-	/*! Unknown, always 0? */
-	Niflib::array<13,short > unknown13Shorts;
+	/*! Unknown. */
+	bool hasDiv2Floats;
+	/*! Unknown. */
+	vector<float > div2Floats;
+	/*! Unknown. */
+	NiBound boundingSphere;
 	/*!
 	 * Do we have vertex colors? These are usually used to fine-tune the lighting of
 	 * the model.

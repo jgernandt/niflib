@@ -7,30 +7,39 @@ All rights reserved.  Please see niflib.h for license. */
 // the next update.                                                          //
 //-----------------------------------NOTICE----------------------------------//
 
-#ifndef _NIPARTICLESDATA_H_
-#define _NIPARTICLESDATA_H_
+#ifndef _BSTRISHAPE_H_
+#define _BSTRISHAPE_H_
 
 //--BEGIN FILE HEAD CUSTOM CODE--//
+
 //--END CUSTOM CODE--//
 
-#include "NiGeometryData.h"
+#include "NiAVObject.h"
+
+// Include structures
+#include "../gen/NiBound.h"
+#include "../Ref.h"
+#include "../gen/BSVertexDesc.h"
+#include "../gen/BSVertexData.h"
+#include "../gen/BSVertexDataSSE.h"
+#include "../gen/HalfVector3.h"
 namespace Niflib {
 
-class NiParticlesData;
-typedef Ref<NiParticlesData> NiParticlesDataRef;
+// Forward define of referenced NIF objects
+class NiObject;
+class BSShaderProperty;
+class NiAlphaProperty;
+class BSTriShape;
+typedef Ref<BSTriShape> BSTriShapeRef;
 
-/*!
- * Generic rotating particles data object.
- *         Bethesda 20.2.0.7 NIFs: NiParticlesData no longer inherits from
- * NiGeometryData and inherits NiObject directly.
- */
-class NiParticlesData : public NiGeometryData {
+/*! Fallout 4 Tri Shape */
+class BSTriShape : public NiAVObject {
 public:
 	/*! Constructor */
-	NIFLIB_API NiParticlesData();
+	NIFLIB_API BSTriShape();
 
 	/*! Destructor */
-	NIFLIB_API virtual ~NiParticlesData();
+	NIFLIB_API virtual ~BSTriShape();
 
 	/*!
 	 * A constant value which uniquly identifies objects of this type.
@@ -57,53 +66,44 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+private:
+	//The must be overridable, since blocks like BSDynamicTriShape exist that keep the data in a separate field
+	virtual unsigned int dataSizeCalc(const Niflib::NifInfo& info) const;
+	virtual unsigned short numVerticesCalc(const Niflib::NifInfo& info) const;
+
 	//--END CUSTOM CODE--//
 protected:
-	/*! The maximum number of particles (matches the number of vertices). */
-	unsigned short numParticles;
-	/*! The particles' size. */
-	float particleRadius;
-	/*! Is the particle size array present? */
-	bool hasRadii;
-	/*! The individual particel sizes. */
-	vector<float > radii;
-	/*!
-	 * The number of active particles at the time the system was saved. This is also
-	 * the number of valid entries in the following arrays.
-	 */
-	unsigned short numActive;
-	/*! Is the particle size array present? */
-	bool hasSizes;
-	/*! The individual particel sizes. */
-	vector<float > sizes;
-	/*! Is the particle rotation array present? */
-	bool hasRotations;
-	/*! The individual particle rotations. */
-	vector<Quaternion > rotations;
-	/*! Are the angles of rotation present? */
-	bool hasRotationAngles;
-	/*! Angles of rotation */
-	vector<float > rotationAngles;
-	/*! Are axes of rotation present? */
-	bool hasRotationAxes;
-	/*! Unknown */
-	vector<Vector3 > rotationAxes;
 	/*! Unknown. */
-	bool hasTextureIndices;
-	/*! How many quads to use in BSPSysSubTexModifier for texture atlasing */
-	mutable unsigned int numSubtextureOffsets;
-	/*! Defines UV offsets */
-	vector<Vector4 > subtextureOffsets;
-	/*! Sets aspect ratio for Subtexture Offset UV quads */
-	float aspectRatio;
+	NiBound boundingSphere;
 	/*! Unknown. */
-	AspectFlags aspectFlags;
+	array<6,float > boundMinMax;
 	/*! Unknown. */
-	float speedToAspectAspect2;
+	Ref<NiObject > skin;
 	/*! Unknown. */
-	float speedToAspectSpeed1;
+	Ref<BSShaderProperty > shaderProperty;
 	/*! Unknown. */
-	float speedToAspectSpeed2;
+	Ref<NiAlphaProperty > alphaProperty;
+	/*! Unknown. */
+	BSVertexDesc vertexDesc;
+	/*! Unknown. */
+	mutable unsigned int numTriangles;
+	/*! Unknown. */
+	mutable unsigned short numVertices;
+	/*! Unknown. */
+	mutable unsigned int dataSize;
+	/*! Unknown. */
+	vector<BSVertexData > vertexData;
+	/*! Unknown. */
+	vector<Triangle > triangles;
+	/*! Unknown. */
+	unsigned int particleDataSize;
+	/*! Unknown. */
+	vector<HalfVector3 > particleVertices;
+	/*! Unknown. */
+	vector<HalfVector3 > particleNormals;
+	/*! Unknown. */
+	vector<Triangle > trianglesCopy;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );
@@ -118,6 +118,7 @@ public:
 };
 
 //--BEGIN FILE FOOT CUSTOM CODE--//
+
 //--END CUSTOM CODE--//
 
 } //End Niflib namespace

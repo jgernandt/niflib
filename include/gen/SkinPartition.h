@@ -11,7 +11,7 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../NIF_IO.h"
 
 // Include structures
-#include "SkinPartitionUnknownItem1.h"
+#include "BSVertexDesc.h"
 namespace Niflib {
 
 
@@ -67,22 +67,14 @@ struct SkinPartition {
 	bool hasBoneIndices;
 	/*! Bone indices, they index into 'Bones'. */
 	vector< vector<byte > > boneIndices;
-	/*! Unknown */
-	unsigned short unknownShort;
 	/*! Unknown. */
-	unsigned short unknown83C3;
+	byte lodLevel;
 	/*! Unknown. */
-	unsigned short unknown00001;
+	bool globalVb;
 	/*! Unknown. */
-	mutable unsigned short numVertices2;
+	BSVertexDesc vertexDesc;
 	/*! Unknown. */
-	unsigned short unknown00002;
-	/*! Unknown. */
-	unsigned short unknown00003;
-	/*! Unknown. */
-	unsigned short unknown00004;
-	/*! Unknown. */
-	vector<SkinPartitionUnknownItem1 > unknownArr1;
+	vector<Triangle > trianglesCopy;
 	//--BEGIN MISC CUSTOM CODE--//
 	/*! Calculate proper value of numTriangles field. */
 	unsigned short numTrianglesCalc() const;

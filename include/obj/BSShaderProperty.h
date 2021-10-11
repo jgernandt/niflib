@@ -14,14 +14,14 @@ All rights reserved.  Please see niflib.h for license. */
 
 //--END CUSTOM CODE--//
 
-#include "NiProperty.h"
+#include "NiShadeProperty.h"
 namespace Niflib {
 
 class BSShaderProperty;
 typedef Ref<BSShaderProperty> BSShaderPropertyRef;
 
-/*! Bethesda-specific Property node */
-class BSShaderProperty : public NiProperty {
+/*! Bethesda-specific property. */
+class BSShaderProperty : public NiShadeProperty {
 public:
 	/*! Constructor */
 	NIFLIB_API BSShaderProperty();
@@ -56,14 +56,6 @@ public:
 	//--BEGIN MISC CUSTOM CODE--//
 
 
-   // Unknown
-   // \return The current value.
-   unsigned short GetFlags() const;
-
-   // Unknown
-   // \param[in] value The new value.
-   void SetFlags( unsigned short value );
-
    // Unknown (Set to 0x21 for NoLighting, 0x11 for Water)
    // \return The current value.
    BSShaderType GetShaderType() const;
@@ -90,16 +82,14 @@ public:
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! Unknown */
-	unsigned short flags;
-	/*! Unknown (Set to 0x21 for NoLighting, 0x11 for Water) */
+	/*! Unknown. */
 	BSShaderType shaderType;
-	/*! Shader Property Flags */
+	/*! Unknown. */
 	BSShaderFlags shaderFlags;
-	/*! Unknown */
-	int unknownInt2;
-	/*! Unknown */
-	float envmapScale;
+	/*! Unknown. */
+	BSShaderFlags2 shaderFlags2;
+	/*! Scales the intensity of the environment/cube map. */
+	float environmentMapScale;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );
