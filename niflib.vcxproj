@@ -1,340 +1,124 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="Debug - DLL|Win32">
-      <Configuration>Debug - DLL</Configuration>
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug - DLL|x64">
-      <Configuration>Debug - DLL</Configuration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug - Static|Win32">
-      <Configuration>Debug - Static</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Debug - Static|x64">
-      <Configuration>Debug - Static</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release - DLL|Win32">
-      <Configuration>Release - DLL</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release - DLL|x64">
-      <Configuration>Release - DLL</Configuration>
-      <Platform>x64</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release - Static|Win32">
-      <Configuration>Release - Static</Configuration>
-      <Platform>Win32</Platform>
-    </ProjectConfiguration>
-    <ProjectConfiguration Include="Release - Static|x64">
-      <Configuration>Release - Static</Configuration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <ProjectGuid>{19FD8EE6-79CC-4BAC-9744-D9573BE47C7E}</ProjectGuid>
-    <RootNamespace>NIFlib</RootNamespace>
-    <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
-    <UseOfMfc>Static</UseOfMfc>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>Unicode</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
-    <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v142</PlatformToolset>
-  </PropertyGroup>
-  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
-  <ImportGroup Label="ExtensionSettings">
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'" Label="PropertySheets">
-    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
-  </ImportGroup>
-  <PropertyGroup Label="UserMacros" />
-  <PropertyGroup>
-    <_ProjectFileVersion>10.0.40219.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'">$(ProjectDir)obj\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'">$(ProjectDir)obj\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'">$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release - Static|Win32'">$(ProjectDir)obj\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release - Static|Win32'">$(ProjectDir)obj\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release - Static|x64'">$(ProjectDir)obj\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release - Static|x64'">$(ProjectDir)obj\$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release - DLL|Win32'">$(ProjectDir)obj\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release - DLL|Win32'">$(ProjectDir)obj\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release - DLL|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release - DLL|x64'">$(Platform)\$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'">$(Configuration)\</IntDir>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'">$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'">$(Platform)\$(Configuration)\</IntDir>
-  </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>lib/niflib_static_debug.lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>lib/niflib_static_debug_x64.lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>lib/niflib_static.lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - Static|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Lib>
-      <OutputFile>lib/niflib_static_x64.lib</OutputFile>
-    </Lib>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_NIFLIB_DLL;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <OutputFile>bin\niflib.dll</OutputFile>
-      <Version>0.7</Version>
-      <ImportLibrary>lib/niflib_dll.lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release - DLL|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>Full</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_NIFLIB_DLL;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <OutputFile>bin\niflib_x64.dll</OutputFile>
-      <Version>0.7.3</Version>
-      <ImportLibrary>lib/niflib_dll.lib</ImportLibrary>
-      <TargetMachine>MachineX64</TargetMachine>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'">
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_NIFLIB_DLL;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <OutputFile>bin\niflib_debug.dll</OutputFile>
-      <Version>0.7.3</Version>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>lib/niflib_dll_debug.lib</ImportLibrary>
-    </Link>
-  </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'">
-    <Midl>
-      <TargetEnvironment>X64</TargetEnvironment>
-    </Midl>
-    <ClCompile>
-      <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(ProjectDir)include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>BUILDING_NIFLIB_DLL;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <MinimalRebuild>true</MinimalRebuild>
-      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <PrecompiledHeaderFile>
-      </PrecompiledHeaderFile>
-      <WarningLevel>Level3</WarningLevel>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-    </ClCompile>
-    <Link>
-      <OutputFile>bin\niflib_debug_x64.dll</OutputFile>
-      <Version>0.7.3</Version>
-      <ImportLibrary>lib/niflib_dll_debug.lib</ImportLibrary>
-      <TargetMachine>MachineX64</TargetMachine>
-    </Link>
-  </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NvTriStrip\NvTriStrip.cpp" />
+    <ClCompile Include="NvTriStrip\NvTriStripObjects.cpp" />
+    <ClCompile Include="NvTriStrip\VertexCache.cpp" />
+    <ClCompile Include="src\ComplexShape.cpp" />
+    <ClCompile Include="src\gen\AdditionalDataBlock.cpp" />
+    <ClCompile Include="src\gen\AdditionalDataInfo.cpp" />
+    <ClCompile Include="src\gen\ArkTexture.cpp" />
+    <ClCompile Include="src\gen\AVObject.cpp" />
     <ClCompile Include="src\gen\bhkCMSDBigTris.cpp" />
+    <ClCompile Include="src\gen\bhkCMSDChunk.cpp" />
+    <ClCompile Include="src\gen\bhkCMSDData.cpp" />
+    <ClCompile Include="src\gen\bhkCMSDMaterial.cpp" />
+    <ClCompile Include="src\gen\bhkCMSDTransform.cpp" />
+    <ClCompile Include="src\gen\BodyPartList.cpp" />
+    <ClCompile Include="src\gen\BoneData.cpp" />
     <ClCompile Include="src\gen\BoneLOD.cpp" />
+    <ClCompile Include="src\gen\BoneVertData.cpp" />
+    <ClCompile Include="src\gen\BoundingBox.cpp" />
+    <ClCompile Include="src\gen\BoundingVolume.cpp" />
+    <ClCompile Include="src\gen\BoxBV.cpp" />
+    <ClCompile Include="src\gen\BSPackedAdditionalDataBlock.cpp" />
     <ClCompile Include="src\gen\BSSegment.cpp" />
-    <ClCompile Include="src\gen\SkinPartitionUnknownItem1.cpp" />
-    <ClCompile Include="src\obj\BSMultiBoundData.cpp" />
+    <ClCompile Include="src\gen\BSSegmentedTriangle.cpp" />
+    <ClCompile Include="src\gen\BSTreadTransfInfo.cpp" />
+    <ClCompile Include="src\gen\BSTreadTransform.cpp" />
+    <ClCompile Include="src\gen\BSTreadTransformData.cpp" />
+    <ClCompile Include="src\gen\BSTreadTransfSubInfo.cpp" />
+    <ClCompile Include="src\gen\BSVertexData.cpp" />
+    <ClCompile Include="src\gen\BSVertexDataSSE.cpp" />
+    <ClCompile Include="src\gen\BSVertexDesc.cpp" />
+    <ClCompile Include="src\gen\ByteArray.cpp" />
+    <ClCompile Include="src\gen\ByteColor3.cpp" />
+    <ClCompile Include="src\gen\ByteColor4.cpp" />
+    <ClCompile Include="src\gen\ByteMatrix.cpp" />
+    <ClCompile Include="src\gen\ByteVector3.cpp" />
+    <ClCompile Include="src\gen\CapsuleBV.cpp" />
+    <ClCompile Include="src\gen\ChannelData.cpp" />
+    <ClCompile Include="src\gen\ControllerLink.cpp" />
+    <ClCompile Include="src\gen\DecalVectorArray.cpp" />
+    <ClCompile Include="src\gen\ElementReference.cpp" />
+    <ClCompile Include="src\gen\enums.cpp" />
+    <ClCompile Include="src\gen\ExportInfo.cpp" />
+    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey.cpp" />
+    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey2.cpp" />
+    <ClCompile Include="src\gen\Footer.cpp" />
+    <ClCompile Include="src\gen\FurniturePosition.cpp" />
+    <ClCompile Include="src\gen\HalfSpaceBV.cpp" />
+    <ClCompile Include="src\gen\HalfTexCoord.cpp" />
+    <ClCompile Include="src\gen\HalfVector3.cpp" />
+    <ClCompile Include="src\gen\Header.cpp" />
+    <ClCompile Include="src\gen\HingeDescriptor.cpp" />
+    <ClCompile Include="src\gen\hkTriangle.cpp" />
+    <ClCompile Include="src\gen\LimitedHingeDescriptor.cpp" />
+    <ClCompile Include="src\gen\LODRange.cpp" />
+    <ClCompile Include="src\gen\MatchGroup.cpp" />
+    <ClCompile Include="src\gen\MaterialData.cpp" />
+    <ClCompile Include="src\gen\MeshData.cpp" />
+    <ClCompile Include="src\gen\MipMap.cpp" />
+    <ClCompile Include="src\gen\Morph.cpp" />
+    <ClCompile Include="src\gen\MorphWeight.cpp" />
+    <ClCompile Include="src\gen\MotorDescriptor.cpp" />
+    <ClCompile Include="src\gen\MTransform.cpp" />
+    <ClCompile Include="src\gen\MultiTextureElement.cpp" />
+    <ClCompile Include="src\gen\NiBound.cpp" />
+    <ClCompile Include="src\gen\NiBoundAABB.cpp" />
+    <ClCompile Include="src\gen\NiParticleInfo.cpp" />
+    <ClCompile Include="src\gen\NodeGroup.cpp" />
+    <ClCompile Include="src\gen\OblivionColFilter.cpp" />
+    <ClCompile Include="src\gen\OblivionSubShape.cpp" />
+    <ClCompile Include="src\gen\OldSkinData.cpp" />
+    <ClCompile Include="src\gen\Particle.cpp" />
+    <ClCompile Include="src\gen\ParticleDesc.cpp" />
+    <ClCompile Include="src\gen\physXMaterialRef.cpp" />
+    <ClCompile Include="src\gen\Polygon.cpp" />
+    <ClCompile Include="src\gen\QTransform.cpp" />
+    <ClCompile Include="src\gen\QuaternionXYZW.cpp" />
+    <ClCompile Include="src\gen\RagdollDescriptor.cpp" />
+    <ClCompile Include="src\gen\Region.cpp" />
+    <ClCompile Include="src\gen\register.cpp" />
+    <ClCompile Include="src\gen\SemanticData.cpp" />
+    <ClCompile Include="src\gen\ShaderTexDesc.cpp" />
+    <ClCompile Include="src\gen\SkinPartition.cpp" />
+    <ClCompile Include="src\gen\SkinShape.cpp" />
+    <ClCompile Include="src\gen\SkinShapeGroup.cpp" />
+    <ClCompile Include="src\gen\SkinTransform.cpp" />
+    <ClCompile Include="src\gen\SphereBV.cpp" />
+    <ClCompile Include="src\gen\StringPalette.cpp" />
+    <ClCompile Include="src\gen\TBC.cpp" />
+    <ClCompile Include="src\gen\TexDesc.cpp" />
+    <ClCompile Include="src\gen\TexSource.cpp" />
+    <ClCompile Include="src\gen\UnionBV.cpp" />
+    <ClCompile Include="src\gen\UnknownMatrix1.cpp" />
     <ClCompile Include="src\Inertia.cpp" />
     <ClCompile Include="src\kfm.cpp" />
     <ClCompile Include="src\MatTexCollection.cpp" />
+    <ClCompile Include="src\niflib.cpp" />
+    <ClCompile Include="src\nifqhull.cpp" />
     <ClCompile Include="src\NIF_IO.cpp" />
     <ClCompile Include="src\nif_math.cpp" />
-    <ClCompile Include="src\niflib.cpp">
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|Win32'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - DLL|x64'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Static|Win32'">
-      </PrecompiledHeaderFile>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug - Static|x64'">
-      </PrecompiledHeaderFile>
-    </ClCompile>
-    <ClCompile Include="src\nifqhull.cpp" />
     <ClCompile Include="src\ObjectRegistry.cpp" />
-    <ClCompile Include="src\pch.cpp" />
-    <ClCompile Include="src\RefObject.cpp" />
-    <ClCompile Include="src\Type.cpp" />
     <ClCompile Include="src\obj\AbstractAdditionalGeometryData.cpp" />
     <ClCompile Include="src\obj\ATextureRenderData.cpp" />
     <ClCompile Include="src\obj\AvoidNode.cpp" />
@@ -395,7 +179,9 @@
     <ClCompile Include="src\obj\BSDebrisNode.cpp" />
     <ClCompile Include="src\obj\BSDecalPlacementVectorExtraData.cpp" />
     <ClCompile Include="src\obj\BSDismemberSkinInstance.cpp" />
+    <ClCompile Include="src\obj\BSDistantObjectLargeRefExtraData.cpp" />
     <ClCompile Include="src\obj\BSDistantTreeShaderProperty.cpp" />
+    <ClCompile Include="src\obj\BSDynamicTriShape.cpp" />
     <ClCompile Include="src\obj\BSEffectShaderProperty.cpp" />
     <ClCompile Include="src\obj\BSEffectShaderPropertyColorController.cpp" />
     <ClCompile Include="src\obj\BSEffectShaderPropertyFloatController.cpp" />
@@ -415,6 +201,7 @@
     <ClCompile Include="src\obj\BSMaterialEmittanceMultController.cpp" />
     <ClCompile Include="src\obj\BSMultiBound.cpp" />
     <ClCompile Include="src\obj\BSMultiBoundAABB.cpp" />
+    <ClCompile Include="src\obj\BSMultiBoundData.cpp" />
     <ClCompile Include="src\obj\BSMultiBoundNode.cpp" />
     <ClCompile Include="src\obj\BSMultiBoundOBB.cpp" />
     <ClCompile Include="src\obj\BSMultiBoundSphere.cpp" />
@@ -447,6 +234,7 @@
     <ClCompile Include="src\obj\BSStripPSysData.cpp" />
     <ClCompile Include="src\obj\BSTreadTransfInterpolator.cpp" />
     <ClCompile Include="src\obj\BSTreeNode.cpp" />
+    <ClCompile Include="src\obj\BSTriShape.cpp" />
     <ClCompile Include="src\obj\BSValueNode.cpp" />
     <ClCompile Include="src\obj\BSWArray.cpp" />
     <ClCompile Include="src\obj\BSWaterShaderProperty.cpp" />
@@ -774,112 +562,118 @@
     <ClCompile Include="src\obj\TileShaderProperty.cpp" />
     <ClCompile Include="src\obj\VolumetricFogShaderProperty.cpp" />
     <ClCompile Include="src\obj\WaterShaderProperty.cpp" />
-    <ClCompile Include="src\gen\AdditionalDataBlock.cpp" />
-    <ClCompile Include="src\gen\AdditionalDataInfo.cpp" />
-    <ClCompile Include="src\gen\ArkTexture.cpp" />
-    <ClCompile Include="src\gen\AVObject.cpp" />
-    <ClCompile Include="src\gen\bhkCMSDMaterial.cpp" />
-    <ClCompile Include="src\gen\bhkCMSDChunk.cpp" />
-    <ClCompile Include="src\gen\bhkCMSDData.cpp" />
-    <ClCompile Include="src\gen\bhkCMSDTransform.cpp" />
-    <ClCompile Include="src\gen\BodyPartList.cpp" />
-    <ClCompile Include="src\gen\BoundingBox.cpp" />
-    <ClCompile Include="src\gen\BoundingVolume.cpp" />
-    <ClCompile Include="src\gen\BoxBV.cpp" />
-    <ClCompile Include="src\gen\BSPackedAdditionalDataBlock.cpp" />
-    <ClCompile Include="src\gen\BSSegmentedTriangle.cpp" />
-    <ClCompile Include="src\gen\BSTreadTransfInfo.cpp" />
-    <ClCompile Include="src\gen\BSTreadTransform.cpp" />
-    <ClCompile Include="src\gen\BSTreadTransformData.cpp" />
-    <ClCompile Include="src\gen\BSTreadTransfSubInfo.cpp" />
-    <ClCompile Include="src\gen\ByteArray.cpp" />
-    <ClCompile Include="src\gen\ByteColor3.cpp" />
-    <ClCompile Include="src\gen\ByteColor4.cpp" />
-    <ClCompile Include="src\gen\ByteMatrix.cpp" />
-    <ClCompile Include="src\gen\CapsuleBV.cpp" />
-    <ClCompile Include="src\gen\ChannelData.cpp" />
-    <ClCompile Include="src\ComplexShape.cpp" />
-    <ClCompile Include="src\gen\ControllerLink.cpp" />
-    <ClCompile Include="src\gen\DecalVectorArray.cpp" />
-    <ClCompile Include="src\gen\ElementReference.cpp" />
-    <ClCompile Include="src\gen\enums.cpp" />
-    <ClCompile Include="src\gen\ExportInfo.cpp" />
-    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey.cpp" />
-    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey2.cpp" />
-    <ClCompile Include="src\gen\Footer.cpp" />
-    <ClCompile Include="src\gen\FurniturePosition.cpp" />
-    <ClCompile Include="src\gen\HalfSpaceBV.cpp" />
-    <ClCompile Include="src\gen\Header.cpp" />
-    <ClCompile Include="src\gen\HingeDescriptor.cpp" />
-    <ClCompile Include="src\gen\hkTriangle.cpp" />
-    <ClCompile Include="src\gen\LimitedHingeDescriptor.cpp" />
-    <ClCompile Include="src\gen\LODRange.cpp" />
-    <ClCompile Include="src\gen\MatchGroup.cpp" />
-    <ClCompile Include="src\gen\MaterialData.cpp" />
-    <ClCompile Include="src\gen\MeshData.cpp" />
-    <ClCompile Include="src\gen\MipMap.cpp" />
-    <ClCompile Include="src\gen\Morph.cpp" />
-    <ClCompile Include="src\gen\MorphWeight.cpp" />
-    <ClCompile Include="src\gen\MotorDescriptor.cpp" />
-    <ClCompile Include="src\gen\MultiTextureElement.cpp" />
-    <ClCompile Include="src\gen\NodeGroup.cpp" />
-    <ClCompile Include="src\gen\OblivionColFilter.cpp" />
-    <ClCompile Include="src\gen\OblivionSubShape.cpp" />
-    <ClCompile Include="src\gen\OldSkinData.cpp" />
-    <ClCompile Include="src\gen\Particle.cpp" />
-    <ClCompile Include="src\gen\ParticleDesc.cpp" />
-    <ClCompile Include="src\gen\physXMaterialRef.cpp" />
-    <ClCompile Include="src\gen\Polygon.cpp" />
-    <ClCompile Include="src\gen\QuaternionXYZW.cpp" />
-    <ClCompile Include="src\gen\RagDollDescriptor.cpp" />
-    <ClCompile Include="src\gen\Region.cpp" />
-    <ClCompile Include="src\gen\register.cpp" />
-    <ClCompile Include="src\gen\SemanticData.cpp" />
-    <ClCompile Include="src\gen\ShaderTexDesc.cpp" />
-    <ClCompile Include="src\gen\SkinData.cpp" />
-    <ClCompile Include="src\gen\SkinPartition.cpp" />
-    <ClCompile Include="src\gen\SkinShape.cpp" />
-    <ClCompile Include="src\gen\SkinShapeGroup.cpp" />
-    <ClCompile Include="src\gen\SkinTransform.cpp" />
-    <ClCompile Include="src\gen\SkinWeight.cpp" />
-    <ClCompile Include="src\gen\SphereBV.cpp" />
-    <ClCompile Include="src\gen\StringPalette.cpp" />
-    <ClCompile Include="src\gen\TBC.cpp" />
-    <ClCompile Include="src\gen\TexDesc.cpp" />
-    <ClCompile Include="src\gen\TexSource.cpp" />
-    <ClCompile Include="src\gen\UnionBV.cpp" />
-    <ClCompile Include="src\gen\UnknownMatrix1.cpp" />
-    <ClCompile Include="NvTriStrip\NvTriStrip.cpp" />
-    <ClCompile Include="NvTriStrip\NvTriStripObjects.cpp" />
-    <ClCompile Include="NvTriStrip\VertexCache.cpp" />
+    <ClCompile Include="src\pch.cpp" />
+    <ClCompile Include="src\RefObject.cpp" />
+    <ClCompile Include="src\Type.cpp" />
     <ClCompile Include="TriStripper\connectivity_graph.cpp" />
     <ClCompile Include="TriStripper\policy.cpp" />
     <ClCompile Include="TriStripper\tri_stripper.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\gen\bhkCMSDBigTris.h" />
-    <ClInclude Include="include\gen\BoneLOD.h" />
-    <ClInclude Include="include\gen\BSSegment.h" />
-    <ClInclude Include="include\gen\SkinPartitionUnknownItem1.h" />
-    <ClInclude Include="include\obj\BSMultiBoundData.h" />
     <ClInclude Include="include\ComplexShape.h" />
     <ClInclude Include="include\dll_export.h" />
     <ClInclude Include="include\FixLink.h" />
+    <ClInclude Include="include\gen\AdditionalDataBlock.h" />
+    <ClInclude Include="include\gen\AdditionalDataInfo.h" />
+    <ClInclude Include="include\gen\ArkTexture.h" />
+    <ClInclude Include="include\gen\AVObject.h" />
+    <ClInclude Include="include\gen\bhkCMSDBigTris.h" />
+    <ClInclude Include="include\gen\bhkCMSDChunk.h" />
+    <ClInclude Include="include\gen\bhkCMSDData.h" />
+    <ClInclude Include="include\gen\bhkCMSDMaterial.h" />
+    <ClInclude Include="include\gen\bhkCMSDTransform.h" />
+    <ClInclude Include="include\gen\BodyPartList.h" />
+    <ClInclude Include="include\gen\BoneData.h" />
+    <ClInclude Include="include\gen\BoneLOD.h" />
+    <ClInclude Include="include\gen\BoneVertData.h" />
+    <ClInclude Include="include\gen\BoundingBox.h" />
+    <ClInclude Include="include\gen\BoundingVolume.h" />
+    <ClInclude Include="include\gen\BoxBV.h" />
+    <ClInclude Include="include\gen\BSPackedAdditionalDataBlock.h" />
+    <ClInclude Include="include\gen\BSSegment.h" />
+    <ClInclude Include="include\gen\BSSegmentedTriangle.h" />
+    <ClInclude Include="include\gen\BSTreadTransfInfo.h" />
+    <ClInclude Include="include\gen\BSTreadTransform.h" />
+    <ClInclude Include="include\gen\BSTreadTransformData.h" />
+    <ClInclude Include="include\gen\BSTreadTransfSubInfo.h" />
+    <ClInclude Include="include\gen\BSVertexData.h" />
+    <ClInclude Include="include\gen\BSVertexDataSSE.h" />
+    <ClInclude Include="include\gen\BSVertexDesc.h" />
+    <ClInclude Include="include\gen\ByteArray.h" />
+    <ClInclude Include="include\gen\ByteColor3.h" />
+    <ClInclude Include="include\gen\ByteColor4.h" />
+    <ClInclude Include="include\gen\ByteMatrix.h" />
+    <ClInclude Include="include\gen\ByteVector3.h" />
+    <ClInclude Include="include\gen\CapsuleBV.h" />
+    <ClInclude Include="include\gen\ChannelData.h" />
+    <ClInclude Include="include\gen\ControllerLink.h" />
+    <ClInclude Include="include\gen\DecalVectorArray.h" />
+    <ClInclude Include="include\gen\ElementReference.h" />
+    <ClInclude Include="include\gen\enums.h" />
+    <ClInclude Include="include\gen\enums_intl.h" />
+    <ClInclude Include="include\gen\ExportInfo.h" />
+    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey.h" />
+    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey2.h" />
+    <ClInclude Include="include\gen\Footer.h" />
+    <ClInclude Include="include\gen\FurniturePosition.h" />
+    <ClInclude Include="include\gen\HalfSpaceBV.h" />
+    <ClInclude Include="include\gen\HalfTexCoord.h" />
+    <ClInclude Include="include\gen\HalfVector3.h" />
+    <ClInclude Include="include\gen\Header.h" />
+    <ClInclude Include="include\gen\HingeDescriptor.h" />
+    <ClInclude Include="include\gen\hkTriangle.h" />
+    <ClInclude Include="include\gen\KeyGroup.h" />
+    <ClInclude Include="include\gen\LimitedHingeDescriptor.h" />
+    <ClInclude Include="include\gen\LODRange.h" />
+    <ClInclude Include="include\gen\MatchGroup.h" />
+    <ClInclude Include="include\gen\MaterialData.h" />
+    <ClInclude Include="include\gen\MeshData.h" />
+    <ClInclude Include="include\gen\MipMap.h" />
+    <ClInclude Include="include\gen\Morph.h" />
+    <ClInclude Include="include\gen\MorphWeight.h" />
+    <ClInclude Include="include\gen\MotorDescriptor.h" />
+    <ClInclude Include="include\gen\MTransform.h" />
+    <ClInclude Include="include\gen\MultiTextureElement.h" />
+    <ClInclude Include="include\gen\NiBound.h" />
+    <ClInclude Include="include\gen\NiBoundAABB.h" />
+    <ClInclude Include="include\gen\NiParticleInfo.h" />
+    <ClInclude Include="include\gen\NodeGroup.h" />
+    <ClInclude Include="include\gen\OblivionColFilter.h" />
+    <ClInclude Include="include\gen\OblivionSubShape.h" />
+    <ClInclude Include="include\gen\OldSkinData.h" />
+    <ClInclude Include="include\gen\Particle.h" />
+    <ClInclude Include="include\gen\ParticleDesc.h" />
+    <ClInclude Include="include\gen\physXMaterialRef.h" />
+    <ClInclude Include="include\gen\Polygon.h" />
+    <ClInclude Include="include\gen\QTransform.h" />
+    <ClInclude Include="include\gen\QuaternionXYZW.h" />
+    <ClInclude Include="include\gen\RagdollDescriptor.h" />
+    <ClInclude Include="include\gen\Region.h" />
+    <ClInclude Include="include\gen\RotationKeyArray.h" />
+    <ClInclude Include="include\gen\SemanticData.h" />
+    <ClInclude Include="include\gen\ShaderTexDesc.h" />
+    <ClInclude Include="include\gen\SkinPartition.h" />
+    <ClInclude Include="include\gen\SkinShape.h" />
+    <ClInclude Include="include\gen\SkinShapeGroup.h" />
+    <ClInclude Include="include\gen\SkinTransform.h" />
+    <ClInclude Include="include\gen\SphereBV.h" />
+    <ClInclude Include="include\gen\StringPalette.h" />
+    <ClInclude Include="include\gen\TBC.h" />
+    <ClInclude Include="include\gen\TexDesc.h" />
+    <ClInclude Include="include\gen\TexSource.h" />
+    <ClInclude Include="include\gen\UnionBV.h" />
+    <ClInclude Include="include\gen\UnknownMatrix1.h" />
     <ClInclude Include="include\Inertia.h" />
     <ClInclude Include="include\Key.h" />
     <ClInclude Include="include\kfm.h" />
     <ClInclude Include="include\MatTexCollection.h" />
+    <ClInclude Include="include\niflib.h" />
+    <ClInclude Include="include\nifqhull.h" />
     <ClInclude Include="include\nif_basic_types.h" />
     <ClInclude Include="include\NIF_IO.h" />
     <ClInclude Include="include\nif_math.h" />
     <ClInclude Include="include\nif_versions.h" />
-    <ClInclude Include="include\niflib.h" />
-    <ClInclude Include="include\nifqhull.h" />
     <ClInclude Include="include\ObjectRegistry.h" />
-    <ClInclude Include="include\pch.h" />
-    <ClInclude Include="include\Ref.h" />
-    <ClInclude Include="include\RefObject.h" />
-    <ClInclude Include="include\Type.h" />
     <ClInclude Include="include\obj\AbstractAdditionalGeometryData.h" />
     <ClInclude Include="include\obj\ATextureRenderData.h" />
     <ClInclude Include="include\obj\AvoidNode.h" />
@@ -940,7 +734,9 @@
     <ClInclude Include="include\obj\BSDebrisNode.h" />
     <ClInclude Include="include\obj\BSDecalPlacementVectorExtraData.h" />
     <ClInclude Include="include\obj\BSDismemberSkinInstance.h" />
+    <ClInclude Include="include\obj\BSDistantObjectLargeRefExtraData.h" />
     <ClInclude Include="include\obj\BSDistantTreeShaderProperty.h" />
+    <ClInclude Include="include\obj\BSDynamicTriShape.h" />
     <ClInclude Include="include\obj\BSEffectShaderProperty.h" />
     <ClInclude Include="include\obj\BSEffectShaderPropertyColorController.h" />
     <ClInclude Include="include\obj\BSEffectShaderPropertyFloatController.h" />
@@ -960,6 +756,7 @@
     <ClInclude Include="include\obj\BSMaterialEmittanceMultController.h" />
     <ClInclude Include="include\obj\BSMultiBound.h" />
     <ClInclude Include="include\obj\BSMultiBoundAABB.h" />
+    <ClInclude Include="include\obj\BSMultiBoundData.h" />
     <ClInclude Include="include\obj\BSMultiBoundNode.h" />
     <ClInclude Include="include\obj\BSMultiBoundOBB.h" />
     <ClInclude Include="include\obj\BSMultiBoundSphere.h" />
@@ -992,6 +789,7 @@
     <ClInclude Include="include\obj\BSStripPSysData.h" />
     <ClInclude Include="include\obj\BSTreadTransfInterpolator.h" />
     <ClInclude Include="include\obj\BSTreeNode.h" />
+    <ClInclude Include="include\obj\BSTriShape.h" />
     <ClInclude Include="include\obj\BSValueNode.h" />
     <ClInclude Include="include\obj\BSWArray.h" />
     <ClInclude Include="include\obj\BSWaterShaderProperty.h" />
@@ -1319,94 +1117,151 @@
     <ClInclude Include="include\obj\TileShaderProperty.h" />
     <ClInclude Include="include\obj\VolumetricFogShaderProperty.h" />
     <ClInclude Include="include\obj\WaterShaderProperty.h" />
-    <ClInclude Include="include\gen\AdditionalDataBlock.h" />
-    <ClInclude Include="include\gen\AdditionalDataInfo.h" />
-    <ClInclude Include="include\gen\ArkTexture.h" />
-    <ClInclude Include="include\gen\AVObject.h" />
-    <ClInclude Include="include\gen\bhkCMSDMaterial.h" />
-    <ClInclude Include="include\gen\bhkCMSDChunk.h" />
-    <ClInclude Include="include\gen\bhkCMSDData.h" />
-    <ClInclude Include="include\gen\bhkCMSDTransform.h" />
-    <ClInclude Include="include\gen\BodyPartList.h" />
-    <ClInclude Include="include\gen\BoundingBox.h" />
-    <ClInclude Include="include\gen\BoundingVolume.h" />
-    <ClInclude Include="include\gen\BoxBV.h" />
-    <ClInclude Include="include\gen\BSPackedAdditionalDataBlock.h" />
-    <ClInclude Include="include\gen\BSSegmentedTriangle.h" />
-    <ClInclude Include="include\gen\BSTreadTransfInfo.h" />
-    <ClInclude Include="include\gen\BSTreadTransform.h" />
-    <ClInclude Include="include\gen\BSTreadTransformData.h" />
-    <ClInclude Include="include\gen\BSTreadTransfSubInfo.h" />
-    <ClInclude Include="include\gen\ByteArray.h" />
-    <ClInclude Include="include\gen\ByteColor3.h" />
-    <ClInclude Include="include\gen\ByteColor4.h" />
-    <ClInclude Include="include\gen\ByteMatrix.h" />
-    <ClInclude Include="include\gen\CapsuleBV.h" />
-    <ClInclude Include="include\gen\ChannelData.h" />
-    <ClInclude Include="include\gen\ControllerLink.h" />
-    <ClInclude Include="include\gen\DecalVectorArray.h" />
-    <ClInclude Include="include\gen\ElementReference.h" />
-    <ClInclude Include="include\gen\enums.h" />
-    <ClInclude Include="include\gen\enums_intl.h" />
-    <ClInclude Include="include\gen\ExportInfo.h" />
-    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey.h" />
-    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey2.h" />
-    <ClInclude Include="include\gen\Footer.h" />
-    <ClInclude Include="include\gen\FurniturePosition.h" />
-    <ClInclude Include="include\gen\HalfSpaceBV.h" />
-    <ClInclude Include="include\gen\Header.h" />
-    <ClInclude Include="include\gen\HingeDescriptor.h" />
-    <ClInclude Include="include\gen\hkTriangle.h" />
-    <ClInclude Include="include\gen\KeyGroup.h" />
-    <ClInclude Include="include\gen\LimitedHingeDescriptor.h" />
-    <ClInclude Include="include\gen\LODRange.h" />
-    <ClInclude Include="include\gen\MatchGroup.h" />
-    <ClInclude Include="include\gen\MaterialData.h" />
-    <ClInclude Include="include\gen\MeshData.h" />
-    <ClInclude Include="include\gen\MipMap.h" />
-    <ClInclude Include="include\gen\Morph.h" />
-    <ClInclude Include="include\gen\MorphWeight.h" />
-    <ClInclude Include="include\gen\MotorDescriptor.h" />
-    <ClInclude Include="include\gen\MultiTextureElement.h" />
-    <ClInclude Include="include\gen\NodeGroup.h" />
-    <ClInclude Include="include\gen\OblivionColFilter.h" />
-    <ClInclude Include="include\gen\OblivionSubShape.h" />
-    <ClInclude Include="include\gen\OldSkinData.h" />
-    <ClInclude Include="include\gen\Particle.h" />
-    <ClInclude Include="include\gen\ParticleDesc.h" />
-    <ClInclude Include="include\gen\physXMaterialRef.h" />
-    <ClInclude Include="include\gen\Polygon.h" />
-    <ClInclude Include="include\gen\QuaternionXYZW.h" />
-    <ClInclude Include="include\gen\RagDollDescriptor.h" />
-    <ClInclude Include="include\gen\Region.h" />
-    <ClInclude Include="include\gen\RotationKeyArray.h" />
-    <ClInclude Include="include\gen\SemanticData.h" />
-    <ClInclude Include="include\gen\ShaderTexDesc.h" />
-    <ClInclude Include="include\gen\SkinData.h" />
-    <ClInclude Include="include\gen\SkinPartition.h" />
-    <ClInclude Include="include\gen\SkinShape.h" />
-    <ClInclude Include="include\gen\SkinShapeGroup.h" />
-    <ClInclude Include="include\gen\SkinTransform.h" />
-    <ClInclude Include="include\gen\SkinWeight.h" />
-    <ClInclude Include="include\gen\SphereBV.h" />
-    <ClInclude Include="include\gen\StringPalette.h" />
-    <ClInclude Include="include\gen\TBC.h" />
-    <ClInclude Include="include\gen\TexDesc.h" />
-    <ClInclude Include="include\gen\TexSource.h" />
-    <ClInclude Include="include\gen\UnionBV.h" />
-    <ClInclude Include="include\gen\UnknownMatrix1.h" />
-    <ClInclude Include="TriStripper\public_types.h" />
-    <ClInclude Include="TriStripper\tri_stripper.h" />
-    <ClInclude Include="TriStripper\detail\cache_simulator.h" />
-    <ClInclude Include="TriStripper\detail\connectivity_graph.h" />
-    <ClInclude Include="TriStripper\detail\graph_array.h" />
-    <ClInclude Include="TriStripper\detail\heap_array.h" />
-    <ClInclude Include="TriStripper\detail\policy.h" />
-    <ClInclude Include="TriStripper\detail\types.h" />
-    <ClInclude Include="NvTriStrip\NvTriStrip.h" />
-    <ClInclude Include="NvTriStrip\NvTriStripObjects.h" />
-    <ClInclude Include="NvTriStrip\VertexCache.h" />
+    <ClInclude Include="include\pch.h" />
+    <ClInclude Include="include\Ref.h" />
+    <ClInclude Include="include\RefObject.h" />
+    <ClInclude Include="include\Type.h" />
   </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{afdff268-ac3d-4cb4-92a0-8fa5855abe75}</ProjectGuid>
+    <RootNamespace>niflib</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>$(SolutionDir)build\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>false</SDLCheck>
+      <PreprocessorDefinitions>NIFLIB_STATIC_LINK;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>false</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+    </ClCompile>
+    <Link>
+      <SubSystem>
+      </SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

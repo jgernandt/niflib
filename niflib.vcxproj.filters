@@ -3,46 +3,37 @@
   <ItemGroup>
     <Filter Include="Source Files">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Source Files\obj">
-      <UniqueIdentifier>{50fa9819-479d-4d26-a35e-0b3a2fb15b46}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\gen">
-      <UniqueIdentifier>{69a96308-1002-4844-9d38-c4397a0ac15e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\NvTriStrip">
-      <UniqueIdentifier>{9f42b3b8-3d7d-435f-9a5b-8e83c4c3bf28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\TriStripper">
-      <UniqueIdentifier>{f879c570-574d-4234-a1b7-83ba0e12cfe8}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\obj">
-      <UniqueIdentifier>{bdb7c45c-f8c8-46a0-8efd-8a15c9fd9982}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\gen">
-      <UniqueIdentifier>{42b5db30-7530-4f1e-9077-18fe2ac14525}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TriStripper">
-      <UniqueIdentifier>{e34d284c-8ff7-4571-9bdb-dc1fd5cb428a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\TriStripper\detail">
-      <UniqueIdentifier>{8b467129-de82-48c7-8817-c17b252d8b90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\NvTriStrip">
-      <UniqueIdentifier>{1df81f5f-d76c-4da4-8049-f0b6579cb625}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\gen">
+      <UniqueIdentifier>{b62396f1-f0a4-4ddc-a8c8-4eaa5868730d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\obj">
+      <UniqueIdentifier>{e82b721e-e61a-4b06-b78d-579c90719fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\NvTriStrip">
+      <UniqueIdentifier>{80e39d1f-160f-4808-8804-3ce2f37cac62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\TriStripper">
+      <UniqueIdentifier>{63204b68-1523-43b9-b4bf-36cc5d0cbb23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gen">
+      <UniqueIdentifier>{c7843cd8-9afa-4bc5-8812-770b886780fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\obj">
+      <UniqueIdentifier>{1fa84f64-f414-4ec9-ab6c-44d3200d1c2d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\obj\BSMultiBoundData.cpp">
+    <ClCompile Include="src\ComplexShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\Inertia.cpp">
@@ -77,6 +68,282 @@
     </ClCompile>
     <ClCompile Include="src\Type.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NvTriStrip\NvTriStrip.cpp">
+      <Filter>Source Files\NvTriStrip</Filter>
+    </ClCompile>
+    <ClCompile Include="NvTriStrip\NvTriStripObjects.cpp">
+      <Filter>Source Files\NvTriStrip</Filter>
+    </ClCompile>
+    <ClCompile Include="NvTriStrip\VertexCache.cpp">
+      <Filter>Source Files\NvTriStrip</Filter>
+    </ClCompile>
+    <ClCompile Include="TriStripper\connectivity_graph.cpp">
+      <Filter>Source Files\TriStripper</Filter>
+    </ClCompile>
+    <ClCompile Include="TriStripper\policy.cpp">
+      <Filter>Source Files\TriStripper</Filter>
+    </ClCompile>
+    <ClCompile Include="TriStripper\tri_stripper.cpp">
+      <Filter>Source Files\TriStripper</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\AdditionalDataBlock.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\AdditionalDataInfo.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ArkTexture.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\AVObject.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\bhkCMSDBigTris.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\bhkCMSDChunk.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\bhkCMSDData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\bhkCMSDMaterial.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\bhkCMSDTransform.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BodyPartList.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BoneLOD.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BoundingBox.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BoundingVolume.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BoxBV.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSPackedAdditionalDataBlock.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSSegment.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSSegmentedTriangle.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSTreadTransfInfo.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSTreadTransform.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSTreadTransformData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSTreadTransfSubInfo.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSVertexData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSVertexDataSSE.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\BSVertexDesc.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ByteArray.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ByteColor3.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ByteColor4.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ByteMatrix.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ByteVector3.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\CapsuleBV.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ChannelData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ControllerLink.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\DecalVectorArray.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ElementReference.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\enums.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ExportInfo.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey2.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Footer.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\FurniturePosition.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\HalfSpaceBV.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\HalfTexCoord.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\HalfVector3.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Header.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\HingeDescriptor.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\hkTriangle.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\LimitedHingeDescriptor.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\LODRange.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MatchGroup.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MaterialData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MeshData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MipMap.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Morph.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MorphWeight.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MotorDescriptor.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MTransform.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\MultiTextureElement.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\NiBound.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\NiBoundAABB.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\NiParticleInfo.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\NodeGroup.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\OblivionColFilter.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\OblivionSubShape.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\OldSkinData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Particle.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ParticleDesc.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\physXMaterialRef.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Polygon.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\QTransform.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\QuaternionXYZW.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\RagdollDescriptor.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\Region.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\register.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SemanticData.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\ShaderTexDesc.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SkinPartition.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SkinShape.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SkinShapeGroup.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SkinTransform.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\SphereBV.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\StringPalette.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\TBC.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\TexDesc.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\TexSource.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\UnionBV.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\gen\UnknownMatrix1.cpp">
+      <Filter>Source Files\gen</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\AbstractAdditionalGeometryData.cpp">
       <Filter>Source Files\obj</Filter>
@@ -258,7 +525,13 @@
     <ClCompile Include="src\obj\BSDismemberSkinInstance.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
+    <ClCompile Include="src\obj\BSDistantObjectLargeRefExtraData.cpp">
+      <Filter>Source Files\obj</Filter>
+    </ClCompile>
     <ClCompile Include="src\obj\BSDistantTreeShaderProperty.cpp">
+      <Filter>Source Files\obj</Filter>
+    </ClCompile>
+    <ClCompile Include="src\obj\BSDynamicTriShape.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\BSEffectShaderProperty.cpp">
@@ -316,6 +589,9 @@
       <Filter>Source Files\obj</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\BSMultiBoundAABB.cpp">
+      <Filter>Source Files\obj</Filter>
+    </ClCompile>
+    <ClCompile Include="src\obj\BSMultiBoundData.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\BSMultiBoundNode.cpp">
@@ -412,6 +688,9 @@
       <Filter>Source Files\obj</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\BSTreeNode.cpp">
+      <Filter>Source Files\obj</Filter>
+    </ClCompile>
+    <ClCompile Include="src\obj\BSTriShape.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
     <ClCompile Include="src\obj\BSValueNode.cpp">
@@ -1395,269 +1674,14 @@
     <ClCompile Include="src\obj\WaterShaderProperty.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
-    <ClCompile Include="src\gen\AdditionalDataBlock.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\AdditionalDataInfo.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ArkTexture.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\AVObject.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDMaterial.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDBigTris.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDChunk.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDTransform.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BodyPartList.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BoundingBox.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BoundingVolume.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BoxBV.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSPackedAdditionalDataBlock.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSSegmentedTriangle.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSTreadTransfInfo.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSTreadTransform.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSTreadTransformData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSTreadTransfSubInfo.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ByteArray.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ByteColor3.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ByteColor4.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ByteMatrix.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\CapsuleBV.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ChannelData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ComplexShape.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ControllerLink.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\DecalVectorArray.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ElementReference.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\enums.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ExportInfo.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ExtraMeshDataEpicMickey2.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Footer.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\FurniturePosition.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\HalfSpaceBV.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Header.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\HingeDescriptor.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\hkTriangle.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\LimitedHingeDescriptor.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\LODRange.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MatchGroup.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MaterialData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MeshData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MipMap.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Morph.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MorphWeight.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MotorDescriptor.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\MultiTextureElement.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\NodeGroup.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\OblivionColFilter.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\OblivionSubShape.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\OldSkinData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Particle.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ParticleDesc.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\physXMaterialRef.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Polygon.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\QuaternionXYZW.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\RagDollDescriptor.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\Region.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\register.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SemanticData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\ShaderTexDesc.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinData.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinPartition.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinShape.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinShapeGroup.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinTransform.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinWeight.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SphereBV.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\StringPalette.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\TBC.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\TexDesc.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\TexSource.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\UnionBV.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\UnknownMatrix1.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="NvTriStrip\NvTriStrip.cpp">
-      <Filter>Source Files\NvTriStrip</Filter>
-    </ClCompile>
-    <ClCompile Include="NvTriStrip\NvTriStripObjects.cpp">
-      <Filter>Source Files\NvTriStrip</Filter>
-    </ClCompile>
-    <ClCompile Include="NvTriStrip\VertexCache.cpp">
-      <Filter>Source Files\NvTriStrip</Filter>
-    </ClCompile>
-    <ClCompile Include="TriStripper\connectivity_graph.cpp">
-      <Filter>Source Files\TriStripper</Filter>
-    </ClCompile>
-    <ClCompile Include="TriStripper\policy.cpp">
-      <Filter>Source Files\TriStripper</Filter>
-    </ClCompile>
-    <ClCompile Include="TriStripper\tri_stripper.cpp">
-      <Filter>Source Files\TriStripper</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\SkinPartitionUnknownItem1.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\BSSegment.cpp">
+    <ClCompile Include="src\gen\BoneData.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
-    <ClCompile Include="src\gen\BoneLOD.cpp">
-      <Filter>Source Files\gen</Filter>
-    </ClCompile>
-    <ClCompile Include="src\gen\bhkCMSDBigTris.cpp">
-      <Filter>Source Files\gen</Filter>
+    <ClCompile Include="src\gen\BoneVertData.cpp">
+      <Filter>Source Files\obj</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="include\obj\BSMultiBoundData.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="include\ComplexShape.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1711,6 +1735,270 @@
     </ClInclude>
     <ClInclude Include="include\Type.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\AdditionalDataBlock.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\AdditionalDataInfo.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ArkTexture.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\AVObject.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\bhkCMSDBigTris.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\bhkCMSDChunk.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\bhkCMSDData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\bhkCMSDMaterial.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\bhkCMSDTransform.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BodyPartList.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BoneLOD.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BoundingBox.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BoundingVolume.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BoxBV.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSPackedAdditionalDataBlock.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSSegment.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSSegmentedTriangle.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSTreadTransfInfo.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSTreadTransform.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSTreadTransformData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSTreadTransfSubInfo.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSVertexData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSVertexDataSSE.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\BSVertexDesc.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ByteArray.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ByteColor3.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ByteColor4.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ByteMatrix.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ByteVector3.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\CapsuleBV.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ChannelData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ControllerLink.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\DecalVectorArray.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ElementReference.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\enums.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\enums_intl.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ExportInfo.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey2.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Footer.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\FurniturePosition.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\HalfSpaceBV.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\HalfTexCoord.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\HalfVector3.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Header.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\HingeDescriptor.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\hkTriangle.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\KeyGroup.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\LimitedHingeDescriptor.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\LODRange.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MatchGroup.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MaterialData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MeshData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MipMap.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Morph.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MorphWeight.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MotorDescriptor.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MTransform.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\MultiTextureElement.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\NiBound.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\NiBoundAABB.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\NiParticleInfo.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\NodeGroup.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\OblivionColFilter.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\OblivionSubShape.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\OldSkinData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Particle.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ParticleDesc.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\physXMaterialRef.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Polygon.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\QTransform.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\QuaternionXYZW.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\RagdollDescriptor.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\Region.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\RotationKeyArray.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SemanticData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\ShaderTexDesc.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SkinPartition.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SkinShape.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SkinShapeGroup.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SkinTransform.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\SphereBV.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\StringPalette.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\TBC.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\TexDesc.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\TexSource.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\UnionBV.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\UnknownMatrix1.h">
+      <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\AbstractAdditionalGeometryData.h">
       <Filter>Header Files\obj</Filter>
@@ -1892,7 +2180,13 @@
     <ClInclude Include="include\obj\BSDismemberSkinInstance.h">
       <Filter>Header Files\obj</Filter>
     </ClInclude>
+    <ClInclude Include="include\obj\BSDistantObjectLargeRefExtraData.h">
+      <Filter>Header Files\obj</Filter>
+    </ClInclude>
     <ClInclude Include="include\obj\BSDistantTreeShaderProperty.h">
+      <Filter>Header Files\obj</Filter>
+    </ClInclude>
+    <ClInclude Include="include\obj\BSDynamicTriShape.h">
       <Filter>Header Files\obj</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\BSEffectShaderProperty.h">
@@ -1950,6 +2244,9 @@
       <Filter>Header Files\obj</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\BSMultiBoundAABB.h">
+      <Filter>Header Files\obj</Filter>
+    </ClInclude>
+    <ClInclude Include="include\obj\BSMultiBoundData.h">
       <Filter>Header Files\obj</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\BSMultiBoundNode.h">
@@ -2046,6 +2343,9 @@
       <Filter>Header Files\obj</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\BSTreeNode.h">
+      <Filter>Header Files\obj</Filter>
+    </ClInclude>
+    <ClInclude Include="include\obj\BSTriShape.h">
       <Filter>Header Files\obj</Filter>
     </ClInclude>
     <ClInclude Include="include\obj\BSValueNode.h">
@@ -3029,283 +3329,10 @@
     <ClInclude Include="include\obj\WaterShaderProperty.h">
       <Filter>Header Files\obj</Filter>
     </ClInclude>
-    <ClInclude Include="include\gen\AdditionalDataBlock.h">
+    <ClInclude Include="include\gen\BoneData.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
-    <ClInclude Include="include\gen\AdditionalDataInfo.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ArkTexture.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\AVObject.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDMaterial.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDBigTris.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDChunk.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDTransform.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BodyPartList.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BoundingBox.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BoundingVolume.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BoxBV.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSPackedAdditionalDataBlock.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSSegmentedTriangle.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSTreadTransfInfo.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSTreadTransform.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSTreadTransformData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSTreadTransfSubInfo.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ByteArray.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ByteColor3.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ByteColor4.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ByteMatrix.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\CapsuleBV.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ChannelData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ControllerLink.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\DecalVectorArray.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ElementReference.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\enums.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\enums_intl.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ExportInfo.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ExtraMeshDataEpicMickey2.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Footer.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\FurniturePosition.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\HalfSpaceBV.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Header.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\HingeDescriptor.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\hkTriangle.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\KeyGroup.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\LimitedHingeDescriptor.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\LODRange.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MatchGroup.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MaterialData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MeshData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MipMap.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Morph.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MorphWeight.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MotorDescriptor.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\MultiTextureElement.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\NodeGroup.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\OblivionColFilter.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\OblivionSubShape.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\OldSkinData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Particle.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ParticleDesc.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\physXMaterialRef.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Polygon.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\QuaternionXYZW.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\RagDollDescriptor.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\Region.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\RotationKeyArray.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SemanticData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\ShaderTexDesc.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinData.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinPartition.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinShape.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinShapeGroup.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinTransform.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinWeight.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SphereBV.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\StringPalette.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\TBC.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\TexDesc.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\TexSource.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\UnionBV.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\UnknownMatrix1.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\public_types.h">
-      <Filter>Header Files\TriStripper</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\tri_stripper.h">
-      <Filter>Header Files\TriStripper</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\cache_simulator.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\connectivity_graph.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\graph_array.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\heap_array.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\policy.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="TriStripper\detail\types.h">
-      <Filter>Header Files\TriStripper\detail</Filter>
-    </ClInclude>
-    <ClInclude Include="NvTriStrip\NvTriStrip.h">
-      <Filter>Header Files\NvTriStrip</Filter>
-    </ClInclude>
-    <ClInclude Include="NvTriStrip\NvTriStripObjects.h">
-      <Filter>Header Files\NvTriStrip</Filter>
-    </ClInclude>
-    <ClInclude Include="NvTriStrip\VertexCache.h">
-      <Filter>Header Files\NvTriStrip</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDBigTris.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\SkinPartitionUnknownItem1.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BSSegment.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\BoneLOD.h">
-      <Filter>Header Files\gen</Filter>
-    </ClInclude>
-    <ClInclude Include="include\gen\bhkCMSDBigTris.h">
+    <ClInclude Include="include\gen\BoneVertData.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
   </ItemGroup>
