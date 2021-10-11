@@ -58,6 +58,31 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API NiNode* GetGravityObject() const;
+	NIFLIB_API void SetGravityObject(NiNode* node);
+
+	NIFLIB_API const Vector3& GetGravityAxis() const;
+	NIFLIB_API void SetGravityAxis(const Vector3& v);
+
+	NIFLIB_API float GetDecay() const;
+	NIFLIB_API void SetDecay(float f);
+
+	NIFLIB_API float GetStrength() const;
+	NIFLIB_API void SetStrength(float f);
+
+	NIFLIB_API ForceType GetForceType() const;
+	NIFLIB_API void SetForceType(ForceType t);
+
+	NIFLIB_API float GetTurbulence() const;
+	NIFLIB_API void SetTurbulence(float f);
+
+	NIFLIB_API float GetTurbulenceScale() const;
+	NIFLIB_API void SetTurbulenceScale(float f);
+
+	NIFLIB_API bool GetWorldAligned() const;
+	NIFLIB_API void SetWorldAligned(bool b);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Refers to a NiNode for gravity location. */

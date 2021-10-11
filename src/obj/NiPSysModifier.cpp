@@ -126,4 +126,45 @@ std::list<NiObject *> NiPSysModifier::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+bool Niflib::NiPSysModifier::GetActive() const
+{
+	return active;
+}
+
+void Niflib::NiPSysModifier::SetActive(bool a)
+{
+	active = a;
+}
+
+const std::string& Niflib::NiPSysModifier::GetName() const
+{
+	return name;
+}
+
+void Niflib::NiPSysModifier::SetName(const std::string& n)
+{
+	name = n;
+}
+
+unsigned int Niflib::NiPSysModifier::GetOrder() const
+{
+	return order;
+}
+
+void Niflib::NiPSysModifier::SetOrder(unsigned int o)
+{
+	order = o;
+}
+
+NiParticleSystem* Niflib::NiPSysModifier::GetTarget() const
+{
+	return target;
+}
+
+void Niflib::NiPSysModifier::SetTarget(NiParticleSystem* psys)
+{
+	target = psys;
+}
+
 //--END CUSTOM CODE--//

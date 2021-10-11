@@ -53,6 +53,16 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API float GetWidth() const { return width; }
+	NIFLIB_API void SetWidth(float f) { width = f; }
+
+	NIFLIB_API float GetHeight() const { return height; }
+	NIFLIB_API void SetHeight(float f) { height = f; }
+
+	NIFLIB_API float GetDepth() const { return depth; }
+	NIFLIB_API void SetDepth(float f) { depth = f; }
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Defines the Width of the box area. */

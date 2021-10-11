@@ -142,4 +142,77 @@ std::list<NiObject *> NiPSysGravityModifier::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+NiNode* NiPSysGravityModifier::GetGravityObject() const
+{
+	return gravityObject;
+}
+void NiPSysGravityModifier::SetGravityObject(NiNode* node)
+{
+	gravityObject = node;
+}
+
+const Vector3& NiPSysGravityModifier::GetGravityAxis() const
+{
+	return gravityAxis;
+}
+void NiPSysGravityModifier::SetGravityAxis(const Vector3& v)
+{
+	gravityAxis = v;
+}
+
+float NiPSysGravityModifier::GetDecay() const
+{
+	return decay;
+}
+void NiPSysGravityModifier::SetDecay(float f)
+{
+	decay = f;
+}
+
+float NiPSysGravityModifier::GetStrength() const
+{
+	return strength;
+}
+void NiPSysGravityModifier::SetStrength(float f)
+{
+	strength = f;
+}
+
+ForceType NiPSysGravityModifier::GetForceType() const
+{
+	return forceType;
+}
+void NiPSysGravityModifier::SetForceType(ForceType t)
+{
+	forceType = t;
+}
+
+float NiPSysGravityModifier::GetTurbulence() const
+{
+	return turbulence;
+}
+void NiPSysGravityModifier::SetTurbulence(float f)
+{
+	turbulence = f;
+}
+
+float NiPSysGravityModifier::GetTurbulenceScale() const
+{
+	return turbulenceScale;
+}
+void NiPSysGravityModifier::SetTurbulenceScale(float f)
+{
+	turbulenceScale = f;
+}
+
+bool NiPSysGravityModifier::GetWorldAligned() const
+{
+	return (bool)unknownByte;
+}
+void NiPSysGravityModifier::SetWorldAligned(bool b)
+{
+	unknownByte = (byte)b;
+}
+
 //--END CUSTOM CODE--//

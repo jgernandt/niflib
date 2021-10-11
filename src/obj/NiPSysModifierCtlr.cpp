@@ -95,4 +95,15 @@ std::list<NiObject *> NiPSysModifierCtlr::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+const std::string& Niflib::NiPSysModifierCtlr::GetModifierName() const
+{
+	return modifierName;
+}
+
+void Niflib::NiPSysModifierCtlr::SetModifierName(const std::string& n)
+{
+	modifierName = n;
+}
+
 //--END CUSTOM CODE--//

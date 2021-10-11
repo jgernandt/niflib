@@ -53,6 +53,10 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API float GetRadius() const { return radius; }
+	NIFLIB_API void SetRadius(float f) { radius = f; }
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! The radius of the sphere shape */

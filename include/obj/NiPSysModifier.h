@@ -55,6 +55,19 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API bool GetActive() const;
+	NIFLIB_API void SetActive(bool a);
+
+	NIFLIB_API const std::string& GetName() const;
+	NIFLIB_API void SetName(const std::string& n);
+
+	NIFLIB_API unsigned int GetOrder() const;
+	NIFLIB_API void SetOrder(unsigned int o);
+
+	NIFLIB_API NiParticleSystem* GetTarget() const;
+	NIFLIB_HIDDEN void SetTarget(NiParticleSystem* psys);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! The object name. */

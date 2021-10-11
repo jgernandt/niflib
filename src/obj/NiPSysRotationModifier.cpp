@@ -117,4 +117,75 @@ std::list<NiObject *> NiPSysRotationModifier::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+float NiPSysRotationModifier::GetRotationSpeed() const
+{
+	return initialRotationSpeed;
+}
+
+void NiPSysRotationModifier::SetRotationSpeed(float f)
+{
+	initialRotationSpeed = f;
+}
+
+float NiPSysRotationModifier::GetRotationSpeedVar() const
+{
+	return initialRotationSpeedVariation;
+}
+
+void NiPSysRotationModifier::SetRotationSpeedVar(float f)
+{
+	initialRotationSpeedVariation = f;
+}
+
+float NiPSysRotationModifier::GetRotationAngle() const
+{
+	return initialRotationAngle;
+}
+
+void NiPSysRotationModifier::SetRotationAngle(float f)
+{
+	initialRotationAngle = f;
+}
+
+float NiPSysRotationModifier::GetRotationAngleVar() const
+{
+	return initialRotationAngleVariation;
+}
+
+void NiPSysRotationModifier::SetRotationAngleVar(float f)
+{
+	initialRotationAngleVariation = f;
+}
+
+bool NiPSysRotationModifier::GetRandomSpeedSign() const
+{
+	return randomRotSpeedSign;
+}
+
+void NiPSysRotationModifier::SetRandomSpeedSign(bool b)
+{
+	randomRotSpeedSign = b;
+}
+
+bool NiPSysRotationModifier::GetRandomAxis() const
+{
+	return randomInitialAxis;
+}
+
+void NiPSysRotationModifier::SetRandomAxis(bool b)
+{
+	randomInitialAxis = b;
+}
+
+const Vector3& NiPSysRotationModifier::GetAxis() const
+{
+	return initialAxis;
+}
+
+void NiPSysRotationModifier::SetAxis(const Vector3& v)
+{
+	initialAxis = v;
+}
+
 //--END CUSTOM CODE--//

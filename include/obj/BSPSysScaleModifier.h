@@ -55,6 +55,9 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
+	NIFLIB_API const std::vector<float>& GetScales() const { return floats; }
+	NIFLIB_API void SetScales(const std::vector<float>& v) { floats = v; }
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */

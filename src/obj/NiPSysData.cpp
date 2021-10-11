@@ -244,4 +244,64 @@ std::list<NiObject *> NiPSysData::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+unsigned short Niflib::NiPSysData::GetBSMaxVertices() const
+{
+	return bsMaxVertices;
+}
+
+void Niflib::NiPSysData::SetBSMaxVertices(unsigned short i)
+{
+	bsMaxVertices = i;
+}
+
+bool NiPSysData::GetHasVertexColors() const
+{
+	return hasVertexColors;
+}
+void NiPSysData::SetHasVertexColors(bool b)
+{
+	hasVertexColors = b;
+}
+
+bool NiPSysData::GetHasSubtextures() const
+{
+	return hasTextureIndices;
+}
+
+void NiPSysData::SetHasSubtextures(bool b)
+{
+	hasTextureIndices = b;
+}
+
+std::vector<Vector4>& NiPSysData::GetSubtextureOffsets()
+{
+	return subtextureOffsets;
+}
+
+const std::vector<Vector4>& NiPSysData::GetSubtextureOffsets() const
+{
+	return subtextureOffsets;
+}
+
+bool NiPSysData::GetHasRotationAngles() const
+{
+	return hasRotationAngles;
+}
+
+void NiPSysData::SetHasRotationAngles(bool b)
+{
+	hasRotationAngles = b;
+}
+
+bool NiPSysData::GetHasRotationSpeeds() const
+{
+	return hasRotationSpeeds;
+}
+
+void NiPSysData::SetHasRotationSpeeds(bool b)
+{
+	hasRotationSpeeds = b;
+}
+
 //--END CUSTOM CODE--//

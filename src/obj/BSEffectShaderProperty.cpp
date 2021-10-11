@@ -146,4 +146,157 @@ std::list<NiObject *> BSEffectShaderProperty::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
+const Color4& BSEffectShaderProperty::GetEmissiveColor() const
+{
+	return emissiveColor;
+}
+
+void BSEffectShaderProperty::SetEmissiveColor(const Color4& col)
+{
+	emissiveColor = col;
+}
+
+float BSEffectShaderProperty::GetEmissiveMultiple() const
+{
+	return emissiveMultiple;
+}
+
+void BSEffectShaderProperty::SetEmissiveMultiple(float f)
+{
+	emissiveMultiple = f;
+}
+
+unsigned int BSEffectShaderProperty::GetShaderFlags1() const
+{
+	return shaderFlags1;
+}
+
+bool BSEffectShaderProperty::GetShaderFlag1(SkyrimShaderPropertyFlags1 flag) const
+{
+	return (shaderFlags1 & flag) != 0;
+}
+
+void BSEffectShaderProperty::SetShaderFlag1(SkyrimShaderPropertyFlags1 flag, bool on)
+{
+	if (on)
+		shaderFlags1 = (SkyrimShaderPropertyFlags1)(shaderFlags1 | flag);
+	else
+		shaderFlags1 = (SkyrimShaderPropertyFlags1)(shaderFlags1 & ~flag);
+}
+
+unsigned int BSEffectShaderProperty::GetShaderFlags2() const
+{
+	return shaderFlags2;
+}
+
+bool BSEffectShaderProperty::GetShaderFlag2(SkyrimShaderPropertyFlags2 flag) const
+{
+	return (shaderFlags2 & flag) != 0;
+}
+
+void BSEffectShaderProperty::SetShaderFlag2(SkyrimShaderPropertyFlags2 flag, bool on)
+{
+	if (on)
+		shaderFlags2 = (SkyrimShaderPropertyFlags2)(shaderFlags2 | flag);
+	else
+		shaderFlags2 = (SkyrimShaderPropertyFlags2)(shaderFlags2 & ~flag);
+}
+
+float BSEffectShaderProperty::GetUOffset() const
+{
+	return uvOffset.u;
+}
+void BSEffectShaderProperty::SetUOffset(float f)
+{
+	uvOffset.u = f;
+}
+float BSEffectShaderProperty::GetVOffset() const
+{
+	return uvOffset.v;
+}
+void BSEffectShaderProperty::SetVOffset(float f)
+{
+	uvOffset.v = f;
+}
+
+float BSEffectShaderProperty::GetUScale() const
+{
+	return uvScale.u;
+}
+void BSEffectShaderProperty::SetUScale(float f)
+{
+	uvScale.u = f;
+}
+float BSEffectShaderProperty::GetVScale() const
+{
+	return uvScale.v;
+}
+void BSEffectShaderProperty::SetVScale(float f)
+{
+	uvScale.v = f;
+}
+
+const std::string& BSEffectShaderProperty::GetSourceTexture() const
+{
+	return sourceTexture;
+}
+void BSEffectShaderProperty::SetSourceTexture(const std::string& s)
+{
+	sourceTexture = s;
+}
+
+const std::string& BSEffectShaderProperty::GetGreyscaleTexture() const
+{
+	return greyscaleTexture;
+}
+void BSEffectShaderProperty::SetGreyscaleTexture(const std::string& s)
+{
+	greyscaleTexture = s;
+}
+
+float BSEffectShaderProperty::GetFalloffStartAngle() const
+{
+	return falloffStartAngle;
+}
+void BSEffectShaderProperty::SetFalloffStartAngle(float f)
+{
+	falloffStartAngle = f;
+}
+
+float BSEffectShaderProperty::GetFalloffStopAngle() const
+{
+	return falloffStopAngle;
+}
+void BSEffectShaderProperty::SetFalloffStopAngle(float f)
+{
+	falloffStopAngle = f;
+}
+
+float BSEffectShaderProperty::GetFalloffStartOpacity() const
+{
+	return falloffStartOpacity;
+}
+void BSEffectShaderProperty::SetFalloffStartOpacity(float f)
+{
+	falloffStartOpacity = f;
+}
+
+float BSEffectShaderProperty::GetFalloffStopOpacity() const
+{
+	return falloffStopOpacity;
+}
+void BSEffectShaderProperty::SetFalloffStopOpacity(float f)
+{
+	falloffStopOpacity = f;
+}
+
+float BSEffectShaderProperty::GetSoftFalloffDepth() const
+{
+	return softFalloffDepth;
+}
+void BSEffectShaderProperty::SetSoftFalloffDepth(float f)
+{
+	softFalloffDepth = f;
+}
+
 //--END CUSTOM CODE--//

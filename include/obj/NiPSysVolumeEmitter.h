@@ -55,6 +55,10 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API NiNode* GetEmitterObject() const { return emitterObject; }
+	NIFLIB_API void SetEmitterObject(NiNode* node) { emitterObject = node; }
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Node parent of this modifier? */
