@@ -73,6 +73,12 @@ public:
 	NIFLIB_API Ref<NiPSysData> GetData() const;
 	NIFLIB_API void SetData(const Ref<NiPSysData>& obj);
 
+	NIFLIB_API bool GetWorldSpace() const;
+	NIFLIB_API void SetWorldSpace(bool b);
+
+	NIFLIB_API vector<Ref<NiPSysModifier>>& GetModifiers();
+	NIFLIB_API const vector<Ref<NiPSysModifier>>& GetModifiers() const;
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */

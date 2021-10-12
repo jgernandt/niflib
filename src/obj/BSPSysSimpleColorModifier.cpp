@@ -141,4 +141,79 @@ std::list<NiObject *> BSPSysSimpleColorModifier::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
+float BSPSysSimpleColorModifier::GetFadeInEnd() const
+{
+	return fadeInPercent;
+}
+void BSPSysSimpleColorModifier::SetFadeInEnd(float f)
+{
+	fadeInPercent = f;
+}
+
+float BSPSysSimpleColorModifier::GetFadeOutBegin() const
+{
+	return fadeOutPercent;
+}
+void BSPSysSimpleColorModifier::SetFadeOutBegin(float f)
+{
+	fadeOutPercent = f;
+}
+
+float BSPSysSimpleColorModifier::GetColor1End() const
+{
+	return color1EndPercent;
+}
+void BSPSysSimpleColorModifier::SetColor1End(float f)
+{
+	color1EndPercent = f;
+}
+
+float BSPSysSimpleColorModifier::GetColor2Begin() const
+{
+	return color1StartPercent;
+}
+void BSPSysSimpleColorModifier::SetColor2Begin(float f)
+{
+	color1StartPercent = f;
+}
+
+float BSPSysSimpleColorModifier::GetColor2End() const
+{
+	return color2EndPercent;
+}
+void BSPSysSimpleColorModifier::SetColor2End(float f)
+{
+	color2EndPercent = f;
+}
+
+float BSPSysSimpleColorModifier::GetColor3Begin() const
+{
+	return color2StartPercent;
+}
+void BSPSysSimpleColorModifier::SetColor3Begin(float f)
+{
+	color2StartPercent = f;
+}
+
+#include <cassert>
+const Color4& BSPSysSimpleColorModifier::GetColor(int i) const
+{
+	assert(i < 3 && i >= 0);
+	return colors[i];
+}
+void BSPSysSimpleColorModifier::SetColor(int i, const Color4& c)
+{
+	assert(i < 3 && i >= 0);
+	colors[i] = c;
+}
+
+const Niflib::array<3, Color4>& BSPSysSimpleColorModifier::GetColors() const
+{
+	return colors;
+}
+void BSPSysSimpleColorModifier::SetColors(const Niflib::array<3, Color4>& c)
+{
+	colors = c;
+}
+
 //--END CUSTOM CODE--//

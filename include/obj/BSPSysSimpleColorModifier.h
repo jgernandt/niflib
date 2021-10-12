@@ -55,6 +55,30 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
+	NIFLIB_API float GetFadeInEnd() const;
+	NIFLIB_API void SetFadeInEnd(float f);
+
+	NIFLIB_API float GetFadeOutBegin() const;
+	NIFLIB_API void SetFadeOutBegin(float f);
+
+	NIFLIB_API float GetColor1End() const;
+	NIFLIB_API void SetColor1End(float f);
+
+	NIFLIB_API float GetColor2Begin() const;
+	NIFLIB_API void SetColor2Begin(float f);
+
+	NIFLIB_API float GetColor2End() const;
+	NIFLIB_API void SetColor2End(float f);
+
+	NIFLIB_API float GetColor3Begin() const;
+	NIFLIB_API void SetColor3Begin(float f);
+
+	NIFLIB_API const Color4& GetColor(int i) const;
+	NIFLIB_API void SetColor(int i, const Color4& c);
+
+	NIFLIB_API const array<3, Color4>& GetColors() const;
+	NIFLIB_API void SetColors(const array<3, Color4>& c);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown */

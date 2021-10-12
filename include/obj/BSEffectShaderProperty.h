@@ -54,6 +54,51 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+	
+	NIFLIB_API const Color4& GetEmissiveColor() const;
+	NIFLIB_API void SetEmissiveColor(const Color4& col);
+
+	NIFLIB_API float GetEmissiveMultiple() const;
+	NIFLIB_API void SetEmissiveMultiple(float f);
+
+	NIFLIB_API unsigned int GetShaderFlags1() const;
+	NIFLIB_API bool GetShaderFlag1(SkyrimShaderPropertyFlags1 flag) const;
+	NIFLIB_API void SetShaderFlag1(SkyrimShaderPropertyFlags1 flag, bool on = true);
+
+	NIFLIB_API unsigned int GetShaderFlags2() const;
+	NIFLIB_API bool GetShaderFlag2(SkyrimShaderPropertyFlags2 flag) const;
+	NIFLIB_API void SetShaderFlag2(SkyrimShaderPropertyFlags2 flag, bool on = true);
+
+	NIFLIB_API float GetUOffset() const;
+	NIFLIB_API void SetUOffset(float f);
+	NIFLIB_API float GetVOffset() const;
+	NIFLIB_API void SetVOffset(float f);
+
+	NIFLIB_API float GetUScale() const;
+	NIFLIB_API void SetUScale(float f);
+	NIFLIB_API float GetVScale() const;
+	NIFLIB_API void SetVScale(float f);
+
+	NIFLIB_API const std::string& GetSourceTexture() const;
+	NIFLIB_API void SetSourceTexture(const std::string& s);
+
+	NIFLIB_API const std::string& GetGreyscaleTexture() const;
+	NIFLIB_API void SetGreyscaleTexture(const std::string& s);
+
+	NIFLIB_API float GetFalloffStartAngle() const;
+	NIFLIB_API void SetFalloffStartAngle(float f);
+
+	NIFLIB_API float GetFalloffStopAngle() const;
+	NIFLIB_API void SetFalloffStopAngle(float f);
+
+	NIFLIB_API float GetFalloffStartOpacity() const;
+	NIFLIB_API void SetFalloffStartOpacity(float f);
+
+	NIFLIB_API float GetFalloffStopOpacity() const;
+	NIFLIB_API void SetFalloffStopOpacity(float f);
+
+	NIFLIB_API float GetSoftFalloffDepth() const;
+	NIFLIB_API void SetSoftFalloffDepth(float f);
 
 	//--END CUSTOM CODE--//
 protected:

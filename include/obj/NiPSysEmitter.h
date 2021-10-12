@@ -53,6 +53,35 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API const Color4& GetInitialColor() const;
+	NIFLIB_API void SetInitialColor(const Color4& c);
+
+	NIFLIB_API float GetInitialRadius() const;
+	NIFLIB_API void SetInitialRadius(float f);
+	NIFLIB_API float GetInitialRadiusVar() const;
+	NIFLIB_API void SetInitialRadiusVar(float f);
+
+	NIFLIB_API float GetLifeSpan() const;
+	NIFLIB_API void SetLifeSpan(float f);
+	NIFLIB_API float GetLifeSpanVar() const;
+	NIFLIB_API void SetLifeSpanVar(float f);
+
+	NIFLIB_API float GetSpeed() const;
+	NIFLIB_API void SetSpeed(float f);
+	NIFLIB_API float GetSpeedVar() const;
+	NIFLIB_API void SetSpeedVar(float f);
+
+	NIFLIB_API float GetDeclination() const;
+	NIFLIB_API void SetDeclination(float f);
+	NIFLIB_API float GetDeclinationVar() const;
+	NIFLIB_API void SetDeclinationVar(float f);
+
+	NIFLIB_API float GetPlanarAngle() const;
+	NIFLIB_API void SetPlanarAngle(float f);
+	NIFLIB_API float GetPlanarAngleVar() const;
+	NIFLIB_API void SetPlanarAngleVar(float f);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Speed / Inertia of particle movement. */

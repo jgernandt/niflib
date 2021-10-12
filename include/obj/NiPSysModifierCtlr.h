@@ -53,6 +53,10 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API const std::string& GetModifierName() const;
+	NIFLIB_API void SetModifierName(const std::string& n);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Refers to modifier object by its name? */

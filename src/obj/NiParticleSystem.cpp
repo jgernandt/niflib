@@ -237,4 +237,24 @@ void Niflib::NiParticleSystem::SetData(const Ref<NiPSysData>& obj)
 	NiGeometry::data = obj;
 }
 
+bool Niflib::NiParticleSystem::GetWorldSpace() const
+{
+	return worldSpace;
+}
+
+void Niflib::NiParticleSystem::SetWorldSpace(bool b)
+{
+	worldSpace = b;
+}
+
+vector<Ref<NiPSysModifier>>& Niflib::NiParticleSystem::GetModifiers()
+{
+	return modifiers;
+}
+
+const vector<Ref<NiPSysModifier>>& Niflib::NiParticleSystem::GetModifiers() const
+{
+	return modifiers;
+}
+
 //--END CUSTOM CODE--//

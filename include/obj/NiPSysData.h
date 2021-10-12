@@ -57,6 +57,25 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
+	//Some fields have changed with versions, let's put all access functions here
+	NIFLIB_API unsigned short GetBSMaxVertices() const;
+	NIFLIB_API void SetBSMaxVertices(unsigned short i);
+
+	NIFLIB_API bool GetHasVertexColors() const;
+	NIFLIB_API void SetHasVertexColors(bool b);
+
+	NIFLIB_API bool GetHasSubtextures() const;
+	NIFLIB_API void SetHasSubtextures(bool b);
+
+	NIFLIB_API std::vector<Vector4>& GetSubtextureOffsets();
+	NIFLIB_API const std::vector<Vector4>& GetSubtextureOffsets() const;
+
+	NIFLIB_API bool GetHasRotationAngles() const;
+	NIFLIB_API void SetHasRotationAngles(bool b);
+
+	NIFLIB_API bool GetHasRotationSpeeds() const;
+	NIFLIB_API void SetHasRotationSpeeds(bool b);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */

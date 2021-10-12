@@ -53,6 +53,28 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API float GetRotationSpeed() const;
+	NIFLIB_API void SetRotationSpeed(float f);
+
+	NIFLIB_API float GetRotationSpeedVar() const;
+	NIFLIB_API void SetRotationSpeedVar(float f);
+
+	NIFLIB_API float GetRotationAngle() const;
+	NIFLIB_API void SetRotationAngle(float f);
+
+	NIFLIB_API float GetRotationAngleVar() const;
+	NIFLIB_API void SetRotationAngleVar(float f);
+
+	NIFLIB_API bool GetRandomSpeedSign() const;
+	NIFLIB_API void SetRandomSpeedSign(bool b);
+
+	NIFLIB_API bool GetRandomAxis() const;
+	NIFLIB_API void SetRandomAxis(bool b);
+
+	NIFLIB_API const Vector3& GetAxis() const;
+	NIFLIB_API void SetAxis(const Vector3& v);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! The initial speed of rotation. */

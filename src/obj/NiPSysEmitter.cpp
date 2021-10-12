@@ -129,4 +129,115 @@ std::list<NiObject *> NiPSysEmitter::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+const Color4& NiPSysEmitter::GetInitialColor() const
+{
+	return initialColor;
+}
+
+void NiPSysEmitter::SetInitialColor(const Color4& c)
+{
+	initialColor = c;
+}
+
+float NiPSysEmitter::GetInitialRadius() const
+{
+	return initialRadius;
+}
+
+void NiPSysEmitter::SetInitialRadius(float f)
+{
+	initialRadius = f;
+}
+
+float NiPSysEmitter::GetInitialRadiusVar() const
+{
+	return radiusVariation;
+}
+
+void NiPSysEmitter::SetInitialRadiusVar(float f)
+{
+	radiusVariation = f;
+}
+
+float NiPSysEmitter::GetLifeSpan() const
+{
+	return lifeSpan;
+}
+
+void NiPSysEmitter::SetLifeSpan(float f)
+{
+	lifeSpan = f;
+}
+
+float NiPSysEmitter::GetLifeSpanVar() const
+{
+	return lifeSpanVariation;
+}
+
+void NiPSysEmitter::SetLifeSpanVar(float f)
+{
+	lifeSpanVariation = f;
+}
+
+float NiPSysEmitter::GetSpeed() const
+{
+	return speed;
+}
+
+void NiPSysEmitter::SetSpeed(float f)
+{
+	speed = f;
+}
+
+float NiPSysEmitter::GetSpeedVar() const
+{
+	return speedVariation;
+}
+
+void NiPSysEmitter::SetSpeedVar(float f)
+{
+	speedVariation = f;
+}
+
+float NiPSysEmitter::GetDeclination() const
+{
+	return declination;
+}
+
+void NiPSysEmitter::SetDeclination(float f)
+{
+	declination = f;
+}
+
+float NiPSysEmitter::GetDeclinationVar() const
+{
+	return declinationVariation;
+}
+
+void NiPSysEmitter::SetDeclinationVar(float f)
+{
+	declinationVariation = f;
+}
+
+float NiPSysEmitter::GetPlanarAngle() const
+{
+	return planarAngle;
+}
+
+void NiPSysEmitter::SetPlanarAngle(float f)
+{
+	planarAngle = f;
+}
+
+float NiPSysEmitter::GetPlanarAngleVar() const
+{
+	return planarAngleVariation;
+}
+
+void NiPSysEmitter::SetPlanarAngleVar(float f)
+{
+	planarAngleVariation = f;
+}
+
 //--END CUSTOM CODE--//

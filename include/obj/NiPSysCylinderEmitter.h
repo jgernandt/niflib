@@ -53,6 +53,13 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+
+	NIFLIB_API float GetRadius() const { return radius; }
+	NIFLIB_API void SetRadius(float f) { radius = f; }
+
+	NIFLIB_API float GetHeight() const { return height; }
+	NIFLIB_API void SetHeight(float f) { height = f; }
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Radius of the cylinder shape. */
