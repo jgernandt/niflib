@@ -2068,6 +2068,130 @@ ostream & operator<<( ostream & out, LightingShaderControlledColor const & val )
 }
 
 
+//--ShadeFlags--//
+
+void NifStream( ShadeFlags & val, istream& in, const NifInfo & info ) {
+	unsigned short temp;
+	NifStream( temp, in, info );
+	val = ShadeFlags(temp);
+}
+
+void NifStream( ShadeFlags const & val, ostream& out, const NifInfo & info ) {
+	NifStream( (unsigned short)(val), out, info );
+}
+
+ostream & operator<<( ostream & out, ShadeFlags const & val ) {
+	switch ( val ) {
+		case SHADING_HARD: return out << "SHADING_HARD";
+		case SHADING_SMOOTH: return out << "SHADING_SMOOTH";
+		default: return out << "Invalid Value! - " << (unsigned int)(val);
+	}
+}
+
+
+//--VertexAttribute--//
+
+void NifStream( VertexAttribute & val, istream& in, const NifInfo & info ) {
+	unsigned short temp;
+	NifStream( temp, in, info );
+	val = VertexAttribute(temp);
+}
+
+void NifStream( VertexAttribute const & val, ostream& out, const NifInfo & info ) {
+	NifStream( (unsigned short)(val), out, info );
+}
+
+ostream & operator<<( ostream & out, VertexAttribute const & val ) {
+	switch ( val ) {
+		case VF_VERTEX: return out << "VF Vertex";
+		case VF_UVS: return out << "VF UVs";
+		case VF_UVS_2: return out << "VF UVs_2";
+		case VF_NORMALS: return out << "VF Normals";
+		case VF_TANGENTS: return out << "VF Tangents";
+		case VF_VERTEX_COLORS: return out << "VF Vertex_Colors";
+		case VF_SKINNED: return out << "VF Skinned";
+		case VF_LAND_DATA: return out << "VF Land_Data";
+		case VF_EYE_DATA: return out << "VF Eye_Data";
+		case VF_INSTANCE: return out << "VF Instance";
+		case VF_FULL_PRECISION: return out << "VF Full_Precision";
+		default: return out << "Invalid Value! - " << (unsigned int)(val);
+	}
+}
+
+
+//--BSShaderFlags2--//
+
+void NifStream( BSShaderFlags2 & val, istream& in, const NifInfo & info ) {
+	unsigned int temp;
+	NifStream( temp, in, info );
+	val = BSShaderFlags2(temp);
+}
+
+void NifStream( BSShaderFlags2 const & val, ostream& out, const NifInfo & info ) {
+	NifStream( (unsigned int)(val), out, info );
+}
+
+ostream & operator<<( ostream & out, BSShaderFlags2 const & val ) {
+	switch ( val ) {
+		case SF2_ZBUFFER_WRITE: return out << "SF2_ZBuffer_Write";
+		case SF2_LOD_LANDSCAPE: return out << "SF2_LOD_Landscape";
+		case SF2_LOD_BUILDING: return out << "SF2_LOD_Building";
+		case SF2_NO_FADE: return out << "SF2_No_Fade";
+		case SF2_REFRACTION_TINT: return out << "SF2_Refraction_Tint";
+		case SF2_VERTEX_COLORS: return out << "SF2_Vertex_Colors";
+		case SF2_UNKNOWN1: return out << "SF2_Unknown1";
+		case SF2_1ST_LIGHT_IS_POINT_LIGHT: return out << "SF2_1st_Light_is_Point_Light";
+		case SF2_2ND_LIGHT: return out << "SF2_2nd_Light";
+		case SF2_3RD_LIGHT: return out << "SF2_3rd_Light";
+		case SF2_VERTEX_LIGHTING: return out << "SF2_Vertex_Lighting";
+		case SF2_UNIFORM_SCALE: return out << "SF2_Uniform_Scale";
+		case SF2_FIT_SLOPE: return out << "SF2_Fit_Slope";
+		case SF2_BILLBOARD_AND_ENVMAP_LIGHT_FADE: return out << "SF2_Billboard_and_Envmap_Light_Fade";
+		case SF2_NO_LOD_LAND_BLEND: return out << "SF2_No_LOD_Land_Blend";
+		case SF2_ENVMAP_LIGHT_FADE: return out << "SF2_Envmap_Light_Fade";
+		case SF2_WIREFRAME: return out << "SF2_Wireframe";
+		case SF2_VATS_SELECTION: return out << "SF2_VATS_Selection";
+		case SF2_SHOW_IN_LOCAL_MAP: return out << "SF2_Show_in_Local_Map";
+		case SF2_PREMULT_ALPHA: return out << "SF2_Premult_Alpha";
+		case SF2_SKIP_NORMAL_MAPS: return out << "SF2_Skip_Normal_Maps";
+		case SF2_ALPHA_DECAL: return out << "SF2_Alpha_Decal";
+		case SF2_NO_TRANSPARECNY_MULTISAMPLING: return out << "SF2_No_Transparecny_Multisampling";
+		case SF2_UNKNOWN2: return out << "SF2_Unknown2";
+		case SF2_UNKNOWN3: return out << "SF2_Unknown3";
+		case SF2_UNKNOWN4: return out << "SF2_Unknown4";
+		case SF2_UNKNOWN5: return out << "SF2_Unknown5";
+		case SF2_UNKNOWN6: return out << "SF2_Unknown6";
+		case SF2_UNKNOWN7: return out << "SF2_Unknown7";
+		case SF2_UNKNOWN8: return out << "SF2_Unknown8";
+		case SF2_UNKNOWN9: return out << "SF2_Unknown9";
+		case SF2_UNKNOWN10: return out << "SF2_Unknown10";
+		default: return out << "Invalid Value! - " << (unsigned int)(val);
+	}
+}
+
+
+//--AspectFlags--//
+
+void NifStream( AspectFlags & val, istream& in, const NifInfo & info ) {
+	unsigned short temp;
+	NifStream( temp, in, info );
+	val = AspectFlags(temp);
+}
+
+void NifStream( AspectFlags const & val, ostream& out, const NifInfo & info ) {
+	NifStream( (unsigned short)(val), out, info );
+}
+
+ostream & operator<<( ostream & out, AspectFlags const & val ) {
+	switch ( val ) {
+		case VELOCITY_ORIENTATION: return out << "Velocity Orientation";
+		case INITIAL_ROTATION_FROM_VELOCITY: return out << "Initial Rotation from Velocity";
+		case SPEED_TO_ASPECT_ENABLED: return out << "Speed to Aspect Enabled";
+		default: return out << "Invalid Value! - " << (unsigned int)(val);
+	}
+}
+
+
 
 
 

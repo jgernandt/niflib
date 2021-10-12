@@ -15,7 +15,7 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../../include/obj/NiTriBasedGeom.h"
 #include "../../include/obj/NiTriBasedGeomData.h"
 #include "../../include/obj/NiTriStripsData.h"
-#include "../../include/gen/SkinWeight.h"
+#include "../../include/gen/BoneVertData.h"
 #include "../../NvTriStrip/NvTriStrip.h"
 
 using namespace NvTriStrip;
@@ -43,14 +43,20 @@ typedef vector<SkinPartition> PartitionList;
 #include "../../include/ObjectRegistry.h"
 #include "../../include/NIF_IO.h"
 #include "../../include/obj/NiSkinPartition.h"
+#include "../../include/gen/BSVertexDesc.h"
+#include "../../include/gen/BSVertexDataSSE.h"
+#include "../../include/gen/HalfTexCoord.h"
+#include "../../include/gen/ByteVector3.h"
+#include "../../include/gen/ByteVector3.h"
+#include "../../include/gen/ByteColor4.h"
 #include "../../include/gen/SkinPartition.h"
-#include "../../include/gen/SkinPartitionUnknownItem1.h"
+#include "../../include/gen/BSVertexDesc.h"
 using namespace Niflib;
 
 //Definition of TYPE constant
 const Type NiSkinPartition::TYPE("NiSkinPartition", &NiObject::TYPE );
 
-NiSkinPartition::NiSkinPartition() : numSkinPartitionBlocks((unsigned int)0) {
+NiSkinPartition::NiSkinPartition() : numPartitions((unsigned int)0), dataSize((unsigned int)0), vertexSize((unsigned int)0) {
 	//--BEGIN CONSTRUCTOR CUSTOM CODE--//
 	//--END CUSTOM CODE--//
 }
@@ -73,129 +79,172 @@ void NiSkinPartition::Read( istream& in, list<unsigned int> & link_stack, const 
 	//--END CUSTOM CODE--//
 
 	NiObject::Read( in, link_stack, info );
-	NifStream( numSkinPartitionBlocks, in, info );
-	skinPartitionBlocks.resize(numSkinPartitionBlocks);
-	for (unsigned int i1 = 0; i1 < skinPartitionBlocks.size(); i1++) {
-		NifStream( skinPartitionBlocks[i1].numVertices, in, info );
-		NifStream( skinPartitionBlocks[i1].numTriangles, in, info );
-		NifStream( skinPartitionBlocks[i1].numBones, in, info );
-		NifStream( skinPartitionBlocks[i1].numStrips, in, info );
-		NifStream( skinPartitionBlocks[i1].numWeightsPerVertex, in, info );
-		skinPartitionBlocks[i1].bones.resize(skinPartitionBlocks[i1].numBones);
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].bones.size(); i2++) {
-			NifStream( skinPartitionBlocks[i1].bones[i2], in, info );
-		};
-		if ( info.version >= 0x0A010000 ) {
-			NifStream( skinPartitionBlocks[i1].hasVertexMap, in, info );
-		};
-		if ( info.version <= 0x0A000102 ) {
-			skinPartitionBlocks[i1].vertexMap.resize(skinPartitionBlocks[i1].numVertices);
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].vertexMap.size(); i3++) {
-				NifStream( skinPartitionBlocks[i1].vertexMap[i3], in, info );
-			};
-		};
-		if ( info.version >= 0x0A010000 ) {
-			if ( skinPartitionBlocks[i1].hasVertexMap ) {
-				skinPartitionBlocks[i1].vertexMap.resize(skinPartitionBlocks[i1].numVertices);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexMap.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].vertexMap[i4], in, info );
+	NifStream( numPartitions, in, info );
+	if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 == 100) ) ) {
+		NifStream( dataSize, in, info );
+		NifStream( vertexSize, in, info );
+		NifStream( vertexDesc.bitfield, in, info );
+		if ( (dataSize > 0) ) {
+			vertexData.resize(dataSize / vertexSize);
+			for (unsigned int i3 = 0; i3 < vertexData.size(); i3++) {
+				if ( (((vertexDesc >> 44) & 0x1) != 0) ) {
+					NifStream( vertexData[i3].vertex, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x11) == 0x11) ) {
+					NifStream( vertexData[i3].bitangentX, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x11) == 0x1) ) {
+					NifStream( vertexData[i3].unusedW, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x2) != 0) ) {
+					NifStream( vertexData[i3].uv.u, in, info );
+					NifStream( vertexData[i3].uv.v, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x8) != 0) ) {
+					NifStream( vertexData[i3].normal.x, in, info );
+					NifStream( vertexData[i3].normal.y, in, info );
+					NifStream( vertexData[i3].normal.z, in, info );
+					NifStream( vertexData[i3].bitangentY, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x18) == 0x18) ) {
+					NifStream( vertexData[i3].tangent.x, in, info );
+					NifStream( vertexData[i3].tangent.y, in, info );
+					NifStream( vertexData[i3].tangent.z, in, info );
+					NifStream( vertexData[i3].bitangentZ, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x20) != 0) ) {
+					NifStream( vertexData[i3].vertexColors.r, in, info );
+					NifStream( vertexData[i3].vertexColors.g, in, info );
+					NifStream( vertexData[i3].vertexColors.b, in, info );
+					NifStream( vertexData[i3].vertexColors.a, in, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x40) != 0) ) {
+					for (unsigned int i5 = 0; i5 < 4; i5++) {
+						NifStream( vertexData[i3].boneWeights[i5], in, info );
+					};
+					for (unsigned int i5 = 0; i5 < 4; i5++) {
+						NifStream( vertexData[i3].boneIndices[i5], in, info );
+					};
+				};
+				if ( (((vertexDesc >> 44) & 0x100) != 0) ) {
+					NifStream( vertexData[i3].eyeData, in, info );
 				};
 			};
-			NifStream( skinPartitionBlocks[i1].hasVertexWeights, in, info );
+		};
+	};
+	partitions.resize(numPartitions);
+	for (unsigned int i1 = 0; i1 < partitions.size(); i1++) {
+		NifStream( partitions[i1].numVertices, in, info );
+		NifStream( partitions[i1].numTriangles, in, info );
+		NifStream( partitions[i1].numBones, in, info );
+		NifStream( partitions[i1].numStrips, in, info );
+		NifStream( partitions[i1].numWeightsPerVertex, in, info );
+		partitions[i1].bones.resize(partitions[i1].numBones);
+		for (unsigned int i2 = 0; i2 < partitions[i1].bones.size(); i2++) {
+			NifStream( partitions[i1].bones[i2], in, info );
+		};
+		if ( info.version >= 0x0A010000 ) {
+			NifStream( partitions[i1].hasVertexMap, in, info );
 		};
 		if ( info.version <= 0x0A000102 ) {
-			skinPartitionBlocks[i1].vertexWeights.resize(skinPartitionBlocks[i1].numVertices);
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].vertexWeights.size(); i3++) {
-				skinPartitionBlocks[i1].vertexWeights[i3].resize(skinPartitionBlocks[i1].numWeightsPerVertex);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexWeights[i3].size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].vertexWeights[i3][i4], in, info );
+			partitions[i1].vertexMap.resize(partitions[i1].numVertices);
+			for (unsigned int i3 = 0; i3 < partitions[i1].vertexMap.size(); i3++) {
+				NifStream( partitions[i1].vertexMap[i3], in, info );
+			};
+		};
+		if ( info.version >= 0x0A010000 ) {
+			if ( partitions[i1].hasVertexMap ) {
+				partitions[i1].vertexMap.resize(partitions[i1].numVertices);
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexMap.size(); i4++) {
+					NifStream( partitions[i1].vertexMap[i4], in, info );
+				};
+			};
+			NifStream( partitions[i1].hasVertexWeights, in, info );
+		};
+		if ( info.version <= 0x0A000102 ) {
+			partitions[i1].vertexWeights.resize(partitions[i1].numVertices);
+			for (unsigned int i3 = 0; i3 < partitions[i1].vertexWeights.size(); i3++) {
+				partitions[i1].vertexWeights[i3].resize(partitions[i1].numWeightsPerVertex);
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexWeights[i3].size(); i4++) {
+					NifStream( partitions[i1].vertexWeights[i3][i4], in, info );
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( skinPartitionBlocks[i1].hasVertexWeights ) {
-				skinPartitionBlocks[i1].vertexWeights.resize(skinPartitionBlocks[i1].numVertices);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexWeights.size(); i4++) {
-					skinPartitionBlocks[i1].vertexWeights[i4].resize(skinPartitionBlocks[i1].numWeightsPerVertex);
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].vertexWeights[i4].size(); i5++) {
-						NifStream( skinPartitionBlocks[i1].vertexWeights[i4][i5], in, info );
+			if ( partitions[i1].hasVertexWeights ) {
+				partitions[i1].vertexWeights.resize(partitions[i1].numVertices);
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexWeights.size(); i4++) {
+					partitions[i1].vertexWeights[i4].resize(partitions[i1].numWeightsPerVertex);
+					for (unsigned int i5 = 0; i5 < partitions[i1].vertexWeights[i4].size(); i5++) {
+						NifStream( partitions[i1].vertexWeights[i4][i5], in, info );
 					};
 				};
 			};
 		};
-		skinPartitionBlocks[i1].stripLengths.resize(skinPartitionBlocks[i1].numStrips);
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].stripLengths.size(); i2++) {
-			NifStream( skinPartitionBlocks[i1].stripLengths[i2], in, info );
+		partitions[i1].stripLengths.resize(partitions[i1].numStrips);
+		for (unsigned int i2 = 0; i2 < partitions[i1].stripLengths.size(); i2++) {
+			NifStream( partitions[i1].stripLengths[i2], in, info );
 		};
 		if ( info.version >= 0x0A010000 ) {
-			NifStream( skinPartitionBlocks[i1].hasFaces, in, info );
+			NifStream( partitions[i1].hasFaces, in, info );
 		};
 		if ( info.version <= 0x0A000102 ) {
-			if ( (skinPartitionBlocks[i1].numStrips != 0) ) {
-				skinPartitionBlocks[i1].strips.resize(skinPartitionBlocks[i1].numStrips);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].strips.size(); i4++) {
-					skinPartitionBlocks[i1].strips[i4].resize(skinPartitionBlocks[i1].stripLengths[i4]);
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].stripLengths[i4]; i5++) {
-						NifStream( skinPartitionBlocks[i1].strips[i4][i5], in, info );
+			if ( (partitions[i1].numStrips != 0) ) {
+				partitions[i1].strips.resize(partitions[i1].numStrips);
+				for (unsigned int i4 = 0; i4 < partitions[i1].strips.size(); i4++) {
+					partitions[i1].strips[i4].resize(partitions[i1].stripLengths[i4]);
+					for (unsigned int i5 = 0; i5 < partitions[i1].stripLengths[i4]; i5++) {
+						NifStream( partitions[i1].strips[i4][i5], in, info );
 					};
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( (skinPartitionBlocks[i1].hasFaces && (skinPartitionBlocks[i1].numStrips != 0)) ) {
-				skinPartitionBlocks[i1].strips.resize(skinPartitionBlocks[i1].numStrips);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].strips.size(); i4++) {
-					skinPartitionBlocks[i1].strips[i4].resize(skinPartitionBlocks[i1].stripLengths[i4]);
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].stripLengths[i4]; i5++) {
-						NifStream( skinPartitionBlocks[i1].strips[i4][i5], in, info );
+			if ( (partitions[i1].hasFaces && (partitions[i1].numStrips != 0)) ) {
+				partitions[i1].strips.resize(partitions[i1].numStrips);
+				for (unsigned int i4 = 0; i4 < partitions[i1].strips.size(); i4++) {
+					partitions[i1].strips[i4].resize(partitions[i1].stripLengths[i4]);
+					for (unsigned int i5 = 0; i5 < partitions[i1].stripLengths[i4]; i5++) {
+						NifStream( partitions[i1].strips[i4][i5], in, info );
 					};
 				};
 			};
 		};
 		if ( info.version <= 0x0A000102 ) {
-			if ( (skinPartitionBlocks[i1].numStrips == 0) ) {
-				skinPartitionBlocks[i1].triangles.resize(skinPartitionBlocks[i1].numTriangles);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].triangles.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].triangles[i4], in, info );
+			if ( (partitions[i1].numStrips == 0) ) {
+				partitions[i1].triangles.resize(partitions[i1].numTriangles);
+				for (unsigned int i4 = 0; i4 < partitions[i1].triangles.size(); i4++) {
+					NifStream( partitions[i1].triangles[i4], in, info );
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( (skinPartitionBlocks[i1].hasFaces && (skinPartitionBlocks[i1].numStrips == 0)) ) {
-				skinPartitionBlocks[i1].triangles.resize(skinPartitionBlocks[i1].numTriangles);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].triangles.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].triangles[i4], in, info );
+			if ( (partitions[i1].hasFaces && (partitions[i1].numStrips == 0)) ) {
+				partitions[i1].triangles.resize(partitions[i1].numTriangles);
+				for (unsigned int i4 = 0; i4 < partitions[i1].triangles.size(); i4++) {
+					NifStream( partitions[i1].triangles[i4], in, info );
 				};
 			};
 		};
-		NifStream( skinPartitionBlocks[i1].hasBoneIndices, in, info );
-		if ( skinPartitionBlocks[i1].hasBoneIndices ) {
-			skinPartitionBlocks[i1].boneIndices.resize(skinPartitionBlocks[i1].numVertices);
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].boneIndices.size(); i3++) {
-				skinPartitionBlocks[i1].boneIndices[i3].resize(skinPartitionBlocks[i1].numWeightsPerVertex);
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].boneIndices[i3].size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].boneIndices[i3][i4], in, info );
+		NifStream( partitions[i1].hasBoneIndices, in, info );
+		if ( partitions[i1].hasBoneIndices ) {
+			partitions[i1].boneIndices.resize(partitions[i1].numVertices);
+			for (unsigned int i3 = 0; i3 < partitions[i1].boneIndices.size(); i3++) {
+				partitions[i1].boneIndices[i3].resize(partitions[i1].numWeightsPerVertex);
+				for (unsigned int i4 = 0; i4 < partitions[i1].boneIndices[i3].size(); i4++) {
+					NifStream( partitions[i1].boneIndices[i3][i4], in, info );
 				};
 			};
 		};
-		if ( (info.userVersion >= 12) ) {
-			NifStream( skinPartitionBlocks[i1].unknownShort, in, info );
+		if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 > 34) ) ) {
+			NifStream( partitions[i1].lodLevel, in, info );
+			NifStream( partitions[i1].globalVb, in, info );
 		};
-		if ( ( info.version >= 0x0A020000 ) && ( info.version <= 0x0A020000 ) && ( (info.userVersion == 1) ) ) {
-			NifStream( skinPartitionBlocks[i1].unknown83C3, in, info );
-			NifStream( skinPartitionBlocks[i1].unknown00001, in, info );
-			NifStream( skinPartitionBlocks[i1].numVertices2, in, info );
-			NifStream( skinPartitionBlocks[i1].unknown00002, in, info );
-			NifStream( skinPartitionBlocks[i1].unknown00003, in, info );
-			NifStream( skinPartitionBlocks[i1].unknown00004, in, info );
-			skinPartitionBlocks[i1].unknownArr1.resize(skinPartitionBlocks[i1].numVertices2);
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].unknownArr1.size(); i3++) {
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].unknownFlags, in, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f1, in, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f2, in, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f3, in, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f4, in, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f5, in, info );
+		if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 == 100) ) ) {
+			NifStream( partitions[i1].vertexDesc.bitfield, in, info );
+			partitions[i1].trianglesCopy.resize(partitions[i1].numTriangles);
+			for (unsigned int i3 = 0; i3 < partitions[i1].trianglesCopy.size(); i3++) {
+				NifStream( partitions[i1].trianglesCopy[i3], in, info );
 			};
 		};
 	};
@@ -209,120 +258,163 @@ void NiSkinPartition::Write( ostream& out, const map<NiObjectRef,unsigned int> &
 	//--END CUSTOM CODE--//
 
 	NiObject::Write( out, link_map, missing_link_stack, info );
-	numSkinPartitionBlocks = (unsigned int)(skinPartitionBlocks.size());
-	NifStream( numSkinPartitionBlocks, out, info );
-	for (unsigned int i1 = 0; i1 < skinPartitionBlocks.size(); i1++) {
-		skinPartitionBlocks[i1].numVertices2 = (unsigned short)(skinPartitionBlocks[i1].unknownArr1.size());
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].strips.size(); i2++)
-			skinPartitionBlocks[i1].stripLengths[i2] = (unsigned short)(skinPartitionBlocks[i1].strips[i2].size());
-		skinPartitionBlocks[i1].numWeightsPerVertex = (unsigned short)((skinPartitionBlocks[i1].vertexWeights.size() > 0) ? skinPartitionBlocks[i1].vertexWeights[0].size() : 0);
-		skinPartitionBlocks[i1].numStrips = (unsigned short)(skinPartitionBlocks[i1].stripLengths.size());
-		skinPartitionBlocks[i1].numBones = (unsigned short)(skinPartitionBlocks[i1].bones.size());
-		skinPartitionBlocks[i1].numTriangles = skinPartitionBlocks[i1].numTrianglesCalc(info);
-		skinPartitionBlocks[i1].numVertices = (unsigned short)(skinPartitionBlocks[i1].vertexMap.size());
-		NifStream( skinPartitionBlocks[i1].numVertices, out, info );
-		NifStream( skinPartitionBlocks[i1].numTriangles, out, info );
-		NifStream( skinPartitionBlocks[i1].numBones, out, info );
-		NifStream( skinPartitionBlocks[i1].numStrips, out, info );
-		NifStream( skinPartitionBlocks[i1].numWeightsPerVertex, out, info );
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].bones.size(); i2++) {
-			NifStream( skinPartitionBlocks[i1].bones[i2], out, info );
-		};
-		if ( info.version >= 0x0A010000 ) {
-			NifStream( skinPartitionBlocks[i1].hasVertexMap, out, info );
-		};
-		if ( info.version <= 0x0A000102 ) {
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].vertexMap.size(); i3++) {
-				NifStream( skinPartitionBlocks[i1].vertexMap[i3], out, info );
-			};
-		};
-		if ( info.version >= 0x0A010000 ) {
-			if ( skinPartitionBlocks[i1].hasVertexMap ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexMap.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].vertexMap[i4], out, info );
+	vertexSize = vertexSizeCalc(info);
+	dataSize = dataSizeCalc(info);
+	numPartitions = (unsigned int)(partitions.size());
+	NifStream( numPartitions, out, info );
+	if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 == 100) ) ) {
+		NifStream( dataSize, out, info );
+		NifStream( vertexSize, out, info );
+		NifStream( vertexDesc.bitfield, out, info );
+		if ( (dataSize > 0) ) {
+			for (unsigned int i3 = 0; i3 < vertexData.size(); i3++) {
+				if ( (((vertexDesc >> 44) & 0x1) != 0) ) {
+					NifStream( vertexData[i3].vertex, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x11) == 0x11) ) {
+					NifStream( vertexData[i3].bitangentX, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x11) == 0x1) ) {
+					NifStream( vertexData[i3].unusedW, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x2) != 0) ) {
+					NifStream( vertexData[i3].uv.u, out, info );
+					NifStream( vertexData[i3].uv.v, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x8) != 0) ) {
+					NifStream( vertexData[i3].normal.x, out, info );
+					NifStream( vertexData[i3].normal.y, out, info );
+					NifStream( vertexData[i3].normal.z, out, info );
+					NifStream( vertexData[i3].bitangentY, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x18) == 0x18) ) {
+					NifStream( vertexData[i3].tangent.x, out, info );
+					NifStream( vertexData[i3].tangent.y, out, info );
+					NifStream( vertexData[i3].tangent.z, out, info );
+					NifStream( vertexData[i3].bitangentZ, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x20) != 0) ) {
+					NifStream( vertexData[i3].vertexColors.r, out, info );
+					NifStream( vertexData[i3].vertexColors.g, out, info );
+					NifStream( vertexData[i3].vertexColors.b, out, info );
+					NifStream( vertexData[i3].vertexColors.a, out, info );
+				};
+				if ( (((vertexDesc >> 44) & 0x40) != 0) ) {
+					for (unsigned int i5 = 0; i5 < 4; i5++) {
+						NifStream( vertexData[i3].boneWeights[i5], out, info );
+					};
+					for (unsigned int i5 = 0; i5 < 4; i5++) {
+						NifStream( vertexData[i3].boneIndices[i5], out, info );
+					};
+				};
+				if ( (((vertexDesc >> 44) & 0x100) != 0) ) {
+					NifStream( vertexData[i3].eyeData, out, info );
 				};
 			};
-			NifStream( skinPartitionBlocks[i1].hasVertexWeights, out, info );
+		};
+	};
+	for (unsigned int i1 = 0; i1 < partitions.size(); i1++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].strips.size(); i2++)
+			partitions[i1].stripLengths[i2] = (unsigned short)(partitions[i1].strips[i2].size());
+		partitions[i1].numWeightsPerVertex = (unsigned short)((partitions[i1].vertexWeights.size() > 0) ? partitions[i1].vertexWeights[0].size() : 0);
+		partitions[i1].numStrips = (unsigned short)(partitions[i1].stripLengths.size());
+		partitions[i1].numBones = (unsigned short)(partitions[i1].bones.size());
+		partitions[i1].numTriangles = partitions[i1].numTrianglesCalc(info);
+		partitions[i1].numVertices = (unsigned short)(partitions[i1].vertexMap.size());
+		NifStream( partitions[i1].numVertices, out, info );
+		NifStream( partitions[i1].numTriangles, out, info );
+		NifStream( partitions[i1].numBones, out, info );
+		NifStream( partitions[i1].numStrips, out, info );
+		NifStream( partitions[i1].numWeightsPerVertex, out, info );
+		for (unsigned int i2 = 0; i2 < partitions[i1].bones.size(); i2++) {
+			NifStream( partitions[i1].bones[i2], out, info );
+		};
+		if ( info.version >= 0x0A010000 ) {
+			NifStream( partitions[i1].hasVertexMap, out, info );
 		};
 		if ( info.version <= 0x0A000102 ) {
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].vertexWeights.size(); i3++) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexWeights[i3].size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].vertexWeights[i3][i4], out, info );
+			for (unsigned int i3 = 0; i3 < partitions[i1].vertexMap.size(); i3++) {
+				NifStream( partitions[i1].vertexMap[i3], out, info );
+			};
+		};
+		if ( info.version >= 0x0A010000 ) {
+			if ( partitions[i1].hasVertexMap ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexMap.size(); i4++) {
+					NifStream( partitions[i1].vertexMap[i4], out, info );
+				};
+			};
+			NifStream( partitions[i1].hasVertexWeights, out, info );
+		};
+		if ( info.version <= 0x0A000102 ) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].vertexWeights.size(); i3++) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexWeights[i3].size(); i4++) {
+					NifStream( partitions[i1].vertexWeights[i3][i4], out, info );
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( skinPartitionBlocks[i1].hasVertexWeights ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].vertexWeights.size(); i4++) {
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].vertexWeights[i4].size(); i5++) {
-						NifStream( skinPartitionBlocks[i1].vertexWeights[i4][i5], out, info );
+			if ( partitions[i1].hasVertexWeights ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].vertexWeights.size(); i4++) {
+					for (unsigned int i5 = 0; i5 < partitions[i1].vertexWeights[i4].size(); i5++) {
+						NifStream( partitions[i1].vertexWeights[i4][i5], out, info );
 					};
 				};
 			};
 		};
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].stripLengths.size(); i2++) {
-			NifStream( skinPartitionBlocks[i1].stripLengths[i2], out, info );
+		for (unsigned int i2 = 0; i2 < partitions[i1].stripLengths.size(); i2++) {
+			NifStream( partitions[i1].stripLengths[i2], out, info );
 		};
 		if ( info.version >= 0x0A010000 ) {
-			NifStream( skinPartitionBlocks[i1].hasFaces, out, info );
+			NifStream( partitions[i1].hasFaces, out, info );
 		};
 		if ( info.version <= 0x0A000102 ) {
-			if ( (skinPartitionBlocks[i1].numStrips != 0) ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].strips.size(); i4++) {
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].stripLengths[i4]; i5++) {
-						NifStream( skinPartitionBlocks[i1].strips[i4][i5], out, info );
+			if ( (partitions[i1].numStrips != 0) ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].strips.size(); i4++) {
+					for (unsigned int i5 = 0; i5 < partitions[i1].stripLengths[i4]; i5++) {
+						NifStream( partitions[i1].strips[i4][i5], out, info );
 					};
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( (skinPartitionBlocks[i1].hasFaces && (skinPartitionBlocks[i1].numStrips != 0)) ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].strips.size(); i4++) {
-					for (unsigned int i5 = 0; i5 < skinPartitionBlocks[i1].stripLengths[i4]; i5++) {
-						NifStream( skinPartitionBlocks[i1].strips[i4][i5], out, info );
+			if ( (partitions[i1].hasFaces && (partitions[i1].numStrips != 0)) ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].strips.size(); i4++) {
+					for (unsigned int i5 = 0; i5 < partitions[i1].stripLengths[i4]; i5++) {
+						NifStream( partitions[i1].strips[i4][i5], out, info );
 					};
 				};
 			};
 		};
 		if ( info.version <= 0x0A000102 ) {
-			if ( (skinPartitionBlocks[i1].numStrips == 0) ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].triangles.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].triangles[i4], out, info );
+			if ( (partitions[i1].numStrips == 0) ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].triangles.size(); i4++) {
+					NifStream( partitions[i1].triangles[i4], out, info );
 				};
 			};
 		};
 		if ( info.version >= 0x0A010000 ) {
-			if ( (skinPartitionBlocks[i1].hasFaces && (skinPartitionBlocks[i1].numStrips == 0)) ) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].triangles.size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].triangles[i4], out, info );
+			if ( (partitions[i1].hasFaces && (partitions[i1].numStrips == 0)) ) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].triangles.size(); i4++) {
+					NifStream( partitions[i1].triangles[i4], out, info );
 				};
 			};
 		};
-		NifStream( skinPartitionBlocks[i1].hasBoneIndices, out, info );
-		if ( skinPartitionBlocks[i1].hasBoneIndices ) {
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].boneIndices.size(); i3++) {
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].boneIndices[i3].size(); i4++) {
-					NifStream( skinPartitionBlocks[i1].boneIndices[i3][i4], out, info );
+		NifStream( partitions[i1].hasBoneIndices, out, info );
+		if ( partitions[i1].hasBoneIndices ) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].boneIndices.size(); i3++) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].boneIndices[i3].size(); i4++) {
+					NifStream( partitions[i1].boneIndices[i3][i4], out, info );
 				};
 			};
 		};
-		if ( (info.userVersion >= 12) ) {
-			NifStream( skinPartitionBlocks[i1].unknownShort, out, info );
+		if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 > 34) ) ) {
+			NifStream( partitions[i1].lodLevel, out, info );
+			NifStream( partitions[i1].globalVb, out, info );
 		};
-		if ( ( info.version >= 0x0A020000 ) && ( info.version <= 0x0A020000 ) && ( (info.userVersion == 1) ) ) {
-			NifStream( skinPartitionBlocks[i1].unknown83C3, out, info );
-			NifStream( skinPartitionBlocks[i1].unknown00001, out, info );
-			NifStream( skinPartitionBlocks[i1].numVertices2, out, info );
-			NifStream( skinPartitionBlocks[i1].unknown00002, out, info );
-			NifStream( skinPartitionBlocks[i1].unknown00003, out, info );
-			NifStream( skinPartitionBlocks[i1].unknown00004, out, info );
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].unknownArr1.size(); i3++) {
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].unknownFlags, out, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f1, out, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f2, out, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f3, out, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f4, out, info );
-				NifStream( skinPartitionBlocks[i1].unknownArr1[i3].f5, out, info );
+		if ( ( info.version >= 0x14020007 ) && ( info.version <= 0x14020007 ) && ( (info.userVersion2 == 100) ) ) {
+			NifStream( partitions[i1].vertexDesc.bitfield, out, info );
+			for (unsigned int i3 = 0; i3 < partitions[i1].trianglesCopy.size(); i3++) {
+				NifStream( partitions[i1].trianglesCopy[i3], out, info );
 			};
 		};
 	};
@@ -338,28 +430,99 @@ std::string NiSkinPartition::asString( bool verbose ) const {
 	stringstream out;
 	unsigned int array_output_count = 0;
 	out << NiObject::asString();
-	numSkinPartitionBlocks = (unsigned int)(skinPartitionBlocks.size());
-	out << "  Num Skin Partition Blocks:  " << numSkinPartitionBlocks << endl;
+	numPartitions = (unsigned int)(partitions.size());
+	out << "  Num Partitions:  " << numPartitions << endl;
+	out << "  Data Size:  " << dataSize << endl;
+	out << "  Vertex Size:  " << vertexSize << endl;
+	out << "  Bitfield:  " << vertexDesc.bitfield << endl;
+	if ( (dataSize > 0) ) {
+		array_output_count = 0;
+		for (unsigned int i2 = 0; i2 < vertexData.size(); i2++) {
+			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
+				break;
+			};
+			if ( (((vertexDesc >> 44) & 0x1) != 0) ) {
+				out << "        Vertex:  " << vertexData[i2].vertex << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x11) == 0x11) ) {
+				out << "        Bitangent X:  " << vertexData[i2].bitangentX << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x11) == 0x1) ) {
+				out << "        Unused W:  " << vertexData[i2].unusedW << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x2) != 0) ) {
+				out << "        u:  " << vertexData[i2].uv.u << endl;
+				out << "        v:  " << vertexData[i2].uv.v << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x8) != 0) ) {
+				out << "        x:  " << vertexData[i2].normal.x << endl;
+				out << "        y:  " << vertexData[i2].normal.y << endl;
+				out << "        z:  " << vertexData[i2].normal.z << endl;
+				out << "        Bitangent Y:  " << vertexData[i2].bitangentY << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x18) == 0x18) ) {
+				out << "        x:  " << vertexData[i2].tangent.x << endl;
+				out << "        y:  " << vertexData[i2].tangent.y << endl;
+				out << "        z:  " << vertexData[i2].tangent.z << endl;
+				out << "        Bitangent Z:  " << vertexData[i2].bitangentZ << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x20) != 0) ) {
+				out << "        r:  " << vertexData[i2].vertexColors.r << endl;
+				out << "        g:  " << vertexData[i2].vertexColors.g << endl;
+				out << "        b:  " << vertexData[i2].vertexColors.b << endl;
+				out << "        a:  " << vertexData[i2].vertexColors.a << endl;
+			};
+			if ( (((vertexDesc >> 44) & 0x40) != 0) ) {
+				array_output_count = 0;
+				for (unsigned int i4 = 0; i4 < 4; i4++) {
+					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+						out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
+						break;
+					};
+					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+						break;
+					};
+					out << "          Bone Weights[" << i4 << "]:  " << vertexData[i2].boneWeights[i4] << endl;
+					array_output_count++;
+				};
+				array_output_count = 0;
+				for (unsigned int i4 = 0; i4 < 4; i4++) {
+					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+						out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
+						break;
+					};
+					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+						break;
+					};
+					out << "          Bone Indices[" << i4 << "]:  " << vertexData[i2].boneIndices[i4] << endl;
+					array_output_count++;
+				};
+			};
+			if ( (((vertexDesc >> 44) & 0x100) != 0) ) {
+				out << "        Eye Data:  " << vertexData[i2].eyeData << endl;
+			};
+		};
+	};
 	array_output_count = 0;
-	for (unsigned int i1 = 0; i1 < skinPartitionBlocks.size(); i1++) {
+	for (unsigned int i1 = 0; i1 < partitions.size(); i1++) {
 		if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 			out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 			break;
 		};
-		skinPartitionBlocks[i1].numVertices2 = (unsigned short)(skinPartitionBlocks[i1].unknownArr1.size());
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].strips.size(); i2++)
-			skinPartitionBlocks[i1].stripLengths[i2] = (unsigned short)(skinPartitionBlocks[i1].strips[i2].size());
-		skinPartitionBlocks[i1].numWeightsPerVertex = (unsigned short)((skinPartitionBlocks[i1].vertexWeights.size() > 0) ? skinPartitionBlocks[i1].vertexWeights[0].size() : 0);
-		skinPartitionBlocks[i1].numStrips = (unsigned short)(skinPartitionBlocks[i1].stripLengths.size());
-		skinPartitionBlocks[i1].numBones = (unsigned short)(skinPartitionBlocks[i1].bones.size());
-		skinPartitionBlocks[i1].numVertices = (unsigned short)(skinPartitionBlocks[i1].vertexMap.size());
-		out << "    Num Vertices:  " << skinPartitionBlocks[i1].numVertices << endl;
-		out << "    Num Triangles:  " << skinPartitionBlocks[i1].numTriangles << endl;
-		out << "    Num Bones:  " << skinPartitionBlocks[i1].numBones << endl;
-		out << "    Num Strips:  " << skinPartitionBlocks[i1].numStrips << endl;
-		out << "    Num Weights Per Vertex:  " << skinPartitionBlocks[i1].numWeightsPerVertex << endl;
+		for (unsigned int i2 = 0; i2 < partitions[i1].strips.size(); i2++)
+			partitions[i1].stripLengths[i2] = (unsigned short)(partitions[i1].strips[i2].size());
+		partitions[i1].numWeightsPerVertex = (unsigned short)((partitions[i1].vertexWeights.size() > 0) ? partitions[i1].vertexWeights[0].size() : 0);
+		partitions[i1].numStrips = (unsigned short)(partitions[i1].stripLengths.size());
+		partitions[i1].numBones = (unsigned short)(partitions[i1].bones.size());
+		partitions[i1].numVertices = (unsigned short)(partitions[i1].vertexMap.size());
+		out << "    Num Vertices:  " << partitions[i1].numVertices << endl;
+		out << "    Num Triangles:  " << partitions[i1].numTriangles << endl;
+		out << "    Num Bones:  " << partitions[i1].numBones << endl;
+		out << "    Num Strips:  " << partitions[i1].numStrips << endl;
+		out << "    Num Weights Per Vertex:  " << partitions[i1].numWeightsPerVertex << endl;
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].bones.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].bones.size(); i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
@@ -367,12 +530,12 @@ std::string NiSkinPartition::asString( bool verbose ) const {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				break;
 			};
-			out << "      Bones[" << i2 << "]:  " << skinPartitionBlocks[i1].bones[i2] << endl;
+			out << "      Bones[" << i2 << "]:  " << partitions[i1].bones[i2] << endl;
 			array_output_count++;
 		};
-		out << "    Has Vertex Map:  " << skinPartitionBlocks[i1].hasVertexMap << endl;
+		out << "    Has Vertex Map:  " << partitions[i1].hasVertexMap << endl;
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].vertexMap.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].vertexMap.size(); i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
@@ -380,26 +543,26 @@ std::string NiSkinPartition::asString( bool verbose ) const {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				break;
 			};
-			out << "      Vertex Map[" << i2 << "]:  " << skinPartitionBlocks[i1].vertexMap[i2] << endl;
+			out << "      Vertex Map[" << i2 << "]:  " << partitions[i1].vertexMap[i2] << endl;
 			array_output_count++;
 		};
-		out << "    Has Vertex Weights:  " << skinPartitionBlocks[i1].hasVertexWeights << endl;
+		out << "    Has Vertex Weights:  " << partitions[i1].hasVertexWeights << endl;
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].vertexWeights.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].vertexWeights.size(); i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
 			};
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].vertexWeights[i2].size(); i3++) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].vertexWeights[i2].size(); i3++) {
 				if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 					break;
 				};
-				out << "        Vertex Weights[" << i3 << "]:  " << skinPartitionBlocks[i1].vertexWeights[i2][i3] << endl;
+				out << "        Vertex Weights[" << i3 << "]:  " << partitions[i1].vertexWeights[i2][i3] << endl;
 				array_output_count++;
 			};
 		};
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].stripLengths.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].stripLengths.size(); i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
@@ -407,29 +570,29 @@ std::string NiSkinPartition::asString( bool verbose ) const {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				break;
 			};
-			out << "      Strip Lengths[" << i2 << "]:  " << skinPartitionBlocks[i1].stripLengths[i2] << endl;
+			out << "      Strip Lengths[" << i2 << "]:  " << partitions[i1].stripLengths[i2] << endl;
 			array_output_count++;
 		};
-		out << "    Has Faces:  " << skinPartitionBlocks[i1].hasFaces << endl;
-		if ( (skinPartitionBlocks[i1].numStrips != 0) ) {
+		out << "    Has Faces:  " << partitions[i1].hasFaces << endl;
+		if ( (partitions[i1].numStrips != 0) ) {
 			array_output_count = 0;
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].strips.size(); i3++) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].strips.size(); i3++) {
 				if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 					out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 					break;
 				};
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].stripLengths[i3]; i4++) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].stripLengths[i3]; i4++) {
 					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 						break;
 					};
-					out << "          Strips[" << i4 << "]:  " << skinPartitionBlocks[i1].strips[i3][i4] << endl;
+					out << "          Strips[" << i4 << "]:  " << partitions[i1].strips[i3][i4] << endl;
 					array_output_count++;
 				};
 			};
 		};
-		if ( (skinPartitionBlocks[i1].numStrips == 0) ) {
+		if ( (partitions[i1].numStrips == 0) ) {
 			array_output_count = 0;
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].triangles.size(); i3++) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].triangles.size(); i3++) {
 				if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 					out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 					break;
@@ -437,46 +600,41 @@ std::string NiSkinPartition::asString( bool verbose ) const {
 				if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 					break;
 				};
-				out << "        Triangles[" << i3 << "]:  " << skinPartitionBlocks[i1].triangles[i3] << endl;
+				out << "        Triangles[" << i3 << "]:  " << partitions[i1].triangles[i3] << endl;
 				array_output_count++;
 			};
 		};
-		out << "    Has Bone Indices:  " << skinPartitionBlocks[i1].hasBoneIndices << endl;
-		if ( skinPartitionBlocks[i1].hasBoneIndices ) {
+		out << "    Has Bone Indices:  " << partitions[i1].hasBoneIndices << endl;
+		if ( partitions[i1].hasBoneIndices ) {
 			array_output_count = 0;
-			for (unsigned int i3 = 0; i3 < skinPartitionBlocks[i1].boneIndices.size(); i3++) {
+			for (unsigned int i3 = 0; i3 < partitions[i1].boneIndices.size(); i3++) {
 				if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 					out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 					break;
 				};
-				for (unsigned int i4 = 0; i4 < skinPartitionBlocks[i1].boneIndices[i3].size(); i4++) {
+				for (unsigned int i4 = 0; i4 < partitions[i1].boneIndices[i3].size(); i4++) {
 					if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 						break;
 					};
-					out << "          Bone Indices[" << i4 << "]:  " << skinPartitionBlocks[i1].boneIndices[i3][i4] << endl;
+					out << "          Bone Indices[" << i4 << "]:  " << partitions[i1].boneIndices[i3][i4] << endl;
 					array_output_count++;
 				};
 			};
 		};
-		out << "    Unknown Short:  " << skinPartitionBlocks[i1].unknownShort << endl;
-		out << "    Unknown 83 C3:  " << skinPartitionBlocks[i1].unknown83C3 << endl;
-		out << "    Unknown 00 00 1:  " << skinPartitionBlocks[i1].unknown00001 << endl;
-		out << "    Num Vertices 2:  " << skinPartitionBlocks[i1].numVertices2 << endl;
-		out << "    Unknown 00 00 2:  " << skinPartitionBlocks[i1].unknown00002 << endl;
-		out << "    Unknown 00 00 3:  " << skinPartitionBlocks[i1].unknown00003 << endl;
-		out << "    Unknown 00 00 4:  " << skinPartitionBlocks[i1].unknown00004 << endl;
+		out << "    LOD Level:  " << partitions[i1].lodLevel << endl;
+		out << "    Global VB:  " << partitions[i1].globalVb << endl;
+		out << "    Bitfield:  " << partitions[i1].vertexDesc.bitfield << endl;
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < skinPartitionBlocks[i1].unknownArr1.size(); i2++) {
+		for (unsigned int i2 = 0; i2 < partitions[i1].trianglesCopy.size(); i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
 			};
-			out << "      Unknown Flags:  " << skinPartitionBlocks[i1].unknownArr1[i2].unknownFlags << endl;
-			out << "      f1:  " << skinPartitionBlocks[i1].unknownArr1[i2].f1 << endl;
-			out << "      f2:  " << skinPartitionBlocks[i1].unknownArr1[i2].f2 << endl;
-			out << "      f3:  " << skinPartitionBlocks[i1].unknownArr1[i2].f3 << endl;
-			out << "      f4:  " << skinPartitionBlocks[i1].unknownArr1[i2].f4 << endl;
-			out << "      f5:  " << skinPartitionBlocks[i1].unknownArr1[i2].f5 << endl;
+			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
+				break;
+			};
+			out << "      Triangles Copy[" << i2 << "]:  " << partitions[i1].trianglesCopy[i2] << endl;
+			array_output_count++;
 		};
 	};
 	return out.str();
@@ -510,7 +668,7 @@ std::list<NiObject *> NiSkinPartition::GetPtrs() const {
 //--BEGIN MISC CUSTOM CODE--//
 
 int NiSkinPartition::GetNumPartitions() const {
-   return (int)skinPartitionBlocks.size();
+   return (int)partitions.size();
 }
 
 void NiSkinPartition::SetNumPartitions( int value ) {
@@ -524,41 +682,41 @@ void NiSkinPartition::SetNumPartitions( int value ) {
    part.hasVertexWeights = false;
    part.hasFaces = false;
    part.hasBoneIndices = false;
-   skinPartitionBlocks.assign(value, part);
-   numSkinPartitionBlocks = value;
+   partitions.assign(value, part);
+   numPartitions = value;
 }
 
 unsigned short NiSkinPartition::GetWeightsPerVertex( int partition ) const {
-   return skinPartitionBlocks.at(partition).numWeightsPerVertex;
+   return partitions.at(partition).numWeightsPerVertex;
 }
 
 void NiSkinPartition::SetWeightsPerVertex( int partition, unsigned short value ) {
-   skinPartitionBlocks.at(partition).numWeightsPerVertex = value;
+	partitions.at(partition).numWeightsPerVertex = value;
 }
 
 unsigned short NiSkinPartition::GetNumVertices( int partition ) const {
-   return skinPartitionBlocks.at(partition).numVertices;
+   return partitions.at(partition).numVertices;
 }
 
 void NiSkinPartition::SetNumVertices( int partition, unsigned short value ) {
-   skinPartitionBlocks.at(partition).numVertices = value;
+	partitions.at(partition).numVertices = value;
 }
 
 vector<unsigned short> NiSkinPartition::GetBoneMap( int partition ) const {
-   return skinPartitionBlocks.at(partition).bones;
+   return partitions.at(partition).bones;
 }
 
 void NiSkinPartition::SetBoneMap( int partition, const vector<unsigned short>& boneMap ) {
-   skinPartitionBlocks.at(partition).bones = boneMap;
-   skinPartitionBlocks.at(partition).numBones = (unsigned short)boneMap.size();
+	partitions.at(partition).bones = boneMap;
+	partitions.at(partition).numBones = (unsigned short)boneMap.size();
 }
 
 vector<unsigned short> NiSkinPartition::GetVertexMap( int partition ) const {
-   return skinPartitionBlocks.at(partition).vertexMap;
+   return partitions.at(partition).vertexMap;
 }
 
 void NiSkinPartition::SetVertexMap( int partition, const vector<unsigned short>& vertexMap ) {
-   SkinPartition& part = skinPartitionBlocks.at(partition);
+   SkinPartition& part = partitions.at(partition);
    if (vertexMap.empty()) {
       part.vertexMap.clear();
       part.numVertices = 0;
@@ -571,11 +729,11 @@ void NiSkinPartition::SetVertexMap( int partition, const vector<unsigned short>&
 }
 
 bool NiSkinPartition::HasVertexWeights( int partition ) const {
-   return skinPartitionBlocks.at(partition).hasVertexWeights;
+   return partitions.at(partition).hasVertexWeights;
 }
 
 void NiSkinPartition::EnableVertexWeights( int partition, bool enable) {
-   SkinPartition& part = skinPartitionBlocks.at(partition);
+   SkinPartition& part = partitions.at(partition);
    if (enable) {
       // Allocate appropriately sized vectors. Clearing existing data.
       vector<float> weights(part.numWeightsPerVertex);
@@ -587,19 +745,19 @@ void NiSkinPartition::EnableVertexWeights( int partition, bool enable) {
 }
 
 vector<float> NiSkinPartition::GetVertexWeights( int partition, int vertex ) const {
-   return skinPartitionBlocks.at(partition).vertexWeights[vertex];
+   return partitions.at(partition).vertexWeights[vertex];
 }
 
 void NiSkinPartition::SetVertexWeights( int partition, int vertex, const vector<float> & n ) {
-   skinPartitionBlocks.at(partition).vertexWeights[vertex] = n;
+	partitions.at(partition).vertexWeights[vertex] = n;
 }
 
 bool NiSkinPartition::HasVertexBoneIndices( int partition ) const {
-   return ( skinPartitionBlocks.at(partition).hasBoneIndices != 0 );
+   return (partitions.at(partition).hasBoneIndices != 0 );
 }
 
 void NiSkinPartition::EnableVertexBoneIndices( int partition, bool enable) {
-   SkinPartition& part = skinPartitionBlocks.at(partition);
+   SkinPartition& part = partitions.at(partition);
    if (enable) {
       // Allocate appropriately sized vectors. Clearing existing data.
       vector<byte> bones(part.numWeightsPerVertex);
@@ -611,7 +769,7 @@ void NiSkinPartition::EnableVertexBoneIndices( int partition, bool enable) {
 }
 
 vector<unsigned short> NiSkinPartition::GetVertexBoneIndices( int partition, int vertex ) const {
-   const vector<byte>& bones = skinPartitionBlocks.at(partition).boneIndices[vertex];
+   const vector<byte>& bones = partitions.at(partition).boneIndices[vertex];
    vector<unsigned short> value;
    size_t n = bones.size();
    value.resize(bones.size());
@@ -621,7 +779,7 @@ vector<unsigned short> NiSkinPartition::GetVertexBoneIndices( int partition, int
 }
 
 void NiSkinPartition::SetVertexBoneIndices( int partition, int vertex, const vector<unsigned short>& boneList ) {
-   vector<byte>& bones = skinPartitionBlocks.at(partition).boneIndices[vertex];
+   vector<byte>& bones = partitions.at(partition).boneIndices[vertex];
    size_t n = boneList.size();
    bones.resize(n);
    for (size_t i=0; i<n; ++i)
@@ -629,11 +787,11 @@ void NiSkinPartition::SetVertexBoneIndices( int partition, int vertex, const vec
 }
 
 unsigned short NiSkinPartition::GetStripCount( int partition ) const {
-   return (unsigned short)skinPartitionBlocks.at(partition).strips.size();
+   return (unsigned short)partitions.at(partition).strips.size();
 }
 
 void NiSkinPartition::SetStripCount( int partition, int n ) {
-   SkinPartition& part = skinPartitionBlocks.at(partition);
+   SkinPartition& part = partitions.at(partition);
    part.strips.resize(n);
    part.stripLengths.resize(n);
    part.hasFaces = (n!=0);
@@ -641,11 +799,11 @@ void NiSkinPartition::SetStripCount( int partition, int n ) {
 }
 
 vector<unsigned short> NiSkinPartition::GetStrip( int partition, int index ) const {
-   return skinPartitionBlocks.at(partition).strips[index];
+   return partitions.at(partition).strips[index];
 }
 
 void NiSkinPartition::SetStrip( int partition, int index, const vector<unsigned short> & in ) {
-   SkinPartition& part = skinPartitionBlocks.at(partition);
+   SkinPartition& part = partitions.at(partition);
    part.strips[index] = in;
    part.stripLengths[index] = (unsigned short)(in.size());
    part.numTriangles = part.numTrianglesCalc();
@@ -653,7 +811,7 @@ void NiSkinPartition::SetStrip( int partition, int index, const vector<unsigned 
 }
 
 vector<Triangle> NiSkinPartition::GetTriangles( int partition ) const {
-   const SkinPartition&part = skinPartitionBlocks.at(partition);
+   const SkinPartition&part = partitions.at(partition);
    if ( part.numStrips == 0 && !part.triangles.empty())
       return part.triangles;
 
@@ -704,7 +862,7 @@ void NiSkinPartition::SetTriangles( int partition, const vector<Triangle> & in )
    if ( in.size() > 65535 || in.size() < 0 ) {
       throw runtime_error("Invalid Triangle Count: must be between 0 and 65535.");
    }
-   SkinPartition& part = skinPartitionBlocks.at(partition); // at throws, [] does not
+   SkinPartition& part = partitions.at(partition); // at throws, [] does not
    part.triangles = in;
    part.hasFaces = (in.size() > 0) ? true : (part.strips.size() != 0);
    part.numTriangles = (unsigned short)(in.size());
@@ -743,8 +901,8 @@ NiSkinPartition::NiSkinPartition(Ref<NiTriBasedGeom> shape) {
    for (int i=0; i<totalBones; ++i) {
       boneMap[i] = i;
 
-      vector<SkinWeight> skinWeights = skinData->GetBoneWeights(i);
-      for (vector<SkinWeight>::const_iterator skinWeight = skinWeights.begin(); skinWeight != skinWeights.end(); ++skinWeight) {
+      vector<BoneVertData> skinWeights = skinData->GetBoneWeights(i);
+      for (vector<BoneVertData>::const_iterator skinWeight = skinWeights.begin(); skinWeight != skinWeights.end(); ++skinWeight) {
          WeightList& vertexWeight = vertexWeights[skinWeight->index];
          BoneList& boneIndex = boneIndexList[skinWeight->index];
 
@@ -927,7 +1085,7 @@ NiSkinPartition::NiSkinPartition(Ref<NiTriBasedGeom> shape, int maxBonesPerParti
    int numBones = skinData->GetBoneCount();
    for ( int bone = 0; bone < numBones; bone++ )
    {
-      vector<SkinWeight> vertexWeights = skinData->GetBoneWeights(bone);
+      vector<BoneVertData> vertexWeights = skinData->GetBoneWeights(bone);
       for (int r = 0; r < int(vertexWeights.size()); ++r ){
          int vertex = vertexWeights[r].index;
          float weight = vertexWeights[r].weight;
@@ -1092,7 +1250,7 @@ NiSkinPartition::NiSkinPartition(Ref<NiTriBasedGeom> shape, int maxBonesPerParti
    //if ( cnt > 0 )
    //   qWarning() << "removed" << cnt << "bone influences";
 
-   PartitionList& parts = skinPartitionBlocks;
+   PartitionList& parts = partitions;
 
    bool merge = true;
    // Use Explicit face mapping
@@ -1297,6 +1455,17 @@ NiSkinPartition::NiSkinPartition(Ref<NiTriBasedGeom> shape, int maxBonesPerParti
          }
       }
    }
+}
+
+//Have data size call vertexSizeCalc (rather than use vertexSize), in case they are called in the wrong order (are there any guarantees there?)
+unsigned int Niflib::NiSkinPartition::dataSizeCalc(const NifInfo& info) const
+{
+	return vertexSizeCalc(info) * vertexData.size();
+}
+
+unsigned int Niflib::NiSkinPartition::vertexSizeCalc(const NifInfo&) const
+{
+	return 4 * vertexDesc.GetVertexDataSize();
 }
 
 //--END CUSTOM CODE--//

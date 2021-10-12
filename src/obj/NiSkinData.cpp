@@ -18,10 +18,12 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../../include/NIF_IO.h"
 #include "../../include/obj/NiSkinData.h"
 #include "../../include/gen/SkinTransform.h"
-#include "../../include/gen/SkinData.h"
+#include "../../include/gen/BoneData.h"
 #include "../../include/gen/SkinTransform.h"
-#include "../../include/gen/SkinWeight.h"
-#include "../../include/gen/SkinWeight.h"
+#include "../../include/gen/NiBound.h"
+#include "../../include/gen/NiBoundAABB.h"
+#include "../../include/gen/BoneVertData.h"
+#include "../../include/gen/BoneVertData.h"
 #include "../../include/obj/NiSkinPartition.h"
 using namespace Niflib;
 
@@ -68,11 +70,12 @@ void NiSkinData::Read( istream& in, list<unsigned int> & link_stack, const NifIn
 		NifStream( boneList[i1].skinTransform.rotation, in, info );
 		NifStream( boneList[i1].skinTransform.translation, in, info );
 		NifStream( boneList[i1].skinTransform.scale, in, info );
-		NifStream( boneList[i1].boundingSphereOffset, in, info );
-		NifStream( boneList[i1].boundingSphereRadius, in, info );
-		if ( ( info.version >= 0x14030009 ) && ( info.version <= 0x14030009 ) && ( info.userVersion == 131072 ) ) {
-			for (unsigned int i3 = 0; i3 < 13; i3++) {
-				NifStream( boneList[i1].unknown13Shorts[i3], in, info );
+		NifStream( boneList[i1].boundingSphere.center, in, info );
+		NifStream( boneList[i1].boundingSphere.radius, in, info );
+		if ( ( info.version >= 0x14030009 ) && ( info.version <= 0x14030009 ) && ( ((info.userVersion == 0x20000) || (info.userVersion == 0x30000)) ) ) {
+			NifStream( boneList[i1].boundingSphere.div2Aabb.numCorners, in, info );
+			for (unsigned int i3 = 0; i3 < 2; i3++) {
+				NifStream( boneList[i1].boundingSphere.div2Aabb.corners[i3], in, info );
 			};
 		};
 		NifStream( boneList[i1].numVertices, in, info );
@@ -135,11 +138,12 @@ void NiSkinData::Write( ostream& out, const map<NiObjectRef,unsigned int> & link
 		NifStream( boneList[i1].skinTransform.rotation, out, info );
 		NifStream( boneList[i1].skinTransform.translation, out, info );
 		NifStream( boneList[i1].skinTransform.scale, out, info );
-		NifStream( boneList[i1].boundingSphereOffset, out, info );
-		NifStream( boneList[i1].boundingSphereRadius, out, info );
-		if ( ( info.version >= 0x14030009 ) && ( info.version <= 0x14030009 ) && ( info.userVersion == 131072 ) ) {
-			for (unsigned int i3 = 0; i3 < 13; i3++) {
-				NifStream( boneList[i1].unknown13Shorts[i3], out, info );
+		NifStream( boneList[i1].boundingSphere.center, out, info );
+		NifStream( boneList[i1].boundingSphere.radius, out, info );
+		if ( ( info.version >= 0x14030009 ) && ( info.version <= 0x14030009 ) && ( ((info.userVersion == 0x20000) || (info.userVersion == 0x30000)) ) ) {
+			NifStream( boneList[i1].boundingSphere.div2Aabb.numCorners, out, info );
+			for (unsigned int i3 = 0; i3 < 2; i3++) {
+				NifStream( boneList[i1].boundingSphere.div2Aabb.corners[i3], out, info );
 			};
 		};
 		NifStream( boneList[i1].numVertices, out, info );
@@ -187,10 +191,11 @@ std::string NiSkinData::asString( bool verbose ) const {
 		out << "    Rotation:  " << boneList[i1].skinTransform.rotation << endl;
 		out << "    Translation:  " << boneList[i1].skinTransform.translation << endl;
 		out << "    Scale:  " << boneList[i1].skinTransform.scale << endl;
-		out << "    Bounding Sphere Offset:  " << boneList[i1].boundingSphereOffset << endl;
-		out << "    Bounding Sphere Radius:  " << boneList[i1].boundingSphereRadius << endl;
+		out << "    Center:  " << boneList[i1].boundingSphere.center << endl;
+		out << "    Radius:  " << boneList[i1].boundingSphere.radius << endl;
+		out << "    Num Corners:  " << boneList[i1].boundingSphere.div2Aabb.numCorners << endl;
 		array_output_count = 0;
-		for (unsigned int i2 = 0; i2 < 13; i2++) {
+		for (unsigned int i2 = 0; i2 < 2; i2++) {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				out << "<Data Truncated. Use verbose mode to see complete listing.>" << endl;
 				break;
@@ -198,7 +203,7 @@ std::string NiSkinData::asString( bool verbose ) const {
 			if ( !verbose && ( array_output_count > MAXARRAYDUMP ) ) {
 				break;
 			};
-			out << "      Unknown 13 Shorts[" << i2 << "]:  " << boneList[i1].unknown13Shorts[i2] << endl;
+			out << "      Corners[" << i2 << "]:  " << boneList[i1].boundingSphere.div2Aabb.corners[i2] << endl;
 			array_output_count++;
 		};
 		out << "    Num Vertices:  " << boneList[i1].numVertices << endl;
@@ -259,7 +264,7 @@ Matrix44 NiSkinData::GetBoneTransform( unsigned int bone_index ) const {
 	return Matrix44( boneList[bone_index].skinTransform.translation, boneList[bone_index].skinTransform.rotation, boneList[bone_index].skinTransform.scale );
 }
 
-vector<SkinWeight> NiSkinData::GetBoneWeights( unsigned int bone_index ) const {
+vector<BoneVertData> NiSkinData::GetBoneWeights( unsigned int bone_index ) const {
 	if ( bone_index > boneList.size() ) {
 		throw runtime_error( "The specified bone index was larger than the number of bones in this NiSkinData." );
 	}
@@ -267,18 +272,18 @@ vector<SkinWeight> NiSkinData::GetBoneWeights( unsigned int bone_index ) const {
 	return boneList[bone_index].vertexWeights;
 }
 
-void NiSkinData::SetBoneWeights( unsigned int bone_index, const vector<SkinWeight> & weights, Vector3 center, float radius ) {
+void NiSkinData::SetBoneWeights( unsigned int bone_index, const vector<BoneVertData> & weights, Vector3 center, float radius ) {
 	if ( bone_index > boneList.size() ) {
 		throw runtime_error( "The specified bone index was larger than the number of bones in this NiSkinData." );
 	}
 
 	hasVertexWeights = true;
 	boneList[bone_index].vertexWeights = weights;
-    boneList[bone_index].boundingSphereOffset = center;
-    boneList[bone_index].boundingSphereRadius = radius;
+    boneList[bone_index].boundingSphere.center = center;
+    boneList[bone_index].boundingSphere.radius = radius;
 }
 
-void NiSkinData::SetBoneWeights( unsigned int bone_index, const vector<SkinWeight> & weights ) {
+void NiSkinData::SetBoneWeights( unsigned int bone_index, const vector<BoneVertData> & weights ) {
 	if ( bone_index > boneList.size() ) {
 		throw runtime_error( "The specified bone index was larger than the number of bones in this NiSkinData." );
 	}
@@ -317,7 +322,7 @@ void NiSkinData::NormalizeWeights( unsigned numVertices ) {
 	//Also count the number of bones affecting each vertex
 	for ( unsigned b = 0; b < boneList.size(); ++b ) {
 		for ( unsigned w = 0; w < boneList[b].vertexWeights.size(); ++w ) {
-			SkinWeight & sw = boneList[b].vertexWeights[w];
+			BoneVertData& sw = boneList[b].vertexWeights[w];
 			totals[sw.index] -= sw.weight;
 			counts[sw.index]++;
 		}
@@ -332,7 +337,7 @@ void NiSkinData::NormalizeWeights( unsigned numVertices ) {
 	//Distribute the calculated error to each weight
 	for ( unsigned b = 0; b < boneList.size(); ++b ) {
 		for ( unsigned w = 0; w < boneList[b].vertexWeights.size(); ++w ) {
-			SkinWeight & sw = boneList[b].vertexWeights[w];
+			BoneVertData& sw = boneList[b].vertexWeights[w];
 			double temp = double(sw.weight) + totals[sw.index];
 			sw.weight = float(temp);
 		}

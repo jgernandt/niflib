@@ -19,7 +19,7 @@ All rights reserved.  Please see niflib.h for license. */
 using namespace Niflib;
 
 //Definition of TYPE constant
-const Type BSLightingShaderProperty::TYPE("BSLightingShaderProperty", &NiProperty::TYPE );
+const Type BSLightingShaderProperty::TYPE("BSLightingShaderProperty", &BSShaderProperty::TYPE );
 
 BSLightingShaderProperty::BSLightingShaderProperty() : shaderFlags1((SkyrimShaderPropertyFlags1)2185233153), shaderFlags2((SkyrimShaderPropertyFlags2)32801), uvScale(1.0, 1.0), textureSet(NULL), emissiveMultiple(0.0f), textureClampMode((TexClampMode)0), alpha(1.0f), unknownFloat2(0.0f), glossiness(0.0f), specularStrength(1.0f), lightingEffect1(0.0f), lightingEffect2(0.0f), environmentMapScale(0.0f), maxPasses(0.0f), scale(0.0f), parallaxInnerLayerThickness(0.0f), parallaxRefractionScale(0.0f), parallaxEnvmapStrength(0.0f), eyeCubemapScale(0.0f) {
 	//--BEGIN CONSTRUCTOR CUSTOM CODE--//
@@ -47,7 +47,7 @@ void BSLightingShaderProperty::Read( istream& in, list<unsigned int> & link_stac
 	//--END CUSTOM CODE--//
 
 	unsigned int block_num;
-	NiProperty::Read( in, link_stack, info );
+	BSShaderProperty::Read( in, link_stack, info );
 	if ( (info.userVersion == 12) ) {
 		NifStream( shaderFlags1, in, info );
 		NifStream( shaderFlags2, in, info );
@@ -104,7 +104,7 @@ void BSLightingShaderProperty::Write( ostream& out, const map<NiObjectRef,unsign
 
 	//--END CUSTOM CODE--//
 
-	NiProperty::Write( out, link_map, missing_link_stack, info );
+	BSShaderProperty::Write( out, link_map, missing_link_stack, info );
 	if ( (info.userVersion == 12) ) {
 		NifStream( shaderFlags1, out, info );
 		NifStream( shaderFlags2, out, info );
@@ -177,7 +177,7 @@ std::string BSLightingShaderProperty::asString( bool verbose ) const {
 	//--END CUSTOM CODE--//
 
 	stringstream out;
-	out << NiProperty::asString();
+	out << BSShaderProperty::asString();
 	out << "  Shader Flags 1:  " << shaderFlags1 << endl;
 	out << "  Shader Flags 2:  " << shaderFlags2 << endl;
 	out << "  UV Offset:  " << uvOffset << endl;
@@ -232,7 +232,7 @@ void BSLightingShaderProperty::FixLinks( const map<unsigned int,NiObjectRef> & o
 
 	//--END CUSTOM CODE--//
 
-	NiProperty::FixLinks( objects, link_stack, missing_link_stack, info );
+	BSShaderProperty::FixLinks( objects, link_stack, missing_link_stack, info );
 	textureSet = FixLink<BSShaderTextureSet>( objects, link_stack, missing_link_stack, info );
 
 	//--BEGIN POST-FIXLINKS CUSTOM CODE--//
@@ -242,7 +242,7 @@ void BSLightingShaderProperty::FixLinks( const map<unsigned int,NiObjectRef> & o
 
 std::list<NiObjectRef> BSLightingShaderProperty::GetRefs() const {
 	list<Ref<NiObject> > refs;
-	refs = NiProperty::GetRefs();
+	refs = BSShaderProperty::GetRefs();
 	if ( textureSet != NULL )
 		refs.push_back(StaticCast<NiObject>(textureSet));
 	return refs;
@@ -250,7 +250,7 @@ std::list<NiObjectRef> BSLightingShaderProperty::GetRefs() const {
 
 std::list<NiObject *> BSLightingShaderProperty::GetPtrs() const {
 	list<NiObject *> ptrs;
-	ptrs = NiProperty::GetPtrs();
+	ptrs = BSShaderProperty::GetPtrs();
 	return ptrs;
 }
 

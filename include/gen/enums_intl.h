@@ -385,5 +385,26 @@ void NifStream( LightingShaderControlledVariable const & val, ostream& out, cons
 void NifStream( LightingShaderControlledColor & val, istream& in, const NifInfo & info = NifInfo() );
 void NifStream( LightingShaderControlledColor const & val, ostream& out, const NifInfo & info = NifInfo() );
 
+
+//---ShadeFlags---//
+
+void NifStream( ShadeFlags & val, istream& in, const NifInfo & info = NifInfo() );
+void NifStream( ShadeFlags const & val, ostream& out, const NifInfo & info = NifInfo() );
+
+
+//---VertexAttribute---//
+
+void NifStream( VertexAttribute & val, istream& in, const NifInfo & info = NifInfo() );
+void NifStream( VertexAttribute const & val, ostream& out, const NifInfo & info = NifInfo() );
+
+
+//---BSShaderFlags2---//
+
+void NifStream( BSShaderFlags2 & val, istream& in, const NifInfo & info = NifInfo() );
+void NifStream( BSShaderFlags2 const & val, ostream& out, const NifInfo & info = NifInfo() );
+
+void NifStream( AspectFlags & val, istream& in, const NifInfo & info = NifInfo() );
+void NifStream( AspectFlags const & val, ostream& out, const NifInfo & info = NifInfo() );
+
 }
 #endif

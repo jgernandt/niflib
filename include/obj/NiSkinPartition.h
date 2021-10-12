@@ -19,6 +19,8 @@ class NiTriBasedGeom;
 #include "NiObject.h"
 
 // Include structures
+#include "../gen/BSVertexDesc.h"
+#include "../gen/BSVertexDataSSE.h"
 #include "../gen/SkinPartition.h"
 namespace Niflib {
 
@@ -192,12 +194,24 @@ public:
 
 	NIFLIB_API void SetTriangles( int partition, const vector<Triangle> & in );
 
+private:
+	unsigned int dataSizeCalc(const NifInfo&) const;
+	unsigned int vertexSizeCalc(const NifInfo&) const;
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */
-	mutable unsigned int numSkinPartitionBlocks;
-	/*! Skin partition objects. */
-	vector<SkinPartition > skinPartitionBlocks;
+	mutable unsigned int numPartitions;
+	/*! Unknown. */
+	mutable unsigned int dataSize;
+	/*! Unknown. */
+	mutable unsigned int vertexSize;
+	/*! Unknown. */
+	BSVertexDesc vertexDesc;
+	/*! Unknown. */
+	vector<BSVertexDataSSE > vertexData;
+	/*! Unknown. */
+	vector<SkinPartition > partitions;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

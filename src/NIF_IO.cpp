@@ -14,6 +14,7 @@ unsigned int SwapEndian( unsigned int in );
 short SwapEndian( short in );
 unsigned short SwapEndian( unsigned short in );
 float SwapEndian( float in );
+unsigned long long SwapEndian(unsigned long long in);
 
 //Constant that stores the detected endian storage type of the current system
 const EndianType sys_endian = DetectEndianType();
@@ -108,6 +109,20 @@ float SwapEndian( float in ) {
 	return out;
 }
 
+unsigned long long Niflib::SwapEndian(unsigned long long in) {
+	unsigned long long out = 0;
+	char* temp_in;
+	char* temp_out;
+
+	temp_in = (char*)&in;
+	temp_out = (char*)&out;
+
+	for (int i = 0; i < sizeof(in); i++)
+		temp_out[i] = temp_in[sizeof(in) - i];
+
+	return out;
+}
+
 //--Read utility functions--//
 
 int ReadInt( istream& in ){
@@ -187,6 +202,15 @@ bool ReadBool( istream &in, unsigned int version ) {
 	}
 }
 
+unsigned long long ReadUInt64( istream& in )
+{
+	unsigned long long tmp = 0;
+	in.read((char*)&tmp, 8);
+	if (in.fail())
+		throw runtime_error("premature end of stream");
+	return tmp;
+}
+
 //-- Write utility functions--//
 
 void WriteInt( int val, ostream& out ){
@@ -259,6 +283,11 @@ void WriteBool( bool val, ostream& out, unsigned int version ) {
 		else
 			WriteByte( 0, out );
 	}
+}
+
+void WriteUInt64(unsigned long long val, ostream& out)
+{
+	out.write((char*)&val, 8);
 }
 
 //-- NifStream And ostream Functions --//
@@ -378,6 +407,26 @@ void NifStream( string & val, istream& in, const NifInfo & info ) {
 
 void NifStream( string const & val, ostream& out, const NifInfo & info ) {
 	WriteString( val, out );
+}
+
+void Niflib::NifStream(unsigned long long& val, istream& in, const NifInfo& info)
+{
+	if (info.endian == sys_endian) {
+		val = ReadUInt64(in);
+	}
+	else {
+		val = SwapEndian(ReadUInt64(in));
+	}
+}
+
+void Niflib::NifStream(unsigned long long const& val, ostream& out, const NifInfo& info)
+{
+	if (info.endian == sys_endian) {
+		WriteUInt64(val, out);
+	}
+	else {
+		WriteUInt64(SwapEndian(val), out);
+	}
 }
 
 //--Structs--//

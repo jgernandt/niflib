@@ -5,26 +5,26 @@ All rights reserved.  Please see niflib.h for license. */
 
 //To change this file, alter the niftools/docsys/gen_niflib.py Python script.
 
-#include "../../include/gen/SkinWeight.h"
+#include "../../include/gen/BSVertexDesc.h"
 using namespace Niflib;
 
 //Constructor
-SkinWeight::SkinWeight() : index((unsigned short)0), weight(0.0f) {};
+BSVertexDesc::BSVertexDesc() : bitfield((unsigned long long)0) {};
 
 //Copy Constructor
-SkinWeight::SkinWeight( const SkinWeight & src ) {
+BSVertexDesc::BSVertexDesc( const BSVertexDesc & src ) {
 	*this = src;
 };
 
 //Copy Operator
-SkinWeight & SkinWeight::operator=( const SkinWeight & src ) {
-	this->index = src.index;
-	this->weight = src.weight;
+BSVertexDesc & BSVertexDesc::operator=( const BSVertexDesc & src ) {
+	this->bitfield = src.bitfield;
 	return *this;
 };
 
 //Destructor
-SkinWeight::~SkinWeight() {};
+BSVertexDesc::~BSVertexDesc() {};
 
 //--BEGIN MISC CUSTOM CODE--//
+
 //--END CUSTOM CODE--//

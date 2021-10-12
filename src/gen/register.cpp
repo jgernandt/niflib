@@ -446,6 +446,9 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../../include/obj/BSFurnitureMarkerNode.h"
 #include "../../include/obj/BSLeafAnimNode.h"
 #include "../../include/obj/BSTreeNode.h"
+#include "../../include/obj/BSTriShape.h"
+#include "../../include/obj/BSDynamicTriShape.h"
+#include "../../include/obj/BSDistantObjectLargeRefExtraData.h"
 
 namespace Niflib {
 	void RegisterObjects() {
@@ -890,6 +893,9 @@ namespace Niflib {
 		ObjectRegistry::RegisterObject( "BSFurnitureMarkerNode", BSFurnitureMarkerNode::Create );
 		ObjectRegistry::RegisterObject( "BSLeafAnimNode", BSLeafAnimNode::Create );
 		ObjectRegistry::RegisterObject( "BSTreeNode", BSTreeNode::Create );
+		ObjectRegistry::RegisterObject( "BSTriShape", BSTriShape::Create );
+		ObjectRegistry::RegisterObject( "BSDynamicTriShape", BSDynamicTriShape::Create );
+		ObjectRegistry::RegisterObject( "BSDistantObjectLargeRefExtraData", BSDistantObjectLargeRefExtraData::Create );
 
 	}
 }

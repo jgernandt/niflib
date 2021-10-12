@@ -15,13 +15,13 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../../include/ObjectRegistry.h"
 #include "../../include/NIF_IO.h"
 #include "../../include/obj/NiPSysMeshEmitter.h"
-#include "../../include/obj/NiTriBasedGeom.h"
+#include "../../include/obj/NiAVObject.h"
 using namespace Niflib;
 
 //Definition of TYPE constant
 const Type NiPSysMeshEmitter::TYPE("NiPSysMeshEmitter", &NiPSysEmitter::TYPE );
 
-NiPSysMeshEmitter::NiPSysMeshEmitter() : numEmitterMeshes((unsigned int)0), initialVelocityType((VelocityType)0), emissionType((EmitFrom)0) {
+NiPSysMeshEmitter::NiPSysMeshEmitter() : numEmitterMeshes((unsigned int)0), initialVelocityType((VelocityType)0), emissionType((EmitFrom)0), emissionAxis(1.0, 0.0, 0.0) {
 	//--BEGIN CONSTRUCTOR CUSTOM CODE--//
 	//--END CUSTOM CODE--//
 }
@@ -129,7 +129,7 @@ void NiPSysMeshEmitter::FixLinks( const map<unsigned int,NiObjectRef> & objects,
 
 	NiPSysEmitter::FixLinks( objects, link_stack, missing_link_stack, info );
 	for (unsigned int i1 = 0; i1 < emitterMeshes.size(); i1++) {
-		emitterMeshes[i1] = FixLink<NiTriBasedGeom>( objects, link_stack, missing_link_stack, info );
+		emitterMeshes[i1] = FixLink<NiAVObject>( objects, link_stack, missing_link_stack, info );
 	};
 
 	//--BEGIN POST-FIXLINKS CUSTOM CODE--//
@@ -140,8 +140,6 @@ std::list<NiObjectRef> NiPSysMeshEmitter::GetRefs() const {
 	list<Ref<NiObject> > refs;
 	refs = NiPSysEmitter::GetRefs();
 	for (unsigned int i1 = 0; i1 < emitterMeshes.size(); i1++) {
-		if ( emitterMeshes[i1] != NULL )
-			refs.push_back(StaticCast<NiObject>(emitterMeshes[i1]));
 	};
 	return refs;
 }
@@ -150,48 +148,50 @@ std::list<NiObject *> NiPSysMeshEmitter::GetPtrs() const {
 	list<NiObject *> ptrs;
 	ptrs = NiPSysEmitter::GetPtrs();
 	for (unsigned int i1 = 0; i1 < emitterMeshes.size(); i1++) {
+		if ( emitterMeshes[i1] != NULL )
+			ptrs.push_back((NiObject *)(emitterMeshes[i1]));
 	};
 	return ptrs;
 }
 
 //--BEGIN MISC CUSTOM CODE--//
 
-bool NiPSysMeshEmitter::AddEmitterMesh( Ref<NiTriBasedGeom > mesh ) {
-  vector<Ref<NiTriBasedGeom > >& meshes = emitterMeshes;
-  vector<Ref<NiTriBasedGeom > >::iterator itr = std::find(meshes.begin(), meshes.end(), mesh);
-  if (itr == meshes.end()) {
-    meshes.push_back(mesh);
-    numEmitterMeshes++;
+bool NiPSysMeshEmitter::AddEmitterMesh( NiAVObject* mesh ) {
+	auto& meshes = emitterMeshes;
+	auto itr = std::find(meshes.begin(), meshes.end(), mesh);
+	if (itr == meshes.end()) {
+		meshes.push_back(mesh);
+		numEmitterMeshes++;
 
-    return true;
-  }
+		return true;
+	}
 
-  return false;
+	return false;
 }
 
-bool NiPSysMeshEmitter::RemoveEmitterMesh( Ref<NiTriBasedGeom > mesh ) {
-  vector<Ref<NiTriBasedGeom > >& meshes = emitterMeshes;
-  vector<Ref<NiTriBasedGeom > >::iterator itr = std::find(meshes.begin(), meshes.end(), mesh);
-  if (itr == meshes.end()) {
-    meshes.erase(itr);
-    numEmitterMeshes--;
+bool NiPSysMeshEmitter::RemoveEmitterMesh( NiAVObject* mesh ) {
+	auto& meshes = emitterMeshes;
+	auto itr = std::find(meshes.begin(), meshes.end(), mesh);
+	if (itr == meshes.end()) {
+		meshes.erase(itr);
+		numEmitterMeshes--;
 
-    return true;
-  }
+		return true;
+	}
 
-  return false;
+	return false;
 }
 
-bool NiPSysMeshEmitter::ReplaceEmitterMesh( Ref<NiTriBasedGeom > newmesh, Ref<NiTriBasedGeom > oldmesh ) {
-  vector<Ref<NiTriBasedGeom > >& meshes = emitterMeshes;
-  vector<Ref<NiTriBasedGeom > >::iterator itr = std::find(meshes.begin(), meshes.end(), oldmesh);
-  if (itr != meshes.end()) {
-    *itr = newmesh;
+bool NiPSysMeshEmitter::ReplaceEmitterMesh( NiAVObject* newmesh, NiAVObject* oldmesh ) {
+	auto& meshes = emitterMeshes;
+	auto itr = std::find(meshes.begin(), meshes.end(), oldmesh);
+	if (itr != meshes.end()) {
+		*itr = newmesh;
 
-    return true;
-  }
+		return true;
+	}
 
-  return false;
+	return false;
 }
 
 //--END CUSTOM CODE--//
