@@ -148,5 +148,9 @@ void NiFloatData::NormalizeKeys( float phase, float frequency ) {
 	NormalizeKeyVector( this->data.keys, phase, frequency );
 }
 
+std::vector<Key<float>>& Niflib::NiFloatData::GetKeysRef()
+{
+	return data.keys;
+}
 
 //--END CUSTOM CODE--//

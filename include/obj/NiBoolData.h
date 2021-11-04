@@ -93,6 +93,8 @@ public:
 	 */
 	NIFLIB_API virtual void NormalizeKeys( float phase, float frequency );
 
+	NIFLIB_API std::vector<Key<unsigned char>>& GetKeysRef();
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! The boolean keys. */
