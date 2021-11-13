@@ -55,6 +55,11 @@ void RefObject::SubtractRef() const {
 	}
 }
 
+unsigned int Niflib::RefObject::GetNumRefs()
+{
+	return _ref_count;
+}
+
 unsigned int RefObject::NumObjectsInMemory() {
 	return objectsInMemory;
 }
