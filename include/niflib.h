@@ -53,8 +53,8 @@ POSSIBILITY OF SUCH DAMAGE. */
 #include "Ref.h"
 #include "nif_basic_types.h"
 
-using namespace std;
 namespace Niflib {
+using namespace std;
 
 //Classes used
 class NiObject;
