@@ -171,17 +171,9 @@ unsigned int BSEffectShaderProperty::GetShaderFlags1() const
 	return shaderFlags1;
 }
 
-bool BSEffectShaderProperty::GetShaderFlag1(SkyrimShaderPropertyFlags1 flag) const
+void BSEffectShaderProperty::SetShaderFlags1(SkyrimShaderPropertyFlags1 flags)
 {
-	return (shaderFlags1 & flag) != 0;
-}
-
-void BSEffectShaderProperty::SetShaderFlag1(SkyrimShaderPropertyFlags1 flag, bool on)
-{
-	if (on)
-		shaderFlags1 = (SkyrimShaderPropertyFlags1)(shaderFlags1 | flag);
-	else
-		shaderFlags1 = (SkyrimShaderPropertyFlags1)(shaderFlags1 & ~flag);
+	shaderFlags1 = flags;
 }
 
 unsigned int BSEffectShaderProperty::GetShaderFlags2() const
@@ -189,17 +181,9 @@ unsigned int BSEffectShaderProperty::GetShaderFlags2() const
 	return shaderFlags2;
 }
 
-bool BSEffectShaderProperty::GetShaderFlag2(SkyrimShaderPropertyFlags2 flag) const
+void BSEffectShaderProperty::SetShaderFlags2(SkyrimShaderPropertyFlags2 flags)
 {
-	return (shaderFlags2 & flag) != 0;
-}
-
-void BSEffectShaderProperty::SetShaderFlag2(SkyrimShaderPropertyFlags2 flag, bool on)
-{
-	if (on)
-		shaderFlags2 = (SkyrimShaderPropertyFlags2)(shaderFlags2 | flag);
-	else
-		shaderFlags2 = (SkyrimShaderPropertyFlags2)(shaderFlags2 & ~flag);
+	shaderFlags2 = flags;
 }
 
 float BSEffectShaderProperty::GetUOffset() const

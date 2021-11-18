@@ -62,12 +62,10 @@ public:
 	NIFLIB_API void SetEmissiveMultiple(float f);
 
 	NIFLIB_API unsigned int GetShaderFlags1() const;
-	NIFLIB_API bool GetShaderFlag1(SkyrimShaderPropertyFlags1 flag) const;
-	NIFLIB_API void SetShaderFlag1(SkyrimShaderPropertyFlags1 flag, bool on = true);
+	NIFLIB_API void SetShaderFlags1(SkyrimShaderPropertyFlags1 flags);
 
 	NIFLIB_API unsigned int GetShaderFlags2() const;
-	NIFLIB_API bool GetShaderFlag2(SkyrimShaderPropertyFlags2 flag) const;
-	NIFLIB_API void SetShaderFlag2(SkyrimShaderPropertyFlags2 flag, bool on = true);
+	NIFLIB_API void SetShaderFlags2(SkyrimShaderPropertyFlags2 flags);
 
 	NIFLIB_API float GetUOffset() const;
 	NIFLIB_API void SetUOffset(float f);
