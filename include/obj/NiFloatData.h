@@ -73,7 +73,7 @@ public:
 	 * \return A vector containing Key<float> data which specify float values over time.
 	 * \sa NiFloatData::SetKeys, Key
 	 */
-	NIFLIB_API vector< Key<float> > GetKeys() const;
+	NIFLIB_API const vector< Key<float> >& GetKeys() const;
 
 	/*! Sets the float key data.
 	 * \param keys A vector containing new Key<float> data which will replace any existing data.

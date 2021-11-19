@@ -73,7 +73,7 @@ public:
 	 * \return A vector containing Key<unsigned char> data which specify boolean values over time.
 	 * \sa NiBoolData::SetKeys, Key
 	 */
-	NIFLIB_API vector< Key<unsigned char> > GetKeys() const;
+	NIFLIB_API const vector< Key<unsigned char> >& GetKeys() const;
 
 	/*! Sets the boolean key data.
 	 * \param keys A vector containing new Key<unsigned char> data which will replace any existing data.

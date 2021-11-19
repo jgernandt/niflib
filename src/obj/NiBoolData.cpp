@@ -136,7 +136,7 @@ void NiBoolData::SetKeyType( KeyType t ) {
 	data.interpolation= t;
 }
 
-vector< Key<unsigned char> > NiBoolData::GetKeys() const {
+const vector< Key<unsigned char> >& NiBoolData::GetKeys() const {
 	return data.keys;
 }
 

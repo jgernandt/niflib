@@ -136,7 +136,7 @@ void NiFloatData::SetKeyType( KeyType t ) {
 	data.interpolation = t;
 }
 
-vector< Key<float> > NiFloatData::GetKeys() const {
+const vector< Key<float> >& NiFloatData::GetKeys() const {
 	return data.keys;
 }
 
