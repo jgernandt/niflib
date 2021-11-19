@@ -63,7 +63,7 @@ public:
 	 * the target version.
 	 * \return The name of this NiExtraData object.
 	 */
-	NIFLIB_API string GetName();
+	NIFLIB_API const string& GetName() const;
 
 	/*!
 	 * Sets the name of this NiExtraData object.  Will only be written to later

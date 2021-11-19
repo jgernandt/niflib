@@ -130,7 +130,7 @@ std::list<NiObject *> NiExtraData::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
-string NiExtraData::GetName() {
+const string& NiExtraData::GetName() const {
 	return name;
 }
 
