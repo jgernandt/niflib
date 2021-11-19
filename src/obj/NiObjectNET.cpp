@@ -258,7 +258,7 @@ std::list<NiObject *> NiObjectNET::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
-string NiObjectNET::GetName() {
+const string& NiObjectNET::GetName() const {
 	return name;
 }
 

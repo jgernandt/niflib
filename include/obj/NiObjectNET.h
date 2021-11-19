@@ -60,7 +60,7 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
-	NIFLIB_API string GetName();
+	NIFLIB_API const string& GetName() const;
 	NIFLIB_API void SetName( const string & new_name );
 
 	/*!
