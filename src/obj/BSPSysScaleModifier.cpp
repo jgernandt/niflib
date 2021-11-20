@@ -1,3 +1,4 @@
+#include "..\..\include\obj\BSPSysScaleModifier.h"
 /* Copyright (c) 2006, NIF File Format Library and Tools
 All rights reserved.  Please see niflib.h for license. */
 
@@ -128,5 +129,20 @@ std::list<NiObject *> BSPSysScaleModifier::GetPtrs() const {
 }
 
 //--BEGIN MISC CUSTOM CODE--//
+
+const std::vector<float>& Niflib::BSPSysScaleModifier::GetScales() const
+{
+	return floats;
+}
+
+void Niflib::BSPSysScaleModifier::SetScales(const std::vector<float>& v)
+{
+	floats = v;
+}
+
+void Niflib::BSPSysScaleModifier::SetScales(std::vector<float>&& v)
+{
+	floats = std::move(v);
+}
 
 //--END CUSTOM CODE--//
