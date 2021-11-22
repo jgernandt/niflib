@@ -76,7 +76,13 @@ public:
 	NIFLIB_API bool GetWorldSpace() const;
 	NIFLIB_API void SetWorldSpace(bool b);
 
-	NIFLIB_API vector<Ref<NiPSysModifier>>& GetModifiers();
+	//Insert mod at the end of our modifiers
+	NIFLIB_API void AddModifier(const Ref<NiPSysModifier>& mod);
+	//Remove mod from our modifiers
+	NIFLIB_API void RemoveModifier(NiPSysModifier* mod);
+	//Remove all our modifiers
+	NIFLIB_API void ClearModifiers();
+	//Get a reference to our current list of modifiers
 	NIFLIB_API const vector<Ref<NiPSysModifier>>& GetModifiers() const;
 
 	//--END CUSTOM CODE--//

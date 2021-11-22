@@ -247,9 +247,40 @@ void Niflib::NiParticleSystem::SetWorldSpace(bool b)
 	worldSpace = b;
 }
 
-vector<Ref<NiPSysModifier>>& Niflib::NiParticleSystem::GetModifiers()
+void Niflib::NiParticleSystem::AddModifier(const Ref<NiPSysModifier>& mod)
 {
-	return modifiers;
+	//Insert at back
+	if (mod) {
+		auto target = mod->GetTarget();
+		if (target != this) {
+			if (target)
+				throw runtime_error("NiParticleSystem tried to add a modifier which is targeting another NiParticleSystem.");
+
+			mod->SetTarget(this);
+			modifiers.push_back(mod);
+		}
+	}
+}
+
+void Niflib::NiParticleSystem::RemoveModifier(NiPSysModifier* mod)
+{
+	//Find and erase mod
+	if (mod) {
+		auto it = std::find(modifiers.begin(), modifiers.end(), mod);
+		if (it != modifiers.end()) {
+			modifiers.erase(it);
+			mod->SetTarget(nullptr);
+		}
+	}
+}
+
+void Niflib::NiParticleSystem::ClearModifiers()
+{
+	for (auto&& mod : modifiers) {
+		if (mod)
+			mod->SetTarget(nullptr);
+	}
+	modifiers.clear();
 }
 
 const vector<Ref<NiPSysModifier>>& Niflib::NiParticleSystem::GetModifiers() const
