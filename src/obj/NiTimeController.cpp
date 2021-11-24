@@ -181,7 +181,7 @@ void NiTimeController::SetTarget( NiObjectNET * new_target ) {
 	target = new_target;
 }
 
-Ref<NiObjectNET> NiTimeController::GetTarget() {
+Ref<NiObjectNET> NiTimeController::GetTarget() const {
 	return target;
 }
 

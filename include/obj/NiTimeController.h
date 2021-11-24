@@ -83,7 +83,7 @@ public:
 	 * is acting on.
 	 * \return A reference to the current target of this controller.
 	 */
-	NIFLIB_API Ref<NiObjectNET> GetTarget();
+	NIFLIB_API Ref<NiObjectNET> GetTarget() const;
 
 	/*!
 	 * Can be used to get the data stored in the flags field for this object.  It is usually better to call more specific flag-toggle functions if they are availiable.
