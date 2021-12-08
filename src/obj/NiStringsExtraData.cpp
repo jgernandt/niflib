@@ -118,11 +118,8 @@ std::list<NiObject *> NiStringsExtraData::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
-vector<string> NiStringsExtraData::GetData() const {
-	vector<string> value;
-	value.resize(data.size());
-	std::copy(data.begin(), data.end(), value.begin());
-	return value;
+const vector<string>& NiStringsExtraData::GetData() const {
+	return data;
 };
 	
 void NiStringsExtraData::SetData( const vector<string> & n ) {
@@ -131,5 +128,10 @@ void NiStringsExtraData::SetData( const vector<string> & n ) {
 	data.resize(n.size());
 	std::copy(n.begin(), n.end(), data.begin());
 };
+
+void Niflib::NiStringsExtraData::SetData(vector<string>&& n)
+{
+	data = std::move(n);
+}
 
 //--END CUSTOM CODE--//

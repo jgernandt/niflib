@@ -58,13 +58,14 @@ public:
 	 * Retrieves the string values stored in this object.
 	 * \return The string values stored in this object.
 	 */
-	NIFLIB_API vector<string> GetData() const;
+	NIFLIB_API const vector<string>& GetData() const;
 
 	/*!
 	 * Sets the string values stored in this object.
 	 * \param[in] n The new string values to store in this object.
 	 */
 	NIFLIB_API void SetData( const vector<string> & n );
+	NIFLIB_API void SetData(vector<string>&& n);
 
 	//--END CUSTOM CODE--//
 protected:
