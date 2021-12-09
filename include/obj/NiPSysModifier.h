@@ -65,7 +65,7 @@ public:
 	NIFLIB_API unsigned int GetOrder() const;
 	NIFLIB_API void SetOrder(unsigned int o);
 
-	NIFLIB_API NiParticleSystem* GetTarget() const;
+	NIFLIB_API Ref<NiParticleSystem> GetTarget() const;
 	NIFLIB_HIDDEN void SetTarget(NiParticleSystem* psys);
 
 	//--END CUSTOM CODE--//

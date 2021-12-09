@@ -29,6 +29,7 @@ NiParticleSystem::NiParticleSystem() : farBegin((unsigned short)0), farEnd((unsi
 
 NiParticleSystem::~NiParticleSystem() {
 	//--BEGIN DESTRUCTOR CUSTOM CODE--//
+	ClearModifiers();
 	//--END CUSTOM CODE--//
 }
 

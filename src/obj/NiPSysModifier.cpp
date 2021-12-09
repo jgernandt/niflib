@@ -157,8 +157,11 @@ void Niflib::NiPSysModifier::SetOrder(unsigned int o)
 	order = o;
 }
 
-NiParticleSystem* Niflib::NiPSysModifier::GetTarget() const
+Ref<NiParticleSystem> Niflib::NiPSysModifier::GetTarget() const
 {
+	//We can safely return a Ref here, by the same logic as NiAVObject::GetParent.
+	//NiParticleSystem clears its modifiers on destruction, so if we are still 
+	//targeting someone, they still exist.
 	return target;
 }
 
