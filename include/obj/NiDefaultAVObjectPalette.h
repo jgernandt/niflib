@@ -19,10 +19,12 @@ All rights reserved.  Please see niflib.h for license. */
 #include "../gen/AVObject.h"
 namespace Niflib {
 
+// Forward define of referenced NIF objects
+class NiAVObject;
 class NiDefaultAVObjectPalette;
 typedef Ref<NiDefaultAVObjectPalette> NiDefaultAVObjectPaletteRef;
 
-/*! Unknown. Refers to a list of objects. Used by NiControllerManager. */
+/*! NiAVObjectPalette implementation. Used to quickly look up objects by name. */
 class NiDefaultAVObjectPalette : public NiAVObjectPalette {
 public:
 	/*! Constructor */
@@ -57,6 +59,13 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
+	NIFLIB_API NiAVObject* GetScene() const;
+	NIFLIB_API void SetScene(NiAVObject* obj);
+
+	NIFLIB_API const std::vector<AVObject>& GetObjects() const;
+	NIFLIB_API void SetObjects(const std::vector<AVObject>& objects);
+	NIFLIB_API void SetObjects(std::vector<AVObject>&& objects);
+
 	/*!
 	 * Gets the AV Objects stored in this palette.
 	 * \return The AV Objects stored in this palette.
@@ -90,8 +99,8 @@ public:
 
 	//--END CUSTOM CODE--//
 protected:
-	/*! Unknown. */
-	unsigned int unknownInt;
+	/*! Scene root of the object palette. */
+	NiAVObject * scene;
 	/*! Number of objects. */
 	mutable unsigned int numObjs;
 	/*! The objects. */

@@ -92,11 +92,15 @@ public:
 
    // Refers to controlled objects.
    // \return The current value.
-   vector<ControllerLink > GetControlledBlocks() const;
+   const vector<ControllerLink>& GetControlledBlocks() const;
 
    // Refers to controlled objects.
    // \param[in] value The new value.
-   void SetControlledBlocks( const vector<ControllerLink >& value );
+   void SetControlledBlocks( const vector<ControllerLink>& value );
+   void SetControlledBlocks(vector<ControllerLink>&& value);
+
+   unsigned int GetArrayGrowBy() const;
+   void SetArrayGrowBy(unsigned int i);
 
 	//--END CUSTOM CODE--//
 protected:

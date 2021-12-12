@@ -243,6 +243,8 @@ public:
 	 */
 	NIFLIB_API void SetWeight( float value );
 
+	NIFLIB_API NiControllerManager* GetParent() const;
+
 	/*!
 	 * Gets the name of target node this controller acts on.
 	 * \return The target node name.
@@ -269,7 +271,6 @@ public:
 
 protected:
    friend class NiControllerManager;
-   NiControllerManager * GetParent() const;
    void SetParent( NiControllerManager * parent );
 
 	//--END CUSTOM CODE--//

@@ -55,6 +55,12 @@ public:
 
 	//--BEGIN MISC CUSTOM CODE--//
 
+	NIFLIB_API const std::string& GetBehaviourGraphFile() const;
+	NIFLIB_API void SetBehaviourGraphFile(const std::string& name);
+
+	NIFLIB_API bool GetControlsBaseSkeleton() const;
+	NIFLIB_API void SetControlsBaseSkeleton(bool b);
+
 	//--END CUSTOM CODE--//
 protected:
 	/*! Name of the hkx file. */

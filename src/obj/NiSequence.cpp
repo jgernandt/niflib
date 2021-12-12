@@ -448,12 +448,27 @@ void NiSequence::SetTextKeys( Ref<NiTextKeyExtraData > value ) {
    textKeys = value;
 }
 
-vector<ControllerLink > NiSequence::GetControlledBlocks() const {
+const vector<ControllerLink>& NiSequence::GetControlledBlocks() const {
    return controlledBlocks;
 }
 
 void NiSequence::SetControlledBlocks( const vector<ControllerLink >& value ) {
    controlledBlocks = value;
+}
+
+void Niflib::NiSequence::SetControlledBlocks(vector<ControllerLink>&& value) 
+{
+	controlledBlocks = std::move(value);
+}
+
+unsigned int Niflib::NiSequence::GetArrayGrowBy() const
+{
+	return unknownInt1;
+}
+
+void Niflib::NiSequence::SetArrayGrowBy(unsigned int i)
+{
+	unknownInt1 = i;
 }
 
 //--END CUSTOM CODE--//

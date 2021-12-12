@@ -76,13 +76,14 @@ public:
 	 * Retrives the list of controller sequences that this controller manager references.
 	 * \return The controller sequences.
 	 */
-	NIFLIB_API vector< Ref<NiControllerSequence> > GetControllerSequences() const;
+	NIFLIB_API const vector< Ref<NiControllerSequence> >& GetControllerSequences() const;
 
 	/*!
 	 * Sets the list of controller sequences that this controller manager references.
 	 * \param[in] value The new controller sequences.
 	 */
 	NIFLIB_API void SetControllerSequences( const vector< Ref<NiControllerSequence> > & value );
+	NIFLIB_API void SetControllerSequences(vector< Ref<NiControllerSequence> >&& value);
 
 	/*!
 	 * Adds a new controller sequence to this controller manager.

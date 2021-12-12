@@ -110,4 +110,24 @@ std::list<NiObject *> BSBehaviorGraphExtraData::GetPtrs() const {
 
 //--BEGIN MISC CUSTOM CODE--//
 
+const std::string& Niflib::BSBehaviorGraphExtraData::GetBehaviourGraphFile() const
+{
+	return behaviourGraphFile;
+}
+
+void Niflib::BSBehaviorGraphExtraData::SetBehaviourGraphFile(const std::string& name)
+{
+	behaviourGraphFile = name;
+}
+
+bool Niflib::BSBehaviorGraphExtraData::GetControlsBaseSkeleton() const
+{
+	return static_cast<bool>(controlsBaseSkeleton);
+}
+
+void Niflib::BSBehaviorGraphExtraData::SetControlsBaseSkeleton(bool b)
+{
+	controlsBaseSkeleton = static_cast<Niflib::byte>(b);
+}
+
 //--END CUSTOM CODE--//

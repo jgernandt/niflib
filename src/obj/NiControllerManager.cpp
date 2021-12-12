@@ -182,16 +182,21 @@ void NiControllerManager::SetCumulative( bool value ) {
 	cumulative = value;
 }
 
-vector<Ref<NiControllerSequence > > NiControllerManager::GetControllerSequences() const {
+const vector<Ref<NiControllerSequence>>& NiControllerManager::GetControllerSequences() const {
 	return controllerSequences;
 }
 
 void NiControllerManager::SetControllerSequences( const vector<Ref<NiControllerSequence > >& value ) {
-   ClearSequences();
-	controllerSequences = value;
-   for (vector<NiControllerSequenceRef>::iterator it = controllerSequences.begin(); it != controllerSequences.end(); ++it) {
-      (*it)->SetParent(this);
-   }
+	vector<Ref<NiControllerSequence>> newVec = value;
+	SetControllerSequences(std::move(newVec));
+}
+
+void Niflib::NiControllerManager::SetControllerSequences(vector<Ref<NiControllerSequence>>&& value) {
+	ClearSequences();
+	controllerSequences = std::move(value);
+	for (vector<NiControllerSequenceRef>::iterator it = controllerSequences.begin(); it != controllerSequences.end(); ++it) {
+		(*it)->SetParent(this);
+	}
 }
 
 void NiControllerManager::AddSequence( NiControllerSequence * obj ) {
