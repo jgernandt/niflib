@@ -71,6 +71,7 @@
     <ClCompile Include="src\gen\Header.cpp" />
     <ClCompile Include="src\gen\HingeDescriptor.cpp" />
     <ClCompile Include="src\gen\hkTriangle.cpp" />
+    <ClCompile Include="src\gen\InterpBlendItem.cpp" />
     <ClCompile Include="src\gen\LimitedHingeDescriptor.cpp" />
     <ClCompile Include="src\gen\LODRange.cpp" />
     <ClCompile Include="src\gen\MatchGroup.cpp" />
@@ -622,6 +623,7 @@
     <ClInclude Include="include\gen\Header.h" />
     <ClInclude Include="include\gen\HingeDescriptor.h" />
     <ClInclude Include="include\gen\hkTriangle.h" />
+    <ClInclude Include="include\gen\InterpBlendItem.h" />
     <ClInclude Include="include\gen\KeyGroup.h" />
     <ClInclude Include="include\gen\LimitedHingeDescriptor.h" />
     <ClInclude Include="include\gen\LODRange.h" />

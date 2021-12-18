@@ -14,12 +14,21 @@ All rights reserved.  Please see niflib.h for license. */
 //--END CUSTOM CODE--//
 
 #include "NiInterpolator.h"
+
+// Include structures
+#include "../gen/InterpBlendItem.h"
+#include "../Ref.h"
 namespace Niflib {
 
+// Forward define of referenced NIF objects
+class NiInterpolator;
 class NiBlendInterpolator;
 typedef Ref<NiBlendInterpolator> NiBlendInterpolatorRef;
 
-/*! An extended type of interpolater. */
+/*!
+ * Abstract base class for all NiInterpolators that blend the results of sub-
+ * interpolators together to compute a final weighted value.
+ */
 class NiBlendInterpolator : public NiInterpolator {
 public:
 	/*! Constructor */
@@ -53,12 +62,44 @@ public:
 	NIFLIB_API virtual const Type & GetType() const;
 
 	//--BEGIN MISC CUSTOM CODE--//
+	
+	NIFLIB_API bool GetManagerControlled() const;
+	NIFLIB_API void SetManagerControlled(bool b);
+	
 	//--END CUSTOM CODE--//
 protected:
 	/*! Unknown. */
-	unsigned short unknownShort;
+	byte flags;
 	/*! Unknown. */
-	unsigned int unknownInt;
+	mutable unsigned short arraySize;
+	/*! Unknown. */
+	unsigned short arrayGrowBy;
+	/*! Unknown. */
+	float weightThreshold;
+	/*! Unknown. */
+	byte interpCount;
+	/*! Unknown. */
+	byte singleIndex;
+	/*! Unknown. */
+	byte highPriority;
+	/*! Unknown. */
+	byte nextHighPriority;
+	/*! Unknown. */
+	float singleTime;
+	/*! Unknown. */
+	float highWeightsSum;
+	/*! Unknown. */
+	float nextHighWeightsSum;
+	/*! Unknown. */
+	float highEaseSpinner;
+	/*! Unknown. */
+	vector<InterpBlendItem > interpArrayItems;
+	/*! Unknown. */
+	bool managedControlled;
+	/*! Unknown. */
+	bool onlyUseHighestWeight;
+	/*! Unknown. */
+	Ref<NiInterpolator > singleInterpolator;
 public:
 	/*! NIFLIB_HIDDEN function.  For internal use only. */
 	NIFLIB_HIDDEN virtual void Read( istream& in, list<unsigned int> & link_stack, const NifInfo & info );

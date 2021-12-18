@@ -7,43 +7,47 @@ NOTE: only generate the edited objects (the rest of the file is not up to date).
 
 Edits:
 
-MaterialData
-BSShaderFlags2
-ShadeFlags
-NiBoundAABB
-NiBound
+Types:
 AspectFlags
-NiParticleInfo (prev. ParticleDesc)
-ByteVector3
-HalfTexCoord
-HalfVector3
-VertexFlags
+BoneData (<- SkinData)
+BoneVertData (<- SkinWeight)
+BSGeometryDataFlags
+BSShaderFlags2
 BSVertexData
 BSVertexDataSSE
 BSVertexDesc
+ByteVector3
+HalfTexCoord
+HalfVector3
+InterpBlendItem
+MaterialData
+NiBound
+NiBoundAABB
 NiGeometryDataFlags
-BSGeometryDataFlags
+NiParticleInfo (prev. ParticleDesc)
+ShadeFlags
+VertexFlags
 SkinPartition
-BoneData (<- SkinData)
-BoneVertData (<- SkinWeight)
 
-NiShadeProperty
-BSShaderProperty
+NiObjects:
+BSDistantObjectLargeRefExtraData
+BSDynamicTriShape
 BSEffectShaderProperty (inheritance only)
 BSLightingShaderProperty (inheritance only)
-NiRenderObject
+BSShaderProperty
+BSTriShape
+NiBlendInterpolator
+NiDefaultAVObjectPalette
 NiGeometry
 NiGeometryData
 NiParticlesData
-NiPSysData
 NiParticleSystem
+NiPSysData
 NiPSysMeshEmitter
-BSTriShape
-BSDynamicTriShape
-BSDistantObjectLargeRefExtraData
-NiSkinPartition
+NiRenderObject
+NiShadeProperty
 NiSkinData
-NiDefaultAVObjectPalette
+NiSkinPartition
 
 -->
 
@@ -1837,6 +1841,16 @@ NiDefaultAVObjectPalette
         <member width="12" pos="44" mask="0xFFF00000000000" name="Vertex Attributes" type="VertexAttribute" />
     </bitfield>
 	 -->
+	 
+    <compound name="InterpBlendItem">
+        Interpolator item for array in NiBlendInterpolator.
+        <add name="Interpolator" type="Ref" template="NiInterpolator">Reference to an interpolator.</add>
+        <add name="Weight" type="float" />
+        <add name="Normalized Weight" type="float" />
+        <add name="Priority" type="int" ver2="10.1.0.109" />
+        <add name="Priority" type="byte" ver1="10.1.0.110" />
+        <add name="Ease Spinner" type="float" />
+    </compound>
 	
 	
 	
@@ -2320,9 +2334,37 @@ NiDefaultAVObjectPalette
     </niobject>
 
     <niobject name="NiBlendInterpolator" abstract="1" inherit="NiInterpolator">
-        An extended type of interpolater.
-        <add name="Unknown Short" type="ushort">Unknown.</add>
-        <add name="Unknown Int" type="uint">Unknown.</add>
+        Abstract base class for all NiInterpolators that blend the results of sub-interpolators together to compute a final weighted value.
+        <add name="Flags" type="byte" ver1="10.1.0.112" />
+        <add name="Array Size" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Grow By" type="ushort" ver2="10.1.0.109" />
+        <add name="Array Size" type="byte" ver1="10.1.0.110" />
+        <add name="Weight Threshold" type="float" ver1="10.1.0.112" />
+        <!-- Flags conds -->
+        <add name="Interp Count" type="byte" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="Single Index" type="byte" default="255" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="High Priority" type="char" default="-128" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="Next High Priority" type="char" default="-128" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="Single Time" type="float" default="-3.402823466e+38" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="High Weights Sum" type="float" default="-3.402823466e+38" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="Next High Weights Sum" type="float" default="-3.402823466e+38" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="High Ease Spinner" type="float" default="-3.402823466e+38" cond="Flags != 1" ver1="10.1.0.112" />
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" cond="Flags != 1" ver1="10.1.0.112" />
+        <!-- end Flags 1 conds -->
+        <add name="Interp Array Items" type="InterpBlendItem" arr1="Array Size" ver2="10.1.0.111" />
+        <add name="Managed Controlled" type="bool" ver2="10.1.0.111" />
+        <add name="Weight Threshold" type="float" ver2="10.1.0.111" />
+        <add name="Only Use Highest Weight" type="bool" ver2="10.1.0.111" />
+        <add name="Interp Count" type="ushort" ver2="10.1.0.109" />
+        <add name="Single Index" type="ushort" ver2="10.1.0.109" />
+        <add name="Interp Count" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Index" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Single Interpolator" type="Ref" template="NiInterpolator" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="Single Time" type="float" ver1="10.1.0.108" ver2="10.1.0.111" />
+        <add name="High Priority" type="int" ver2="10.1.0.109" />
+        <add name="Next High Priority" type="int" ver2="10.1.0.109" />
+        <add name="High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
+        <add name="Next High Priority" type="byte" ver1="10.1.0.110" ver2="10.1.0.111" />
     </niobject>
 
     <niobject name="NiBSplineInterpolator" abstract="1" inherit="NiInterpolator">

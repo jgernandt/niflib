@@ -1680,6 +1680,9 @@
     <ClCompile Include="src\gen\BoneVertData.cpp">
       <Filter>Source Files\obj</Filter>
     </ClCompile>
+    <ClCompile Include="src\gen\InterpBlendItem.cpp">
+      <Filter>Source Files\gen</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\ComplexShape.h">
@@ -3333,6 +3336,9 @@
       <Filter>Header Files\gen</Filter>
     </ClInclude>
     <ClInclude Include="include\gen\BoneVertData.h">
+      <Filter>Header Files\gen</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gen\InterpBlendItem.h">
       <Filter>Header Files\gen</Filter>
     </ClInclude>
   </ItemGroup>
